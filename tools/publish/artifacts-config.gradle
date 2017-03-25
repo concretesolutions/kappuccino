@@ -1,0 +1,54 @@
+android.libraryVariants.all { variant ->
+  variant.outputs.each { output ->
+
+    String outputName = output.outputFile.name
+
+    if ("debug".equals(outputName))
+      return; // Skip debug builds.
+
+    outputName = outputName.capitalize()
+
+    task("javadoc${outputName}", type: Javadoc) {
+      description "Generates Javadoc for $outputName."
+      source = variant.javaCompile.source
+      ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+      classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+      failOnError false
+    }
+
+    task("bundleJavadoc${outputName}", type: Jar) {
+      description "Bundles Javadoc into zip for $variant.name."
+      classifier = "javadoc"
+      from tasks["javadoc${outputName}"]
+    }
+  }
+}
+
+task jar(type: Jar) {
+  from 'build/intermediates/classes/release'
+  exclude '**/BuildConfig.class'
+  exclude '**/R.class'
+}
+
+task androidJavadocs(type: Javadoc) {
+  description "Generates JavaDoc files from all Java files."
+  source = android.sourceSets.main.java.srcDirs
+}
+
+task androidJavadocsJar(type: Jar) {
+  description "Generates a JavaDoc archive (.jar) from the JavaDoc files."
+  classifier = 'javadoc'
+  from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+  description "Generates a source files archive (.jar)."
+  classifier = 'sources'
+  from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+  archives androidSourcesJar
+  archives androidJavadocsJar
+  archives jar
+}
