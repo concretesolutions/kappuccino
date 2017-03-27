@@ -53,7 +53,7 @@ If any of your views should be scrolled:
 
 ``` kotlin
 @Test fun loginFieldsAreVisible() {
-  displayed(scroll = false {
+  displayed(scroll = false) {
     id(R.id.username)
     id(R.id.password)
     id(R.id.login_button)
