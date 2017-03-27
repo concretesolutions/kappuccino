@@ -18,9 +18,9 @@ bintray {
 
   configurations = ['archives']
   pkg {
-    repo = 'maven'
+    repo = 'kappuccino'
     name = 'kappuccino'
-    userOrg = 'concretesolutions'
+    userOrg = 'heitorcolangelo'
     desc = DESCRIPTION
     websiteUrl = PROJECT_URL
     vcsUrl = SCM_URL
@@ -31,7 +31,7 @@ bintray {
       desc = DESCRIPTION
       gpg {
         sign = true //Determines whether to GPG sign the files. The default is false
-        passphrase = localConfig.getProperty("bintray.gpg.password")
+        passphrase = localConfig.getProperty('bintray.gpg.password')
       }
     }
 
