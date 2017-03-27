@@ -60,8 +60,21 @@ If any of your views should be scrolled:
   }
 }
 ```
+
+## Installation
+
+``` groovy
+androidTestcompile 'br.com.concretesolutions:kappuccino:0.1.0'
+```
+
+## Other examples
+
 Check more examples on the web site and documentation.
 Have fun!
+
+## LICENSE
+
+This project is available under Apache Public License version 2.0. See [LICENSE](LICENSE).
 
 
 
