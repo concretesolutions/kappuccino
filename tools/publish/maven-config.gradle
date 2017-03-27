@@ -5,7 +5,7 @@ ext.mavenConfig = {
   pom.whenConfigured { pom ->
     pom.project {
       groupId GROUP
-      version '0.1.0'
+      version '0.5.0'
       name NAME
       description DESCRIPTION
       inceptionYear INCEPTION_YEAR
