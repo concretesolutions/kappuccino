@@ -3,22 +3,23 @@ apply from: "$rootDir/tools/publish.gradle"
 apply plugin: 'kotlin-android'
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion "25.0.2"
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
 
   defaultConfig {
-    minSdkVersion 19
-    targetSdkVersion 25
-    versionCode Integer.valueOf(file("$projectDir/VERSION_CODE").text)
-    versionName file("$projectDir/VERSION_NAME").text
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode rootProject.ext.versionCode
+    versionName rootProject.ext.versionName
 
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    debug {
+      testCoverageEnabled true
     }
+
+    release {}
   }
   lintOptions {
     abortOnError false
@@ -27,23 +28,23 @@ android {
   sourceSets { main { java.srcDirs = ['src/main/kotlin'] } }
 }
 
-final versions = rootProject.ext
+final kotlinVersion = '1.1.1'
+final espressoVersion = '2.2.2'
+final supportLibraryVersion = '25.2.0'
 
 dependencies {
 
-  compile "org.jetbrains.kotlin:kotlin-stdlib:1.1.1"
-  compile "org.jetbrains.kotlin:kotlin-test-junit:1.1.1"
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+  compile "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
 
-  compile "com.android.support.test.espresso:espresso-core:2.2.2"
-  compile "com.android.support.test.espresso:espresso-intents:2.2.2"
-  compile "com.android.support.test.espresso:espresso-contrib:2.2.2"
-  compile "com.android.support:support-annotations:25.2.0"
-  compile "com.android.support:support-v4:25.2.0"
-  compile "com.android.support:appcompat-v7:25.2.0"
-  compile "com.android.support:design:25.2.0"
-  compile "com.android.support:recyclerview-v7:25.2.0"
+  compile "com.android.support.test.espresso:espresso-core:$espressoVersion"
+  compile "com.android.support.test.espresso:espresso-intents:$espressoVersion"
+  compile "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
+  compile "com.android.support:support-annotations:$supportLibraryVersion"
+  compile "com.android.support:support-v4:$supportLibraryVersion"
+  compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+  compile "com.android.support:design:$supportLibraryVersion"
+  compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
   compile "com.android.support.test.uiautomator:uiautomator-v18:2.1.2"
 }
-repositories {
-  mavenCentral()
-}
+

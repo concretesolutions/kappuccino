@@ -5,5 +5,24 @@
 /.idea/libraries
 .DS_Store
 /build
+sample/build
+kappuccino/build
 /captures
-.externalNativeBuild
+.idea/
+
+# Built application files
+*.apk
+*.ap_
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+
+# Log Files
+*.log
