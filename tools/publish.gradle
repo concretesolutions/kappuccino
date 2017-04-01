@@ -8,7 +8,7 @@ apply from: "$rootDir/tools/publish/maven-config.gradle"
 apply plugin: 'com.jfrog.bintray'
 
 group = GROUP
-version = file("$projectDir/VERSION_NAME").text
+version = VERSION_NAME
 
 bintray {
 
