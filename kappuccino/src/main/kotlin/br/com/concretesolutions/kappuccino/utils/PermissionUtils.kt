@@ -19,9 +19,9 @@ class PermissionUtils(val permissionNeeded: String) {
 
     private val PERMISSIONS_DIALOG_DELAY = 3000
 
-    fun allow(){
-        val ALLOW_BUTTON_INDEX = 1
-        handlePermission(ALLOW_BUTTON_INDEX)
+    fun grant(){
+        val GRANT_BUTTON_INDEX = 1
+        handlePermission(GRANT_BUTTON_INDEX)
     }
 
     fun deny() {
