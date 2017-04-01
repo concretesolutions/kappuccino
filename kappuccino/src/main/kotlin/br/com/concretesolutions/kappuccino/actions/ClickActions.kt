@@ -5,9 +5,6 @@ import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.doubleClick
 import android.support.test.espresso.action.ViewActions.longClick
 import br.com.concretesolutions.kappuccino.BaseViewMatchers
-import br.com.concretesolutions.kappuccino.clickItem
-import br.com.concretesolutions.kappuccino.longClickItem
-import br.com.concretesolutions.kappuccino.withId
 
 open class BaseClickAction(protected val clickType: Int, protected val scroll: Boolean, vararg parentId: Int?, descendantId: Int?, descendantText: Int?) {
 
@@ -54,20 +51,8 @@ open class BaseClickAction(protected val clickType: Int, protected val scroll: B
 
 class DoubleClick(scroll: Boolean, vararg parentId: Int?, descendantId: Int?, descendantText: Int?) : BaseClickAction(2, scroll, parentId = *parentId, descendantId = descendantId, descendantText = descendantText)
 
-class LongClick(scroll: Boolean, vararg parentId: Int?, descendantId: Int?, descendantText: Int?) : BaseClickAction(3, scroll, parentId = *parentId, descendantId = descendantId, descendantText = descendantText) {
+class LongClick(scroll: Boolean, vararg parentId: Int?, descendantId: Int?, descendantText: Int?) : BaseClickAction(3, scroll, parentId = *parentId, descendantId = descendantId, descendantText = descendantText)
 
-    fun itemInList(recyclerId: Int, position: Int): LongClick {
-        withId(recyclerId).longClickItem(position)
-        return this
-    }
-}
-
-class SingleClick(scroll: Boolean, vararg parentId: Int?, descendantId: Int?, descendantText: Int?) : BaseClickAction(1, scroll, parentId = *parentId, descendantId = descendantId, descendantText = descendantText) {
-
-    fun itemInList(recyclerId: Int, position: Int): SingleClick {
-        withId(recyclerId).clickItem(position)
-        return this
-    }
-}
+class SingleClick(scroll: Boolean, vararg parentId: Int?, descendantId: Int?, descendantText: Int?) : BaseClickAction(1, scroll, parentId = *parentId, descendantId = descendantId, descendantText = descendantText)
 
 
