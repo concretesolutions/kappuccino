@@ -5,11 +5,10 @@ if (file("$rootDir/local.properties").exists())
   localConfig.load(file("$rootDir/local.properties").newDataInputStream())
 
 apply from: "$rootDir/tools/publish/maven-config.gradle"
-//apply from: "$rootDir/tools/publish/artifacts-config.gradle"
 apply plugin: 'com.jfrog.bintray'
 
 group = GROUP
-version = file("$projectDir/VERSION_NAME").text
+version = VERSION_NAME
 
 bintray {
 
