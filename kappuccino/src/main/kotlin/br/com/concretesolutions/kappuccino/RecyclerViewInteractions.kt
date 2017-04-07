@@ -6,9 +6,11 @@ import android.support.test.espresso.action.ViewActions.longClick
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.v7.widget.RecyclerView.ViewHolder
 import br.com.concretesolutions.kappuccino.matchers.RecyclerViewMatcher
 import br.com.concretesolutions.kappuccino.utils.RecyclerViewTestUtils
+import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
 
 class RecyclerViewInteractions(val recyclerViewId: Int) {
@@ -45,6 +47,7 @@ class RecyclerViewInteractions(val recyclerViewId: Int) {
             return this
         }
 
+        //TODO REFATORAR PARA USAR O METODO DISPLAYED QUE JA EXISTE
         fun displayed(viewId: Int): Interactions {
             Espresso.onView(RecyclerViewMatcher(recyclerViewId)
                 .atPositionOnView(position, viewId)).check(ViewAssertions.matches(isDisplayed()))
@@ -59,6 +62,14 @@ class RecyclerViewInteractions(val recyclerViewId: Int) {
 
         fun scroll(): Interactions {
             withId(recyclerViewId).perform(RecyclerViewActions.scrollToPosition<ViewHolder>(position))
+            return this
+        }
+
+        fun text(viewId: Int, text: String): Interactions {
+            Espresso.onView(allOf(
+                RecyclerViewMatcher(recyclerViewId).atPositionOnView(position, viewId),
+                withText(text)))
+                .check(ViewAssertions.matches(isDisplayed()))
             return this
         }
 
