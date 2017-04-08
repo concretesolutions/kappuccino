@@ -1,5 +1,6 @@
 package br.com.concretesolutions.kappuccino.assertions
 
+import android.support.annotation.StringRes
 import android.support.test.espresso.ViewAssertion
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isChecked
@@ -12,6 +13,18 @@ class CheckedAssertions(val checked: Boolean, val scroll: Boolean, vararg parent
 
     fun id(viewId: Int, scroll: Boolean = this.scroll): CheckedAssertions {
         viewMatcher.id(viewId, scroll).check(checked())
+        return this
+    }
+
+    fun text(@StringRes textId: Int, scroll: Boolean = this.scroll): CheckedAssertions {
+        viewMatcher.text(textId, scroll)
+            .check(checked())
+        return this
+    }
+
+    fun text(text: String, scroll: Boolean = this.scroll): CheckedAssertions {
+        viewMatcher.text(text, scroll)
+            .check(checked())
         return this
     }
 
