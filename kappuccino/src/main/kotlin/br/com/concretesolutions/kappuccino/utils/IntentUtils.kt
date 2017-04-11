@@ -19,12 +19,10 @@ class IntentMatcherSetup(className: String) {
 
     fun resultOk() {
         resultCode(Activity.RESULT_OK)
-        match()
     }
 
     fun resultCanceled() {
         resultCode(Activity.RESULT_CANCELED)
-        match()
     }
 
     fun match() {
@@ -32,7 +30,7 @@ class IntentMatcherSetup(className: String) {
         Intents.intending(matcher).respondWith(result)
     }
 
-    private fun resultCode(resultCode: Int) {
+    fun resultCode(resultCode: Int) {
         this.resultCode = resultCode
     }
 }
