@@ -64,7 +64,7 @@ If any of your views should be scrolled:
 ## Installation
 
 ``` groovy
-androidTestcompile 'br.com.concretesolutions:kappuccino:0.8.3'
+androidTestcompile 'br.com.concretesolutions:kappuccino:0.8.4'
 ```
 
 ## Other examples
