@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'project-report'
 apply from: "$rootDir/tools/publish.gradle"
 apply plugin: 'kotlin-android'
 
@@ -11,7 +12,7 @@ android {
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode rootProject.ext.versionCode
     versionName rootProject.ext.versionName
-
+    multiDexEnabled true
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
@@ -25,26 +26,39 @@ android {
     abortOnError false
   }
 
+  configurations {
+    all*.exclude group: 'com.android.support', module: 'support-v4'
+  }
   sourceSets { main { java.srcDirs = ['src/main/kotlin'] } }
 }
 
 final kotlinVersion = '1.1.1'
 final espressoVersion = '2.2.2'
-final supportLibraryVersion = '25.2.0'
+final supportLibraryVersion = '25.3.1'
 
 dependencies {
 
   compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
   compile "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
 
-  compile "com.android.support.test.espresso:espresso-core:$espressoVersion"
+  compile("com.android.support.test.espresso:espresso-core:$espressoVersion"){
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+
   compile "com.android.support.test.espresso:espresso-intents:$espressoVersion"
-  compile "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
+  compile("com.android.support.test.espresso:espresso-contrib:$espressoVersion"){
+    // Necessary to avoid version conflicts
+    exclude group: 'com.android.support', module: 'design'
+    exclude group: 'com.android.support', module: 'recyclerview-v7'
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+
   compile "com.android.support:support-annotations:$supportLibraryVersion"
-  compile "com.android.support:support-v4:$supportLibraryVersion"
-  compile "com.android.support:appcompat-v7:$supportLibraryVersion"
   compile "com.android.support:design:$supportLibraryVersion"
   compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
-  compile "com.android.support.test.uiautomator:uiautomator-v18:2.1.2"
-}
 
+  compile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+
+  compile 'com.android.support.test:rules:0.5'
+  compile 'com.android.support.test:runner:0.5'
+}
