@@ -1,6 +1,8 @@
 package br.com.concretesolutions.kappuccino
 
-interface BaseMatcherMethods {
+import android.support.annotation.IdRes
+
+interface KappuccinoMethods {
     fun id(viewId: Int): Any
     fun text(textId: Int): Any
     fun text(text: String): Any
@@ -8,6 +10,6 @@ interface BaseMatcherMethods {
     fun contentDescription(contentDescription: String): Any
     fun image(imageId: Int): Any
     fun textColor(colorId: Int): Any
-    fun parent(func: BaseViewMatchers.() -> Unit): Any
+    fun parent(@IdRes parentId: Int = -1, func: BaseViewMatchers.() -> Unit): Any
     fun descendant(func: BaseViewMatchers.() -> Unit): Any
 }
