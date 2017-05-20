@@ -5,15 +5,14 @@ import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.espresso.matcher.ViewMatchers.hasDescendant
-import android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.view.View
 import br.com.concretesolutions.kappuccino.matchers.DrawableMatcher
 import br.com.concretesolutions.kappuccino.matchers.TextColorMatcher
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 
-class BaseViewMatchers : BaseMatcherMethods {
+class BaseViewMatchers : KappuccinoMethods {
 
     private val matchList = mutableListOf<Matcher<View>>()
 
@@ -49,8 +48,16 @@ class BaseViewMatchers : BaseMatcherMethods {
         matchList.add(Matchers.allOf(BaseViewMatchers().apply { func() }.matchList()))
     }
 
-    override fun parent(func: BaseViewMatchers.() -> Unit) {
-        matchList.add(isDescendantOfA(Matchers.allOf(BaseViewMatchers().apply { func() }.matchList())))
+    override fun parent(@IdRes parentId: Int, func: BaseViewMatchers.() -> Unit) {
+        val parentList = BaseViewMatchers().apply { func() }.matchList()
+        var parentViewMatcher: Matcher<View>
+        for (matcher in parentList) {
+            if (parentId != -1)
+                parentViewMatcher = Matchers.allOf(isDescendantOfA(withId(parentId)), matcher)
+            else
+                parentViewMatcher = isDescendantOfA(Matchers.allOf(matcher))
+            matchList.add(parentViewMatcher)
+        }
     }
 
     override fun descendant(func: BaseViewMatchers.() -> Unit) {
