@@ -52,7 +52,7 @@ To scroll, all you have to do is pass a parameter to the function:
 ## Installation
 
 ``` groovy
-androidTestcompile 'br.com.concretesolutions:kappuccino:0.9.0'
+androidTestcompile 'br.com.concretesolutions:kappuccino:0.9.1'
 ```
 
 ## Other examples
