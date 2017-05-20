@@ -1,34 +1,25 @@
 package br.com.concretesolutions.kappuccino.assertions
 
-import android.support.annotation.StringRes
 import android.support.test.espresso.ViewAssertion
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isChecked
+import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import br.com.concretesolutions.kappuccino.BaseViewMatchers
 import org.hamcrest.Matchers.not
 
-class CheckedAssertions(val checked: Boolean, val scroll: Boolean, vararg parentId: Int? = arrayOf<Int>(), descendantId: Int?, descendantText: Int?) {
+object CheckedAssertions {
 
-    val viewMatcher = BaseViewMatchers(scroll, parentId = *parentId, descendantId = descendantId, descendantText = descendantText)
-
-    fun id(viewId: Int, scroll: Boolean = this.scroll): CheckedAssertions {
-        viewMatcher.id(viewId, scroll).check(checked())
-        return this
+    fun checked(scroll: Boolean = false, func: BaseViewMatchers.() -> Unit) {
+        val matchList = BaseViewMatchers().apply { func() }.matchList()
+        BaseViewInteractions(scroll, matchList).check(checked(true))
     }
 
-    fun text(@StringRes textId: Int, scroll: Boolean = this.scroll): CheckedAssertions {
-        viewMatcher.text(textId, scroll)
-            .check(checked())
-        return this
+    fun notChecked(scroll: Boolean = false, func: BaseViewMatchers.() -> Unit) {
+        val matchList = BaseViewMatchers().apply { func() }.matchList()
+        BaseViewInteractions(scroll, matchList).check(checked(true))
     }
 
-    fun text(text: String, scroll: Boolean = this.scroll): CheckedAssertions {
-        viewMatcher.text(text, scroll)
-            .check(checked())
-        return this
-    }
-
-    private fun checked(): ViewAssertion {
+    private fun checked(checked: Boolean): ViewAssertion {
         if (checked) return matches(isChecked())
         else return matches(not(isChecked()))
     }

@@ -1,29 +1,27 @@
-package br.com.concretesolutions.kappuccino.utils
+package br.com.concretesolutions.kappuccino.custom.recyclerView
 
 import android.support.annotation.IdRes
 import android.support.test.espresso.PerformException.Builder
 import android.support.test.espresso.UiController
 import android.support.test.espresso.ViewAction
-import android.support.test.espresso.ViewAssertion
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.util.HumanReadables
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import br.com.concretesolutions.kappuccino.counters.RecyclerViewItemCountAssertion
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 
-object RecyclerViewTestUtils {
+object RecyclerViewUtils {
 
     fun actionOnItemViewAtPosition(position: Int, @IdRes viewId: Int, viewAction: ViewAction): ViewAction {
-        return RecyclerViewTestUtils.ActionOnItemViewAtPositionViewAction(
+        return ActionOnItemViewAtPositionViewAction(
             position, viewId, viewAction)
     }
 
     private class ActionOnItemViewAtPositionViewAction (
-        private val position: Int,
-        @param:IdRes private val viewId: Int,
-        private val viewAction: ViewAction) : ViewAction {
+            private val position: Int,
+            @param:IdRes private val viewId: Int,
+            private val viewAction: ViewAction) : ViewAction {
 
         override fun getConstraints(): Matcher<View> {
             return Matchers.allOf(
@@ -37,7 +35,7 @@ object RecyclerViewTestUtils {
 
         override fun perform(uiController: UiController, view: View) {
             val recyclerView = view as RecyclerView
-            RecyclerViewTestUtils.ScrollToPositionViewAction(this.position).perform(uiController, view)
+            ScrollToPositionViewAction(this.position).perform(uiController, view)
             uiController.loopMainThreadUntilIdle()
 
             val targetView = recyclerView.getChildAt(this.position).findViewById(this.viewId)
@@ -57,10 +55,6 @@ object RecyclerViewTestUtils {
                 this.viewAction.perform(uiController, targetView)
             }
         }
-    }
-
-    fun recyclerViewHasSize(size: Int): ViewAssertion {
-        return RecyclerViewItemCountAssertion(size)
     }
 
     private class ScrollToPositionViewAction (

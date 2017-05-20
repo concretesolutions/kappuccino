@@ -1,56 +1,62 @@
 package br.com.concretesolutions.kappuccino
 
 import android.support.annotation.ColorRes
+import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
-import android.support.test.espresso.ViewInteraction
+import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.matcher.ViewMatchers.hasDescendant
+import android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import android.view.View
+import br.com.concretesolutions.kappuccino.matchers.DrawableMatcher
+import br.com.concretesolutions.kappuccino.matchers.TextColorMatcher
+import org.hamcrest.Matcher
+import org.hamcrest.Matchers
 
-class BaseViewMatchers(val scroll: Boolean, vararg val parentId: Int?, val descendantId: Int?, val descendantText: Int?) {
+class BaseViewMatchers : BaseMatcherMethods {
 
-    fun id(@IdRes viewId: Int, scroll: Boolean = this.scroll): ViewInteraction {
-        return withId(viewId, parentId = *parentId, descendantId = descendantId, descendantText = descendantText)
-            .scroll(scroll)
+    private val matchList = mutableListOf<Matcher<View>>()
+
+    override fun id(@IdRes viewId: Int) {
+        matchList.add(ViewMatchers.withId(viewId))
     }
 
-    fun text(@StringRes textId: Int, scroll: Boolean = this.scroll): ViewInteraction {
-        return withText(textId, parentId = *parentId, descendantId = descendantId, descendantText = descendantText)
-            .scroll(scroll)
+    override fun text(@StringRes textId: Int) {
+        matchList.add(ViewMatchers.withText(textId))
     }
 
-    fun text(text: String, scroll: Boolean = this.scroll): ViewInteraction {
-        return withText(text, parentId = *parentId, descendantId = descendantId, descendantText = descendantText)
-            .scroll(scroll)
+    override fun text(text: String) {
+        matchList.add(ViewMatchers.withText(text))
     }
 
-    fun idAndText(@IdRes viewId: Int, @StringRes textId: Int, scroll: Boolean = this.scroll): ViewInteraction {
-        return withIdAndText(viewId, textId)
-            .scroll(scroll)
+    override fun contentDescription(@StringRes contentDescriptionId: Int) {
+        matchList.add(ViewMatchers.withContentDescription(contentDescriptionId))
     }
 
-    fun idAndText(@IdRes viewId: Int, text: String, scroll: Boolean = this.scroll): ViewInteraction {
-        return withIdAndText(viewId, text = text)
-            .scroll(scroll)
+    override fun contentDescription(contentDescription: String) {
+        matchList.add(ViewMatchers.withContentDescription(contentDescription))
     }
 
-    fun contentDescription(@StringRes contentDescriptionId: Int, scroll: Boolean = this.scroll): ViewInteraction {
-        return withContentDescription(contentDescriptionId, *parentId)
-            .scroll(scroll)
+    override fun image(@DrawableRes imageId: Int) {
+        matchList.add(DrawableMatcher(imageId))
     }
 
-    fun contentDescription(contentDescriptionText: String, scroll: Boolean = this.scroll): ViewInteraction {
-        return withContentDescription(contentDescriptionText, *parentId)
-            .scroll(scroll)
+    override fun textColor(@ColorRes colorId: Int) {
+        matchList.add(TextColorMatcher().withTextColor(colorId))
     }
 
-    fun image(@IdRes imageId: Int, scroll: Boolean = this.scroll): ViewInteraction {
-        return withId(imageId, *parentId)
-            .scroll(scroll)
+    fun allOf(func: BaseViewMatchers.() -> Unit) {
+        matchList.add(Matchers.allOf(BaseViewMatchers().apply { func() }.matchList()))
     }
 
-    fun textColor(@IdRes viewId: Int, @ColorRes colorId: Int, scroll: Boolean = this.scroll): ViewInteraction {
-        return withTextColor(viewId, colorId)
-            .scroll(scroll)
+    override fun parent(func: BaseViewMatchers.() -> Unit) {
+        matchList.add(isDescendantOfA(Matchers.allOf(BaseViewMatchers().apply { func() }.matchList())))
     }
 
+    override fun descendant(func: BaseViewMatchers.() -> Unit) {
+        matchList.add(hasDescendant(Matchers.allOf(BaseViewMatchers().apply { func() }.matchList())))
+    }
+
+    fun matchList() = matchList
 }
 

@@ -12,12 +12,11 @@ android {
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode rootProject.ext.versionCode
     versionName rootProject.ext.versionName
-    multiDexEnabled true
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
     debug {
-      testCoverageEnabled true
+      testCoverageEnabled false
     }
 
     release {}
@@ -26,15 +25,11 @@ android {
     abortOnError false
   }
 
-  configurations {
-    all*.exclude group: 'com.android.support', module: 'support-v4'
-  }
   sourceSets { main { java.srcDirs = ['src/main/kotlin'] } }
 }
 
 final kotlinVersion = '1.1.1'
 final espressoVersion = '2.2.2'
-final supportLibraryVersion = '25.3.1'
 
 dependencies {
 
@@ -53,9 +48,9 @@ dependencies {
     exclude group: 'com.android.support', module: 'support-annotations'
   }
 
-  compile "com.android.support:support-annotations:$supportLibraryVersion"
-  compile "com.android.support:design:$supportLibraryVersion"
-  compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+  compile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
+  compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+  compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
 
   compile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
 

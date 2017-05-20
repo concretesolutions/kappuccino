@@ -48,7 +48,7 @@ class PermissionUtils(val permissionNeeded: String) {
                 }
             }
         } catch (e: UiObjectNotFoundException) {
-            println("There is no permissions dialog to interact with")
+            println("There is no permissions dialog to interaction with")
         }
 
     }
