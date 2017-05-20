@@ -1,32 +1,17 @@
 package br.com.concretesolutions.kappuccino
 
-import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.action.ViewActions.closeSoftKeyboard
-import android.support.test.espresso.action.ViewActions.longClick
-import android.support.test.espresso.action.ViewActions.pressImeActionButton
-import android.support.test.espresso.action.ViewActions.scrollTo
-import android.support.test.espresso.action.ViewActions.typeText
-import android.support.test.espresso.contrib.RecyclerViewActions
-import android.support.v7.widget.RecyclerView.ViewHolder
+import android.view.View
+import br.com.concretesolutions.kappuccino.extensions.scroll
 
-fun ViewInteraction.scroll(scroll: Boolean): ViewInteraction {
-    if (scroll) return this.perform(scrollTo())
-    return this
-}
+class BaseViewInteractions(val scroll: Boolean = false, val matchers: List<org.hamcrest.Matcher<View>>) {
 
-fun ViewInteraction.type(text: String, pressActionButton: Boolean = false, closeKeyboard: Boolean = true): ViewInteraction {
-    if (pressActionButton) return perform(typeText(text), pressImeActionButton())
-    if (closeKeyboard) return perform(typeText(text), closeSoftKeyboard())
-    return perform(typeText(text))
-}
+    fun check(assertion: android.support.test.espresso.ViewAssertion) {
+        for (matcher in matchers)
+            android.support.test.espresso.Espresso.onView(matcher).scroll(scroll).check(assertion)
+    }
 
-fun ViewInteraction.clickItem(position: Int): ViewInteraction {
-    return this.perform(RecyclerViewActions
-        .actionOnItemAtPosition<ViewHolder>(position, click()))
-}
-
-fun ViewInteraction.longClickItem(position: Int): ViewInteraction {
-    return this.perform(RecyclerViewActions
-        .actionOnItemAtPosition<ViewHolder>(position, longClick()))
+    fun action(viewAction: android.support.test.espresso.ViewAction) {
+        for (matcher in matchers)
+            android.support.test.espresso.Espresso.onView(matcher).scroll(scroll).perform(viewAction)
+    }
 }
