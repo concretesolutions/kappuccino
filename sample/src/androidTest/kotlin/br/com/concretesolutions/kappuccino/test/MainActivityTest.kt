@@ -84,6 +84,16 @@ class MainActivityTest {
     }
 
     @Test
+    fun checkParentFunction() {
+        displayed {
+            parent(R.id.main_parent) {
+                id(R.id.text_hello_world)
+                id(R.id.text_hello_world2)
+            }
+        }
+    }
+
+    @Test
     fun kapp_displayed_test() {
         displayed {
             id(R.id.text_hello_world)
