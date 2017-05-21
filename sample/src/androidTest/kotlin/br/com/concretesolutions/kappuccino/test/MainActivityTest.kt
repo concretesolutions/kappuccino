@@ -7,6 +7,7 @@ import br.com.concretesolutions.kappuccino.R
 import br.com.concretesolutions.kappuccino.actions.TextActions.typeText
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.notDisplayed
+import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -102,6 +103,17 @@ class MainActivityTest {
                 text(R.string.hello_world)
             }
             id(R.id.text_hello_world2)
+        }
+    }
+
+    @Test
+    fun recyclerView_test() {
+        recyclerView(R.id.recyclerview1) {
+            atPosition(1) {
+                displayed {
+                    text("PHP")
+                }
+            }
         }
     }
 
