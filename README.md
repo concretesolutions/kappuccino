@@ -23,7 +23,7 @@ With scroll, our test will be something like that:
 ```
 
 We have to repeat a lot of code, this makes the tests hard to read and understand at a first look, and you may forget some scrollTo(), or mismatch the check function.
-And at the end, all we want is to check if the views with theses ids are diplayed.
+And at the end, all we want is to check if the views with theses ids are displayed.
 So, this is how you do the same test with kappuccino library:
 
 ``` kotlin
@@ -37,23 +37,11 @@ So, this is how you do the same test with kappuccino library:
 ```
 
 Cleaner, easier to write and understand. 
-The scroll is automatically done to every view, if one of the views should not be scrolled, all you have to do is:
+To scroll, all you have to do is pass a parameter to the function:
 
 ``` kotlin
 @Test fun loginFieldsAreVisible() {
-  displayed {
-    id(R.id.username)
-    id(R.id.password, scroll = false)
-    id(R.id.login_button)
-  }
-}
-```
-
-If any of your views should be scrolled:
-
-``` kotlin
-@Test fun loginFieldsAreVisible() {
-  displayed(scroll = false) {
+  displayed(scroll = true) {
     id(R.id.username)
     id(R.id.password)
     id(R.id.login_button)
@@ -64,13 +52,12 @@ If any of your views should be scrolled:
 ## Installation
 
 ``` groovy
-androidTestcompile 'br.com.concretesolutions:kappuccino:0.8.4'
+androidTestcompile 'br.com.concretesolutions:kappuccino:0.9.7'
 ```
 
 ## Other examples
 
-Check more examples on the web site and documentation.
-Have fun!
+Soon I'll have a more complete sample and examples. For now, you can check some dummy testes in sample code.
 
 ## LICENSE
 

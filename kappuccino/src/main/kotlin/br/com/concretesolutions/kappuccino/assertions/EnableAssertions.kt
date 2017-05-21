@@ -3,19 +3,23 @@ package br.com.concretesolutions.kappuccino.assertions
 import android.support.test.espresso.ViewAssertion
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isEnabled
-import br.com.concretesolutions.kappuccino.BaseViewMatchers
+import br.com.concretesolutions.kappuccino.BaseMatchersImpl
+import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import org.hamcrest.Matchers.not
 
-class EnableAssertions(val enabled: Boolean, val scroll: Boolean, vararg parentId: Int? = arrayOf<Int>(), descendantId: Int?, descendantText: Int?) {
+object EnableAssertions {
 
-    val viewMatcher = BaseViewMatchers(scroll, parentId = *parentId, descendantId = descendantId, descendantText = descendantText)
-
-    fun id(viewId: Int, scroll: Boolean = this.scroll): EnableAssertions {
-        viewMatcher.id(viewId, scroll).check(enabled())
-        return this
+    fun enabled(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+        val matchList = BaseMatchersImpl().apply { func() }.matchList()
+        BaseViewInteractions(scroll, matchList).check(enabled(true))
     }
 
-    private fun enabled(): ViewAssertion {
+    fun notEnabled(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+        val matchList = BaseMatchersImpl().apply { func() }.matchList()
+        BaseViewInteractions(scroll, matchList).check(enabled(false))
+    }
+
+    private fun enabled(enabled: Boolean): ViewAssertion {
         if (enabled) return matches(isEnabled())
         else return matches(not(isEnabled()))
     }

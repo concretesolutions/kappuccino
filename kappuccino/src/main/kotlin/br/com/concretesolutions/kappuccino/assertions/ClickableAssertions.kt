@@ -3,19 +3,23 @@ package br.com.concretesolutions.kappuccino.assertions
 import android.support.test.espresso.ViewAssertion
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isClickable
-import br.com.concretesolutions.kappuccino.BaseViewMatchers
+import br.com.concretesolutions.kappuccino.BaseMatchersImpl
+import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import org.hamcrest.Matchers.not
 
-class ClickableAssertions(val clickable: Boolean, val scroll: Boolean, vararg parentId: Int? = arrayOf<Int>(), descendantId: Int?, descendantText: Int?) {
+object ClickableAssertions {
 
-    val viewMatcher = BaseViewMatchers(scroll, parentId = *parentId, descendantId = descendantId, descendantText = descendantText)
-
-    fun id(viewId: Int, scroll: Boolean = this.scroll): ClickableAssertions {
-        viewMatcher.id(viewId, scroll).check(clickable())
-        return this
+    fun clickable(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+        val matchList = BaseMatchersImpl().apply { func() }.matchList()
+        BaseViewInteractions(scroll, matchList).check(clickable(true))
     }
 
-    private fun clickable(): ViewAssertion {
+    fun notClickable(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+        val matchList = BaseMatchersImpl().apply { func() }.matchList()
+        BaseViewInteractions(scroll, matchList).check(clickable(false))
+    }
+
+    private fun clickable(clickable: Boolean): ViewAssertion {
         if (clickable) return matches(isClickable())
         else return matches(not(isClickable()))
     }
