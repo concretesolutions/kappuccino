@@ -16,7 +16,7 @@ object CheckedAssertions {
 
     fun notChecked(scroll: Boolean = false, func: BaseViewMatchers.() -> Unit) {
         val matchList = BaseViewMatchers().apply { func() }.matchList()
-        BaseViewInteractions(scroll, matchList).check(checked(true))
+        BaseViewInteractions(scroll, matchList).check(checked(false))
     }
 
     private fun checked(checked: Boolean): ViewAssertion {

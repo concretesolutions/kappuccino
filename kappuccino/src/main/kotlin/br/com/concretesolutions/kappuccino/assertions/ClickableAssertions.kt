@@ -16,7 +16,7 @@ object ClickableAssertions {
 
     fun notClickable(scroll: Boolean = false, func: BaseViewMatchers.() -> Unit) {
         val matchList = BaseViewMatchers().apply { func() }.matchList()
-        BaseViewInteractions(scroll, matchList).check(clickable(true))
+        BaseViewInteractions(scroll, matchList).check(clickable(false))
     }
 
     private fun clickable(clickable: Boolean): ViewAssertion {

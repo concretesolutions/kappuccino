@@ -16,7 +16,7 @@ object EnableAssertions {
 
     fun notEnabled(scroll: Boolean = false, func: BaseViewMatchers.() -> Unit) {
         val matchList = BaseViewMatchers().apply { func() }.matchList()
-        BaseViewInteractions(scroll, matchList).check(enabled(true))
+        BaseViewInteractions(scroll, matchList).check(enabled(false))
     }
 
     private fun enabled(enabled: Boolean): ViewAssertion {
