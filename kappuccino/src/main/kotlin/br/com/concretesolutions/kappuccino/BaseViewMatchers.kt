@@ -5,7 +5,8 @@ import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.espresso.matcher.ViewMatchers.*
+import android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.view.View
 import br.com.concretesolutions.kappuccino.matchers.DrawableMatcher
 import br.com.concretesolutions.kappuccino.matchers.TextColorMatcher
@@ -60,8 +61,16 @@ class BaseViewMatchers : KappuccinoMethods {
         }
     }
 
-    override fun descendant(func: BaseViewMatchers.() -> Unit) {
-        matchList.add(hasDescendant(Matchers.allOf(BaseViewMatchers().apply { func() }.matchList())))
+    override fun descendant(@IdRes descendantId: Int, func: BaseViewMatchers.() -> Unit) {
+        val descendantList = BaseViewMatchers().apply { func() }.matchList()
+        var descendantViewMatcher: Matcher<View>
+        for (matcher in descendantList) {
+            if (descendantId != -1)
+                descendantViewMatcher = Matchers.allOf(isDescendantOfA(withId(descendantId)), matcher)
+            else
+                descendantViewMatcher = isDescendantOfA(Matchers.allOf(matcher))
+            matchList.add(descendantViewMatcher)
+        }
     }
 
     fun matchList() = matchList
