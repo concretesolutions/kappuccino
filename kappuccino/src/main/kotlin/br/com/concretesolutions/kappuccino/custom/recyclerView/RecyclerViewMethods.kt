@@ -2,16 +2,19 @@ package br.com.concretesolutions.kappuccino.custom.recyclerView
 
 import android.support.annotation.IdRes
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.contrib.RecyclerViewActions
+import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.v7.widget.RecyclerView
 import br.com.concretesolutions.kappuccino.BaseMatchersImpl
-import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions
+import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import br.com.concretesolutions.kappuccino.counters.CountAssertion
 import br.com.concretesolutions.kappuccino.extensions.clickChildView
 import br.com.concretesolutions.kappuccino.extensions.clickItem
 import br.com.concretesolutions.kappuccino.extensions.longClickItem
-import br.com.concretesolutions.kappuccino.matchers.RecyclerViewMatcher
+import br.com.concretesolutions.kappuccino.matchers.RecyclerViewMatcher.matchAtPosition
+import org.hamcrest.Matchers.not
 
 class RecyclerViewMethods(private val recyclerViewId: Int) {
 
@@ -20,8 +23,8 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
         return this
     }
 
-    fun atPosition(vararg positions: Int, func: Interactions.() -> Unit): RecyclerViewMethods {
-        for(position in positions)
+    fun atPosition(vararg positions: Int, func: Interactions.() -> Interactions): RecyclerViewMethods {
+        for (position in positions)
             Interactions(recyclerViewId, position).apply { func() }
         return this
     }
@@ -45,29 +48,15 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
 
         fun displayed(func: BaseMatchersImpl.() -> Unit): Interactions {
             val matchList = BaseMatchersImpl().apply { func() }.matchList()
-            val itemMatcher = RecyclerViewMatcher(recyclerViewId).getItemView(position)
-            for (matcher in matchList) {
-                VisibilityAssertions.displayed {
-                    allOf {
-                        custom(itemMatcher)
-                        custom(matcher)
-                    }
-                }
-            }
+            val newMatchList = matchList.map { matchAtPosition(position, recyclerViewId, it) }
+            BaseViewInteractions(false, newMatchList).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             return this
         }
 
         fun notDisplayed(func: BaseMatchersImpl.() -> Unit): Interactions {
             val matchList = BaseMatchersImpl().apply { func() }.matchList()
-            val itemMatcher = RecyclerViewMatcher(recyclerViewId).getItemView(position)
-            for (matcher in matchList) {
-                VisibilityAssertions.notDisplayed {
-                    allOf {
-                        custom(itemMatcher)
-                        custom(matcher)
-                    }
-                }
-            }
+            val newMatchList = matchList.map { matchAtPosition(position, recyclerViewId, it) }
+            BaseViewInteractions(false, newMatchList).check(ViewAssertions.matches(not(ViewMatchers.isDisplayed())))
             return this
         }
 
