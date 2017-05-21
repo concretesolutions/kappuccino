@@ -50,4 +50,34 @@ class RecyclerViewMatcher(private val recyclerViewId: Int) {
             }
         }
     }
+
+    fun getItemView(position: Int): Matcher<View> {
+        return object : TypeSafeMatcher<View>() {
+            internal var resources: Resources? = null
+
+            override fun describeTo(description: Description) {
+                var idDescription = Integer.toString(recyclerViewId)
+                if (this.resources != null) {
+                    try {
+                        idDescription = this.resources!!.getResourceName(recyclerViewId)
+                    } catch (var4: NotFoundException) {
+                        idDescription = String.format("%s (resource name not found)",
+                                *arrayOf<Any>(Integer.valueOf(recyclerViewId)))
+                    }
+                }
+                description.appendText("with id: " + idDescription)
+            }
+
+            override fun matchesSafely(view: View): Boolean {
+                this.resources = view.resources
+                val childView: View?
+                val recyclerView = view.rootView.findViewById(recyclerViewId) as RecyclerView
+                if (recyclerView.id == recyclerViewId) {
+                    childView = recyclerView.findViewHolderForAdapterPosition(position).itemView
+                } else return false
+                return childView == null
+            }
+
+        }
+    }
 }

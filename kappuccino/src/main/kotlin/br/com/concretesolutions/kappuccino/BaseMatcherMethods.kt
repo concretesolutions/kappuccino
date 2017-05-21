@@ -4,8 +4,10 @@ import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
+import android.view.View
+import org.hamcrest.Matcher
 
-interface KappuccinoMethods {
+interface BaseMatcherMethods {
     fun id(@IdRes viewId: Int): Any
     fun text(@StringRes textId: Int): Any
     fun text(text: String): Any
@@ -13,6 +15,7 @@ interface KappuccinoMethods {
     fun contentDescription(contentDescription: String): Any
     fun image(@DrawableRes imageId: Int): Any
     fun textColor(@ColorRes colorId: Int): Any
-    fun parent(@IdRes parentId: Int = -1, func: BaseViewMatchers.() -> Unit): Any
-    fun descendant(@IdRes descendantId: Int = -1, func: BaseViewMatchers.() -> Unit): Any
+    fun parent(@IdRes parentId: Int = -1, func: BaseMatchersImpl.() -> Unit): Any
+    fun descendant(@IdRes descendantId: Int = -1, func: BaseMatchersImpl.() -> Unit): Any
+    fun custom(viewMatcher: Matcher<View>)
 }

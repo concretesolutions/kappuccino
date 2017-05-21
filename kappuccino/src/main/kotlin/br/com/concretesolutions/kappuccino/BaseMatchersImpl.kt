@@ -13,7 +13,7 @@ import br.com.concretesolutions.kappuccino.matchers.TextColorMatcher
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 
-class BaseViewMatchers : KappuccinoMethods {
+class BaseMatchersImpl : BaseMatcherMethods {
 
     private val matchList = mutableListOf<Matcher<View>>()
 
@@ -45,12 +45,12 @@ class BaseViewMatchers : KappuccinoMethods {
         matchList.add(TextColorMatcher().withTextColor(colorId))
     }
 
-    fun allOf(func: BaseViewMatchers.() -> Unit) {
-        matchList.add(Matchers.allOf(BaseViewMatchers().apply { func() }.matchList()))
+    fun allOf(func: BaseMatchersImpl.() -> Unit) {
+        matchList.add(Matchers.allOf(BaseMatchersImpl().apply { func() }.matchList()))
     }
 
-    override fun parent(@IdRes parentId: Int, func: BaseViewMatchers.() -> Unit) {
-        val parentList = BaseViewMatchers().apply { func() }.matchList()
+    override fun parent(@IdRes parentId: Int, func: BaseMatchersImpl.() -> Unit) {
+        val parentList = BaseMatchersImpl().apply { func() }.matchList()
         var parentViewMatcher: Matcher<View>
         for (matcher in parentList) {
             if (parentId != -1)
@@ -61,8 +61,8 @@ class BaseViewMatchers : KappuccinoMethods {
         }
     }
 
-    override fun descendant(@IdRes descendantId: Int, func: BaseViewMatchers.() -> Unit) {
-        val descendantList = BaseViewMatchers().apply { func() }.matchList()
+    override fun descendant(@IdRes descendantId: Int, func: BaseMatchersImpl.() -> Unit) {
+        val descendantList = BaseMatchersImpl().apply { func() }.matchList()
         var descendantViewMatcher: Matcher<View>
         for (matcher in descendantList) {
             if (descendantId != -1)
@@ -71,6 +71,10 @@ class BaseViewMatchers : KappuccinoMethods {
                 descendantViewMatcher = isDescendantOfA(Matchers.allOf(matcher))
             matchList.add(descendantViewMatcher)
         }
+    }
+
+    override fun custom(viewMatcher: Matcher<View>) {
+        matchList.add(viewMatcher)
     }
 
     fun matchList() = matchList
