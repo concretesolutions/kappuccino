@@ -7,6 +7,7 @@ import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import br.com.concretesolutions.kappuccino.BaseMatchersImpl
 import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import br.com.concretesolutions.kappuccino.counters.CountAssertion
@@ -14,6 +15,7 @@ import br.com.concretesolutions.kappuccino.extensions.clickChildView
 import br.com.concretesolutions.kappuccino.extensions.clickItem
 import br.com.concretesolutions.kappuccino.extensions.longClickItem
 import br.com.concretesolutions.kappuccino.matchers.RecyclerViewMatcher.matchAtPosition
+import org.hamcrest.Matcher
 import org.hamcrest.Matchers.not
 
 class RecyclerViewMethods(private val recyclerViewId: Int) {
@@ -47,22 +49,28 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
         }
 
         fun displayed(func: BaseMatchersImpl.() -> Unit): Interactions {
-            val matchList = BaseMatchersImpl().apply { func() }.matchList()
-            val newMatchList = matchList.map { matchAtPosition(position, recyclerViewId, it) }
-            BaseViewInteractions(false, newMatchList).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             return this
         }
 
         fun notDisplayed(func: BaseMatchersImpl.() -> Unit): Interactions {
-            val matchList = BaseMatchersImpl().apply { func() }.matchList()
-            val newMatchList = matchList.map { matchAtPosition(position, recyclerViewId, it) }
-            BaseViewInteractions(false, newMatchList).check(ViewAssertions.matches(not(ViewMatchers.isDisplayed())))
+            BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.matches(not(ViewMatchers.isDisplayed())))
+            return this
+        }
+
+        fun notExist(func: BaseMatchersImpl.() -> Unit): Interactions {
+            BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.doesNotExist())
             return this
         }
 
         fun scroll(): Interactions {
             onView(withId((recyclerViewId))).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(position))
             return this
+        }
+
+        private fun itemMatchList(func: BaseMatchersImpl.() -> Unit): List<Matcher<View>> {
+            val matchList = BaseMatchersImpl().apply { func() }.matchList()
+            return matchList.map { matchAtPosition(position, recyclerViewId, it) }
         }
     }
 
