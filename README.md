@@ -52,10 +52,9 @@ To scroll, all you have to do is pass a parameter to the function:
 
 ## Installation
 
-1 - Setup kotlin in your project, see the instructions here:
-    <a href="https://kotlinlang.org/docs/tutorials/kotlin-android.html/>
+1 - Setup kotlin in your project, see the instructions <a href="https://kotlinlang.org/docs/tutorials/kotlin-android.html">here</a>
 
-2 - Create a kotlin directory into 'src/androidTest/'
+2 - Create a kotlin directory into 'src/androidTest/', check the sample code for reference.
 
 3 - Set you sourceDataSet into your build.gradle file
 
@@ -73,7 +72,7 @@ androidTestcompile 'br.com.concretesolutions:kappuccino:0.9.9'
 
 And you're ready to go!
 
-### Obs: In case you have any module conflicts, try to exclude the conflict module, for example:
+#### If you have any module conflicts, try to exclude the conflict module, for example:
 
 ``` groovy
 androidTestCompile('br.com.concretesolutions:kappuccino:0.9.9', {
