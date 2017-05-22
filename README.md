@@ -1,3 +1,4 @@
+<a href="https://codebeat.co/projects/github-com-heitorcolangelo-kappuccino-develop"><img alt="codebeat badge" src="https://codebeat.co/badges/944d0ef8-1e6c-422d-9e03-d6a83d342c9b" /></a>
 # kappuccino
 A kotlin library to simplify the way you do instrumentation tests with Espresso library.
 
