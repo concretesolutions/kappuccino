@@ -81,34 +81,35 @@ androidTestCompile('br.com.concretesolutions:kappuccino:0.9.9', {
 ```
 
 ### Assertion methods
+These are the methods to make view assertions
 ``` kotlin
-    checked {}
-    notChecked {}
+checked {}
+notChecked {}
 
-    clickable {}
-    notClickable {}
+clickable {}
+notClickable {}
 
-    selected {}
-    notSelected {}
+selected {}
+notSelected {}
 
-    displayed {}
-    notDisplayed {}
+displayed {}
+notDisplayed {}
 
-    notExist {}
+notExist {}
 ```
 
 ### Action methods
+These are methods to interact with views
 ``` kotlin
-    click {}
-    doubleClick {}
-    longClick {}
+click {}
+doubleClick {}
+longClick {}
 
-    typeText {}
-    clearText {}
+typeText {}
+clearText {}
 ```
 
 ### Scroll
-
 The scroll method now is a parameter for all the above methods, the default value is false, for example:
 
 ``` kotlin
@@ -118,10 +119,11 @@ The scroll method now is a parameter for all the above methods, the default valu
   }
 }
 ```
+In this case, it will scroll to the view and click. If you don't provide a parameter, the scroll will not happen.
 
-### Combine matchers (Matchers.allOf).
-
+### Combine matchers (Matchers.allOf)
 To combine multiple matchers, use the allOf method:
+
 ``` kotlin
 @Test fun scrollToButton_andClick() {
   click(scroll = true) {
@@ -134,13 +136,10 @@ To combine multiple matchers, use the allOf method:
 ```
 
 ### Hierarchy
-
 There are two methods of hierarchy matchers: parent and descendant.
 
 #### Parent
-
 You can use parent method in two ways, block matching or as combining.
-
 For block matching, pass the parentId as method parameter.
 Then, kappuccino will match all the views inside the block:
 
@@ -157,6 +156,7 @@ Then, kappuccino will match all the views inside the block:
 ```
 Here, kappuccino will check if all the views (username, password and login_button) that is descendant of the declared parent, are displayed.
 For better understanding, the code above is equivalent to the one below, using java and pure Espresso:
+
 ``` java
 @Test
 void matchParent_example() {
@@ -171,7 +171,6 @@ void matchParent_example() {
         .check(matches(isDisplayed()))
 }
 ```
-
 Or you can use the parent method as a combination of matchers:
 
 ``` kotlin
