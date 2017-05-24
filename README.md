@@ -1,8 +1,8 @@
 <a href="https://codebeat.co/projects/github-com-heitorcolangelo-kappuccino-develop"><img alt="codebeat badge" src="https://codebeat.co/badges/944d0ef8-1e6c-422d-9e03-d6a83d342c9b" /></a>
 # kappuccino
-A kotlin library to simplify the way you do instrumentation tests with Espresso library.
+A framework to simplify the way you do instrumentation tests in your app, using <a href="https://google.github.io/android-testing-support-library/docs/espresso/">Espresso</a> and <a href="kotlinlang.org">Kotlin</a>.
 
-Here is how you do instrumentation tests today:
+Here is how you do instrumentation tests today, using simply Espresso:
 
 ``` kotlin
 @Test fun loginFieldsAreVisible() {
@@ -13,7 +13,8 @@ Here is how you do instrumentation tests today:
 ```
 This is just to check a simple login screen, and we are not even considering that we may need to scroll to one of these views,
 due to small screens support.
-With scroll, our test will be something like that:
+
+With scroll, our test will be something like this:
 
 ``` kotlin
 @Test fun loginFieldsAreVisible() {
@@ -23,8 +24,9 @@ With scroll, our test will be something like that:
 }
 ```
 
-We have to repeat a lot of code, this makes the tests hard to read and understand at a first look, and you may forget some scrollTo(), or mismatch the check function.
-And at the end, all we want is to check if the views with theses ids are displayed.
+We have to repeat a lot of code, this makes the tests hard to read and understand at a first look. Also you may forget some scrollTo(), or mismatch the check function.
+At the end, all we want to do is check if the views with these ids are displayed.
+
 So, this is how you do the same test with kappuccino library:
 
 ``` kotlin
@@ -136,11 +138,12 @@ To combine multiple matchers, use the allOf method:
 ```
 
 ### Hierarchy
-There are two methods of hierarchy matchers: parent and descendant.
+There are two methods of hierarchy matchers: Parent and Descendant.
 
 #### Parent
-You can use parent method in two ways, block matching or as combining.
+You can use Parent method in two ways: block matching or combining.
 For block matching, pass the parentId as method parameter.
+
 Then, kappuccino will match all the views inside the block:
 
 ``` kotlin
@@ -154,8 +157,9 @@ Then, kappuccino will match all the views inside the block:
   }
 }
 ```
-Here, kappuccino will check if all the views (username, password and login_button) that is descendant of the declared parent, are displayed.
-For better understanding, the code above is equivalent to the one below, using java and pure Espresso:
+Here, kappuccino will check if all the views (username, password and login_button) that are descendant of the declared parent, are displayed.
+
+For better understanding, the code above is equivalent to the one below, using Java and pure Espresso:
 
 ``` java
 @Test
