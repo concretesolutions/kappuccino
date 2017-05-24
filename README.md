@@ -110,7 +110,7 @@ clearText {}
 ```
 
 ### Scroll
-The scroll method now is a parameter for all the above methods, the default value is false, for example:
+The scroll method is now a parameter for all the above methods, the default value is false, for example:
 
 ``` kotlin
 @Test fun scrollToButton_andClick() {
@@ -209,7 +209,7 @@ To interact with the recycler view:
 
 ``` kotlin
 @Test fun recyclerView_example() {
-    recyclerView(R.id.recycler_view {
+    recyclerView(R.id.recycler_view) {
         sizeIs(10)
         atPosition(3) {
             displayed {
@@ -225,16 +225,16 @@ To interact with the recycler view:
 ### Matchers
 You can use the following matchers:
 ``` kotlin
-    fun id(@IdRes viewId: Int)
-    fun text(@StringRes textId: Int)
-    fun text(text: String)
-    fun contentDescription(@StringRes contentDescriptionId: Int)
-    fun contentDescription(contentDescription: String)
-    fun image(@DrawableRes imageId: Int)
-    fun textColor(@ColorRes colorId: Int)
-    fun parent(@IdRes parentId: Int)
-    fun descendant(@IdRes descendantId: Int)
-    fun custom(viewMatcher: Matcher<View>) // Here you can pass a custom matcher
+fun id(@IdRes viewId: Int)
+fun text(@StringRes textId: Int)
+fun text(text: String)
+fun contentDescription(@StringRes contentDescriptionId: Int)
+fun contentDescription(contentDescription: String)
+fun image(@DrawableRes imageId: Int)
+fun textColor(@ColorRes colorId: Int)
+fun parent(@IdRes parentId: Int)
+fun descendant(@IdRes descendantId: Int)
+fun custom(viewMatcher: Matcher<View>) // Here you can pass a custom matcher
 ```
 
 ... and much more!
