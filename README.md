@@ -142,6 +142,8 @@ There are two methods of hierarchy matchers: Parent and Descendant.
 
 #### Parent
 You can use Parent method in two ways: block matching or combining.
+
+1 - Block matching:
 For block matching, pass the parentId as method parameter.
 
 Then, kappuccino will match all the views inside the block:
@@ -175,7 +177,9 @@ void matchParent_example() {
         .check(matches(isDisplayed()))
 }
 ```
-Or you can use the parent method as a combination of matchers:
+
+2 - Combination of matchers:
+You can use the parent method as a combination of matchers:
 
 ``` kotlin
 @Test fun matchParent_combining_example() {
@@ -191,7 +195,7 @@ Or you can use the parent method as a combination of matchers:
 ```
 
 #### Descendant
-It works just like the parent method:
+It works just like the parent method, for both cases (block matching and combining matchers)
 
 ``` kotlin
 @Test fun descendant_block_example() {
