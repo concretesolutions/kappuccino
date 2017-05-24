@@ -249,7 +249,7 @@ fun custom(viewMatcher: Matcher<View>) // Here you can pass a custom matcher
 
 #### More examples soon
 
-### Tip: this framework was based on <a href="https://news.realm.io/news/kau-jake-wharton-testing-robots/">Robots Pattern</a>. It's a good idea to use this framework in combination with this pattern.
+<b>Tip:</b> this framework was based on <a href="https://news.realm.io/news/kau-jake-wharton-testing-robots/">Robots Pattern</a>. It's a good idea to use this framework in combination with this pattern.
 ## LICENSE
 
 This project is available under Apache Public License version 2.0. See [LICENSE](LICENSE).
