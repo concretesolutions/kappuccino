@@ -1,6 +1,6 @@
 <a href="https://codebeat.co/projects/github-com-heitorcolangelo-kappuccino-develop"><img alt="codebeat badge" src="https://codebeat.co/badges/944d0ef8-1e6c-422d-9e03-d6a83d342c9b" /></a>
 # kappuccino
-A framework to simplify the way you do instrumentation tests in your app, using <a href="https://google.github.io/android-testing-support-library/docs/espresso/">Espresso</a> and <a href="kotlinlang.org">Kotlin</a>.
+A framework to simplify the way you do instrumentation tests in your app, using <a href="https://google.github.io/android-testing-support-library/docs/espresso/">Espresso</a> and <a href="https://kotlinlang.org/">Kotlin</a>.
 
 Here is how you do instrumentation tests today, using simply Espresso:
 
