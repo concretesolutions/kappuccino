@@ -72,7 +72,7 @@ androidTestcompile 'br.com.concretesolutions:kappuccino:0.9.9'
 
 And you're ready to go!
 
-#### If you have any module conflicts, try to exclude the conflict module, for example:
+#### If you have any module conflicts, try to exclude the conflicting module, for example:
 
 ``` groovy
 androidTestCompile('br.com.concretesolutions:kappuccino:0.9.9', {
@@ -80,10 +80,167 @@ androidTestCompile('br.com.concretesolutions:kappuccino:0.9.9', {
     })
 ```
 
-## Other examples
+### Assertion methods
+``` kotlin
+    checked {}
+    notChecked {}
 
-Soon I'll have a more complete sample and examples. For now, you can check some dummy testes in sample code.
+    clickable {}
+    notClickable {}
 
+    selected {}
+    notSelected {}
+
+    displayed {}
+    notDisplayed {}
+
+    notExist {}
+```
+
+### Action methods
+``` kotlin
+    click {}
+    doubleClick {}
+    longClick {}
+
+    typeText {}
+    clearText {}
+```
+
+### Scroll
+
+The scroll method now is a parameter for all the above methods, the default value is false, for example:
+
+``` kotlin
+@Test fun scrollToButton_andClick() {
+  click(scroll = true) {
+    id(R.id.login_button)
+  }
+}
+```
+
+### Combine matchers (Matchers.allOf).
+
+To combine multiple matchers, use the allOf method:
+``` kotlin
+@Test fun scrollToButton_andClick() {
+  click(scroll = true) {
+    allOf {
+        id(R.id.login_button)
+        text(R.string.login_button_text)
+    }
+  }
+}
+```
+
+### Hierarchy
+
+There are two methods of hierarchy matchers: parent and descendant.
+
+#### Parent
+
+You can use parent method in two ways, block matching or as combining.
+
+For block matching, pass the parentId as method parameter.
+Then, kappuccino will match all the views inside the block:
+
+``` kotlin
+@Test fun matchParent_blockMatching_example() {
+  displayed {
+    parent(R.id.parent) {
+        id(R.id.username)
+        id(R.id.password)
+        id(R.id.login_button)
+    }
+  }
+}
+```
+Here, kappuccino will check if all the views (username, password and login_button) that is descendant of the declared parent, are displayed.
+For better understanding, the code above is equivalent to the one below, using java and pure Espresso:
+``` java
+@Test
+void matchParent_example() {
+    onView(
+        allOf(isDescendantOf(withId(R.id.parent)), withId(R.id.username)))
+        .check(matches(isDisplayed()))
+    onView(
+        allOf(isDescendantOf(withId(R.id.parent)), withId(R.id.password)))
+        .check(matches(isDisplayed()))
+    onView(
+        allOf(isDescendantOf(withId(R.id.parent)), withId(R.id.login_button)))
+        .check(matches(isDisplayed()))
+}
+```
+
+Or you can use the parent method as a combination of matchers:
+
+``` kotlin
+@Test fun matchParent_combining_example() {
+    displayed {
+        allOf {
+            parent {
+                id(R.id.parent)
+            }
+            id(R.id.username)
+        }
+    }
+}
+```
+
+#### Descendant
+It works just like the parent method:
+
+``` kotlin
+@Test fun descendant_block_example() {
+    displayed {
+        allOf {
+            descendant {
+                id(R.id.username)
+            }
+            id(R.id.parent)
+        }
+    }
+}
+```
+Here, we'll check if the parent, with child R.id.username is displayed.
+Same use for block matching.
+
+### RecyclerView
+To interact with the recycler view:
+
+``` kotlin
+@Test fun recyclerView_example() {
+    recyclerView(R.id.recycler_view {
+        sizeIs(10)
+        atPosition(3) {
+            displayed {
+                id(R.id.item_description)
+                text(R.string.description_text)
+                text("Item header text")
+            }
+        }
+    }
+}
+```
+
+### Matchers
+You can use the following matchers:
+``` kotlin
+    fun id(@IdRes viewId: Int)
+    fun text(@StringRes textId: Int)
+    fun text(text: String)
+    fun contentDescription(@StringRes contentDescriptionId: Int)
+    fun contentDescription(contentDescription: String)
+    fun image(@DrawableRes imageId: Int)
+    fun textColor(@ColorRes colorId: Int)
+    fun parent(@IdRes parentId: Int)
+    fun descendant(@IdRes descendantId: Int)
+    fun custom(viewMatcher: Matcher<View>) // Here you can pass a custom matcher
+```
+
+... and much more!
+
+#### More examples soon
 ## LICENSE
 
 This project is available under Apache Public License version 2.0. See [LICENSE](LICENSE).
