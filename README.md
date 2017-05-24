@@ -143,7 +143,7 @@ There are two methods of hierarchy matchers: Parent and Descendant.
 #### Parent
 You can use Parent method in two ways: block matching or combining.
 
-1 - Block matching:
+<b>1 - Block matching:</b><br />
 For block matching, pass the parentId as method parameter.
 
 Then, kappuccino will match all the views inside the block:
@@ -178,7 +178,7 @@ void matchParent_example() {
 }
 ```
 
-2 - Combination of matchers:
+<b>2 - Combination of matchers:</b><br />
 You can use the parent method as a combination of matchers:
 
 ``` kotlin
@@ -248,6 +248,8 @@ fun custom(viewMatcher: Matcher<View>) // Here you can pass a custom matcher
 ... and much more!
 
 #### More examples soon
+
+### Tip: this framework was based on <a href="https://news.realm.io/news/kau-jake-wharton-testing-robots/">Robots Pattern</a>. It's a good idea to use this framework in combination with this pattern.
 ## LICENSE
 
 This project is available under Apache Public License version 2.0. See [LICENSE](LICENSE).
