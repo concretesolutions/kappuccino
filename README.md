@@ -141,7 +141,7 @@ To combine multiple matchers, use the allOf method:
 There are two methods of hierarchy matchers: Parent and Descendant.
 
 #### Parent
-You can use Parent method in two ways: block matching or combining.
+You can use Parent method with two different approaches: block matching or combining.
 
 <b>1 - Block matching:</b><br />
 For block matching, pass the parentId as method parameter.
@@ -159,13 +159,12 @@ Then, kappuccino will match all the views inside the block:
   }
 }
 ```
-Here, kappuccino will check if all the views (username, password and login_button) that are descendant of the declared parent, are displayed.
+Here, kappuccino will check if all the views (username, password and login_button) are descendant of the declared parent, and are displayed.
 
-For better understanding, the code above is equivalent to the one below, using Java and pure Espresso:
+For better understanding, the code above is equivalent to the one below, using pure Espresso:
 
-``` java
-@Test
-void matchParent_example() {
+``` kotlin
+@Test fun matchParent_example() {
     onView(
         allOf(isDescendantOf(withId(R.id.parent)), withId(R.id.username)))
         .check(matches(isDisplayed()))
@@ -193,6 +192,7 @@ You can use the parent method as a combination of matchers:
     }
 }
 ```
+Here, you will check if the view with id = R.id.username, and with parent with id = R.id.parent, is displayed
 
 #### Descendant
 It works just like the parent method, for both cases (block matching and combining matchers)
