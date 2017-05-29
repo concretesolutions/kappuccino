@@ -69,7 +69,7 @@ sourceSets {
 4 - Add library into your build.gradle file and sync
 
 ``` groovy
-androidTestcompile 'br.com.concretesolutions:kappuccino:0.9.9'
+androidTestCompile 'br.com.concretesolutions:kappuccino:0.9.9'
 ```
 
 And you're ready to go!
