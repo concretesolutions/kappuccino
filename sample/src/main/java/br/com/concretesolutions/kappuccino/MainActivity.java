@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
                     "MATHS",
                     "HINDI",
                     "ENGLISH"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

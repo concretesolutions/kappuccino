@@ -1,5 +1,7 @@
 package br.com.concretesolutions.kappuccino.test
 
+import android.content.Intent
+import android.support.test.espresso.intent.Intents
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import br.com.concretesolutions.kappuccino.MainActivity
@@ -7,16 +9,19 @@ import br.com.concretesolutions.kappuccino.R
 import br.com.concretesolutions.kappuccino.actions.TextActions.typeText
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.notDisplayed
+import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.matchIntent
 import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
+
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
 
     @Rule @JvmField
-    var mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java, false, true)
+    var mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java, false, false)
 
     @Test
     fun displayed_checkView() {
@@ -115,6 +120,25 @@ class MainActivityTest {
                 }
             }
         }
+    }
+
+    @Test
+    fun intentMatcherTest() {
+        Intents.init()
+        matchIntent {
+            action(Intent.ACTION_VIEW)
+            url("yourUrl")
+            resultOk()
+        }
+
+        mActivityRule.launchActivity(Intent())
+
+        matchIntent {
+            action(Intent.ACTION_VIEW)
+            url("yourUrl")
+        }
+
+        Intents.release()
     }
 
 }
