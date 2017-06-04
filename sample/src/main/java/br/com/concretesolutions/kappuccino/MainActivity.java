@@ -1,8 +1,6 @@
 package br.com.concretesolutions.kappuccino;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
                     "HINDI",
                     "ENGLISH"};
 
-    private static final String BANK_PACKAGE_NAME = "br.com.carrefour.cartaocarrefour";
-    private static final String PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerViewAdapter = new RecyclerViewAdapter(context, subjects);
 
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse(PLAY_STORE_URL + BANK_PACKAGE_NAME));
-
         recyclerView.setAdapter(recyclerViewAdapter);
-
-        startActivity(intent);
-
 
     }
 }

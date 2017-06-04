@@ -25,7 +25,6 @@ class MainActivityTest {
 
     @Test
     fun displayed_checkView() {
-        intentMatcherTest()
         displayed {
             text(R.string.hello_world)
             id(R.id.text_hello_world)
@@ -34,7 +33,6 @@ class MainActivityTest {
 
     @Test
     fun notDisplayed_checkView() {
-        intentMatcherTest()
         notDisplayed {
             id(R.id.text_hello_world_invisible)
         }
@@ -42,7 +40,6 @@ class MainActivityTest {
 
     @Test
     fun displayed_scrollTo_checkView() {
-        intentMatcherTest()
         displayed {
             text(R.string.hello_world)
             id(R.id.text_hello_world)
@@ -55,7 +52,6 @@ class MainActivityTest {
 
     @Test
     fun displayed_allOf_checkView() {
-        intentMatcherTest()
         displayed {
             allOf {
                 id(R.id.text_hello_world2)
@@ -66,7 +62,6 @@ class MainActivityTest {
 
     @Test
     fun displayed_allOf_scrollTo_checkView() {
-        intentMatcherTest()
         displayed {
             allOf {
                 id(R.id.text_hello_world2)
@@ -77,7 +72,6 @@ class MainActivityTest {
 
     @Test
     fun displayed_image_checkView() {
-        intentMatcherTest()
         displayed {
             image(R.mipmap.ic_launcher)
         }
@@ -85,7 +79,6 @@ class MainActivityTest {
 
     @Test
     fun typeText_edit_text() {
-        intentMatcherTest()
         typeText("HAHAHA") {
             allOf {
                 id(R.id.edit_hello_world)
@@ -98,7 +91,6 @@ class MainActivityTest {
 
     @Test
     fun checkParentFunction() {
-        intentMatcherTest()
         displayed {
             parent(R.id.main_parent) {
                 id(R.id.text_hello_world)
@@ -109,7 +101,6 @@ class MainActivityTest {
 
     @Test
     fun kapp_displayed_test() {
-        intentMatcherTest()
         displayed {
             id(R.id.text_hello_world)
             allOf {
@@ -122,7 +113,6 @@ class MainActivityTest {
 
     @Test
     fun recyclerView_test() {
-        intentMatcherTest()
         recyclerView(R.id.recyclerview1) {
             atPosition(1) {
                 displayed {
@@ -137,7 +127,7 @@ class MainActivityTest {
         Intents.init()
         matchIntent {
             action(Intent.ACTION_VIEW)
-            url("https://play.google.com/store/apps/details?id=br.com.carrefour.cartaocarrefour")
+            url("yourUrl")
             resultOk()
         }
 
@@ -145,7 +135,7 @@ class MainActivityTest {
 
         matchIntent {
             action(Intent.ACTION_VIEW)
-            url("https://play.google.com/store/apps/details?id=br.com.carrefour.cartaocarrefour")
+            url("yourUrl")
         }
 
         Intents.release()
