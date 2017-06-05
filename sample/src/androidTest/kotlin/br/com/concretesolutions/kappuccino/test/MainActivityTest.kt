@@ -1,16 +1,22 @@
 package br.com.concretesolutions.kappuccino.test
 
+import android.content.Intent
+import android.support.test.espresso.intent.Intents
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import br.com.concretesolutions.kappuccino.MainActivity
 import br.com.concretesolutions.kappuccino.R
+import br.com.concretesolutions.kappuccino.actions.ClickActions.click
 import br.com.concretesolutions.kappuccino.actions.TextActions.typeText
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.notDisplayed
+import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.matchIntent
 import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+
+
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
@@ -115,6 +121,29 @@ class MainActivityTest {
                 }
             }
         }
+    }
+
+    @Test
+    fun intentMatcherTest() {
+        val WHATS_PACKAGE_NAME = "com.whatsapp"
+        val PLAY_STORE_URL = "https://play.google.com/store/apps/details?id="
+        Intents.init()
+        matchIntent {
+            action(Intent.ACTION_VIEW)
+            url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
+            resultOk()
+        }
+
+        click {
+            id(R.id.btn_start_activity)
+        }
+
+        matchIntent {
+            action(Intent.ACTION_VIEW)
+            url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
+        }
+
+        Intents.release()
     }
 
 }

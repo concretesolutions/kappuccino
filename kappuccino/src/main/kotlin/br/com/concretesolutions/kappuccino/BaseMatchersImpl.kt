@@ -76,6 +76,6 @@ class BaseMatchersImpl : BaseMatcherMethods {
         matchList.add(viewMatcher)
     }
 
-    fun matchList() = matchList
+    internal fun matchList() = matchList
 }
 
