@@ -41,6 +41,12 @@
         android:hint="@string/app_name"
         android:inputType="text" />
 
+    <Button
+        android:id="@+id/btn_start_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Activity"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview1"
         android:scrollbars="vertical"

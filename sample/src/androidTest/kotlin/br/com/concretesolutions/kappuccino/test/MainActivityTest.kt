@@ -6,6 +6,7 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import br.com.concretesolutions.kappuccino.MainActivity
 import br.com.concretesolutions.kappuccino.R
+import br.com.concretesolutions.kappuccino.actions.ClickActions.click
 import br.com.concretesolutions.kappuccino.actions.TextActions.typeText
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.notDisplayed
@@ -21,7 +22,7 @@ import org.junit.runner.RunWith
 class MainActivityTest {
 
     @Rule @JvmField
-    var mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java, false, false)
+    var mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java, false, true)
 
     @Test
     fun displayed_checkView() {
@@ -124,18 +125,22 @@ class MainActivityTest {
 
     @Test
     fun intentMatcherTest() {
+        val WHATS_PACKAGE_NAME = "com.whatsapp"
+        val PLAY_STORE_URL = "https://play.google.com/store/apps/details?id="
         Intents.init()
         matchIntent {
             action(Intent.ACTION_VIEW)
-            url("yourUrl")
+            url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
             resultOk()
         }
 
-        mActivityRule.launchActivity(Intent())
+        click {
+            id(R.id.btn_start_activity)
+        }
 
         matchIntent {
             action(Intent.ACTION_VIEW)
-            url("yourUrl")
+            url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
         }
 
         Intents.release()

@@ -8,14 +8,15 @@ import kotlin.test.fail
 
 object IntentMatcherInteractions {
     fun matchIntent(func: IntentMatcherBuilder.() -> Unit) {
-        val intentMatcher = IntentMatcherBuilder().apply { func() }.getMatcher()
-        val matcher = intentMatcher.buildMatcher()
+        val intentMatcherObject = IntentMatcherBuilder().apply { func() }.intentMatcher()
+        val result = intentMatcherObject.result()
+
         try {
-            if (intentMatcher.resultCode == null)
-                intended(matcher)
+            if (result == null)
+                intended(intentMatcherObject.match())
             else {
-                val result = ActivityResult(intentMatcher.resultCode as Int, intentMatcher.returnData)
-                intending(matcher).respondWith(result)
+                val activityResult = ActivityResult(result.code(), result.data())
+                intending(intentMatcherObject.match()).respondWith(activityResult)
             }
         } catch (exception: Exception) {
             if (exception is NullPointerException)
