@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView.Adapter recyclerViewAdapter;
-    RecyclerView.LayoutManager recylerViewLayoutManager;
     String[] subjects =
             {
                     "ANDROID",
@@ -27,27 +25,18 @@ public class MainActivity extends AppCompatActivity {
                     "HINDI",
                     "ENGLISH"};
 
-    private static final String WHATS_PACKAGE_NAME = "com.whatsapp";
-    private static final String PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Context context = getApplicationContext();
-        RecyclerView recyclerView;
+        setupRecyclerView(context);
+        setupButton();
+    }
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
-
-        recylerViewLayoutManager = new LinearLayoutManager(context);
-
-        recyclerView.setLayoutManager(recylerViewLayoutManager);
-
-        recyclerViewAdapter = new RecyclerViewAdapter(context, subjects);
-
-        recyclerView.setAdapter(recyclerViewAdapter);
-
+    private void setupButton() {
+        final String WHATS_PACKAGE_NAME = "com.whatsapp";
+        final String PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=";
         Button button = (Button) findViewById(R.id.btn_start_activity);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,5 +45,11 @@ public class MainActivity extends AppCompatActivity {
                         Uri.parse(PLAY_STORE_URL + WHATS_PACKAGE_NAME)));
             }
         });
+    }
+
+    private void setupRecyclerView(Context context) {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(new RecyclerViewAdapter(context, subjects));
     }
 }

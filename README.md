@@ -69,7 +69,7 @@ sourceSets {
 4 - Add library into your build.gradle file and sync
 
 ``` groovy
-androidTestCompile 'br.com.concretesolutions:kappuccino:0.9.9'
+androidTestCompile 'br.com.concretesolutions:kappuccino:0.10.0'
 ```
 
 And you're ready to go!
@@ -245,9 +245,57 @@ fun descendant(@IdRes descendantId: Int)
 fun custom(viewMatcher: Matcher<View>) // Here you can pass a custom matcher
 ```
 
-... and much more!
+### Intent Matchers
+You can match intents easily now:
+``` kotlin
+@Test
+fun intentMatcherTest() {
+    val WHATS_PACKAGE_NAME = "com.whatsapp"
+    val PLAY_STORE_URL = "https://play.google.com/store/apps/details?id="
+    Intents.init()
+    matchIntent {
+        action(Intent.ACTION_VIEW)
+        url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
+        resultOk()
+    }
 
-#### More examples soon
+    click {
+        id(R.id.btn_start_activity)
+    }
+
+    matchIntent {
+        action(Intent.ACTION_VIEW)
+        url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
+    }
+
+    Intents.release()
+}
+```
+If you use some of the result methods (resultOk, resultCanceled, resultData) it's going to be like use the Espresso <i>intending</i> method.
+If you DON'T use any of the result methods, it's the same as use the Espresso <i>intended</i> method.
+The above code it will be something like this, without kappuccino
+``` kotlin
+@Test
+fun intentMatcherTest() {
+    val WHATS_PACKAGE_NAME = "com.whatsapp"
+    val PLAY_STORE_URL = "https://play.google.com/store/apps/details?id="
+    Intents.init()
+
+    val matcher = allOf(hasAction(Intent.ACTION_VIEW), hasData(Uri.parse(PLAY_STORE_URL + WHATS_PACKAGE_NAME)))
+    val result = ActivityResult(Activity.RESULT_OK, null)
+    intending(matcher).respondWith(result);
+
+    click {
+        id(R.id.btn_start_activity)
+    }
+
+    intended(matcher)
+
+    Intents.release()
+}
+```
+You can also use a custom intent matcher with the <i>custom</i> method
+#### More examples soon, for now, please check the sample code.
 
 <b>Tip:</b> this framework was based on <a href="https://news.realm.io/news/kau-jake-wharton-testing-robots/">Robots Pattern</a>. It's a good idea to use this framework in combination with this pattern.
 ## LICENSE

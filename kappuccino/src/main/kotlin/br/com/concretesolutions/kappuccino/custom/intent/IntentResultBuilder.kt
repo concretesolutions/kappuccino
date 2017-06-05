@@ -1,6 +1,7 @@
 package br.com.concretesolutions.kappuccino.custom.intent
 
 import android.app.Activity
+import android.app.Instrumentation
 import android.content.Intent
 
 class IntentResultBuilder {
@@ -22,5 +23,7 @@ class IntentResultBuilder {
     internal fun code() = resultCode
 
     internal fun data() = resultData
+
+    internal fun build() = Instrumentation.ActivityResult(resultCode, resultData)
 }
 
