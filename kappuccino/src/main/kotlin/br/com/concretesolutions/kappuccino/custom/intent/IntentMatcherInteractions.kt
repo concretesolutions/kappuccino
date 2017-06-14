@@ -18,7 +18,7 @@ object IntentMatcherInteractions {
             else
                 intending(intentMatcherObject.match()).respondWith(result.build())
         } catch (exception: NullPointerException) {
-            fail("Don't forge to call Intents.init() before and Intents.release() after")
+            fail("Don't forget to call Intents.init() before and Intents.release() after")
         }
     }
 }
