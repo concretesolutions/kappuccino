@@ -297,7 +297,9 @@ fun intentMatcherTest() {
 }
 ```
 You can also use a custom intent matcher with the <i>custom</i> method
-#### More examples soon, for now, please check the sample code.
+#### For more examples, please check the sample code.
+
+#### Wiki: coming soon.
 
 <b>Tip:</b> this framework was based on <a href="https://news.realm.io/news/kau-jake-wharton-testing-robots/">Robots Pattern</a>. It's a good idea to use this framework in combination with this pattern.
 ## LICENSE

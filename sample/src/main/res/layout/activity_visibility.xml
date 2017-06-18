@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a visible TextView with id"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a visible TextView without id"/>
+
+    <TextView
+        android:id="@+id/txt_invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="This is a invisible TextView with id"/>
+
+    <TextView
+        android:id="@+id/txt_text_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:text="This is TextView with different text color"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher_round"
+        android:contentDescription="This is a content description"/>
+
+    <FrameLayout
+        android:id="@+id/parent1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/view_to_include"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/parent2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/view_to_include"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/parent3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/view_to_include_multiple"/>
+    </FrameLayout>
+
+</LinearLayout>
