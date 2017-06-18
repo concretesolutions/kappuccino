@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(Context context) {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(new RecyclerViewAdapter(context, subjects));
     }
