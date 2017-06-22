@@ -20,6 +20,10 @@ class IntentResultBuilder {
         resultData = data
     }
 
+    internal fun code(code: Int) {
+        this.resultCode = code
+    }
+
     internal fun code() = resultCode
 
     internal fun data() = resultData
