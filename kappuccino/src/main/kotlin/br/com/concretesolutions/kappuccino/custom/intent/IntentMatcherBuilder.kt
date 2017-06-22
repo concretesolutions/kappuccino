@@ -53,6 +53,12 @@ class IntentMatcherBuilder {
         (result as IntentResultBuilder).data(data)
     }
 
+    fun resultCode(code: Int) {
+        if (result == null)
+            result = IntentResultBuilder()
+        (result as IntentResultBuilder).code(code)
+    }
+
     internal fun intentMatcher() = this
 
     internal fun match() = allOf(matchList)
