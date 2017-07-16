@@ -9,12 +9,12 @@ import org.hamcrest.Matchers.not
 
 object ClickableAssertions {
 
-    fun clickable(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+    fun clickable(scroll: Boolean = false, func: BaseMatchersImpl.() -> BaseMatchersImpl) {
         val matchList = BaseMatchersImpl().apply { func() }.matchList()
         BaseViewInteractions(scroll, matchList).check(clickable(true))
     }
 
-    fun notClickable(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+    fun notClickable(scroll: Boolean = false, func: BaseMatchersImpl.() -> BaseMatchersImpl) {
         val matchList = BaseMatchersImpl().apply { func() }.matchList()
         BaseViewInteractions(scroll, matchList).check(clickable(false))
     }

@@ -35,6 +35,12 @@
         android:src="@mipmap/ic_launcher_round"
         android:contentDescription="This is a content description"/>
 
+    <Button
+        android:id="@+id/btn_to_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Main Acticity"/>
+
     <FrameLayout
         android:id="@+id/parent1"
         android:layout_width="wrap_content"

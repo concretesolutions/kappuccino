@@ -15,7 +15,7 @@ interface BaseMatcherMethods {
     fun contentDescription(contentDescription: String): Any
     fun image(@DrawableRes imageId: Int): Any
     fun textColor(@ColorRes colorId: Int): Any
-    fun parent(@IdRes parentId: Int = -1, func: BaseMatchersImpl.() -> Unit): Any
-    fun descendant(@IdRes descendantId: Int = -1, func: BaseMatchersImpl.() -> Unit): Any
-    fun custom(viewMatcher: Matcher<View>)
+    fun parent(@IdRes parentId: Int = -1, func: BaseMatchersImpl.() -> BaseMatchersImpl): Any
+    fun descendant(@IdRes descendantId: Int = -1, func: BaseMatchersImpl.() -> BaseMatchersImpl): Any
+    fun custom(viewMatcher: Matcher<View>): Any
 }
