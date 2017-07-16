@@ -16,39 +16,47 @@ class BaseMatchersImpl : BaseMatcherMethods {
 
     private val matchList = mutableListOf<Matcher<View>>()
 
-    override fun id(@IdRes viewId: Int) {
+    override fun id(@IdRes viewId: Int): BaseMatchersImpl {
         matchList.add(ViewMatchers.withId(viewId))
+        return this
     }
 
-    override fun text(@StringRes textId: Int) {
+    override fun text(@StringRes textId: Int): BaseMatchersImpl {
         matchList.add(ViewMatchers.withText(textId))
+        return this
     }
 
-    override fun text(text: String) {
+    override fun text(text: String): BaseMatchersImpl {
         matchList.add(ViewMatchers.withText(text))
+        return this
     }
 
-    override fun contentDescription(@StringRes contentDescriptionId: Int) {
+    override fun contentDescription(@StringRes contentDescriptionId: Int): BaseMatchersImpl {
         matchList.add(ViewMatchers.withContentDescription(contentDescriptionId))
+        return this
     }
 
-    override fun contentDescription(contentDescription: String) {
+    override fun contentDescription(contentDescription: String): BaseMatchersImpl {
         matchList.add(ViewMatchers.withContentDescription(contentDescription))
+        return this
     }
 
-    override fun image(@DrawableRes imageId: Int) {
+    override fun image(@DrawableRes imageId: Int): BaseMatchersImpl {
         matchList.add(DrawableMatcher(imageId))
+        return this
     }
 
-    override fun textColor(@ColorRes colorId: Int) {
+    override fun textColor(@ColorRes colorId: Int): BaseMatchersImpl {
         matchList.add(TextColorMatcher().withTextColor(colorId))
+        return this
     }
 
-    fun allOf(func: BaseMatchersImpl.() -> Unit) {
+    fun allOf(func: BaseMatchersImpl.() -> BaseMatchersImpl): BaseMatchersImpl {
         matchList.add(Matchers.allOf(BaseMatchersImpl().apply { func() }.matchList()))
+        return this
     }
 
-    override fun parent(@IdRes parentId: Int, func: BaseMatchersImpl.() -> Unit) {
+    override fun parent(@IdRes parentId: Int, func: BaseMatchersImpl.() -> BaseMatchersImpl): BaseMatchersImpl {
         val parentList = BaseMatchersImpl().apply { func() }.matchList()
         var parentViewMatcher: Matcher<View>
         for (matcher in parentList) {
@@ -58,9 +66,10 @@ class BaseMatchersImpl : BaseMatcherMethods {
                 parentViewMatcher = isDescendantOfA(Matchers.allOf(matcher))
             matchList.add(parentViewMatcher)
         }
+        return this
     }
 
-    override fun descendant(@IdRes descendantId: Int, func: BaseMatchersImpl.() -> Unit) {
+    override fun descendant(@IdRes descendantId: Int, func: BaseMatchersImpl.() -> BaseMatchersImpl): BaseMatchersImpl {
         val descendantList = BaseMatchersImpl().apply { func() }.matchList()
         var descendantViewMatcher: Matcher<View>
         for (matcher in descendantList) {
@@ -70,10 +79,12 @@ class BaseMatchersImpl : BaseMatcherMethods {
                 descendantViewMatcher = hasDescendant(Matchers.allOf(matcher))
             matchList.add(descendantViewMatcher)
         }
+        return this
     }
 
-    override fun custom(viewMatcher: Matcher<View>) {
+    override fun custom(viewMatcher: Matcher<View>): BaseMatchersImpl {
         matchList.add(viewMatcher)
+        return this
     }
 
     internal fun matchList() = matchList

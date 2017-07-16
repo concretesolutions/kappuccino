@@ -9,12 +9,12 @@ import org.hamcrest.Matchers.not
 
 object SelectedAssertions {
 
-    fun selected(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+    fun selected(scroll: Boolean = false, func: BaseMatchersImpl.() -> BaseMatchersImpl) {
         val matchList = BaseMatchersImpl().apply { func() }.matchList()
         BaseViewInteractions(scroll, matchList).check(selected(true))
     }
 
-    fun notSelected(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+    fun notSelected(scroll: Boolean = false, func: BaseMatchersImpl.() -> BaseMatchersImpl) {
         val matchList = BaseMatchersImpl().apply { func() }.matchList()
         BaseViewInteractions(scroll, matchList).check(selected(false))
     }

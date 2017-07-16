@@ -5,7 +5,7 @@ import android.support.test.espresso.intent.Intents.intending
 import kotlin.test.fail
 
 object IntentMatcherInteractions {
-    fun matchIntent(func: IntentMatcherBuilder.() -> Unit) {
+    fun matchIntent(func: IntentMatcherBuilder.() -> IntentMatcherBuilder) {
         val intentMatcherObject = IntentMatcherBuilder().apply { func() }.intentMatcher()
         intendMatcher(intentMatcherObject)
     }

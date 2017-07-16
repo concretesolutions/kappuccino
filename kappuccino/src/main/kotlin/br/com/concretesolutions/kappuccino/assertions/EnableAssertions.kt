@@ -9,12 +9,12 @@ import org.hamcrest.Matchers.not
 
 object EnableAssertions {
 
-    fun enabled(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+    fun enabled(scroll: Boolean = false, func: BaseMatchersImpl.() -> BaseMatchersImpl) {
         val matchList = BaseMatchersImpl().apply { func() }.matchList()
         BaseViewInteractions(scroll, matchList).check(enabled(true))
     }
 
-    fun notEnabled(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+    fun notEnabled(scroll: Boolean = false, func: BaseMatchersImpl.() -> BaseMatchersImpl) {
         val matchList = BaseMatchersImpl().apply { func() }.matchList()
         BaseViewInteractions(scroll, matchList).check(enabled(false))
     }

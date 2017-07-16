@@ -1,11 +1,15 @@
 package br.com.concretesolutions.kappuccino.test
 
+import android.support.test.espresso.intent.Intents
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import br.com.concretesolutions.kappuccino.MainActivity
 import br.com.concretesolutions.kappuccino.R
 import br.com.concretesolutions.kappuccino.VisibilityAssertionsActivity
+import br.com.concretesolutions.kappuccino.actions.ClickActions.click
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.notDisplayed
+import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.matchIntent
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -99,6 +103,27 @@ class VisibilityActivityTest {
                 textColor(R.color.colorAccent)
             }
         }
+    }
+
+    @Test
+    fun match_intentTo_mainActivity() {
+        Intents.init()
+
+        matchIntent {
+            className(MainActivity::class.java.name)
+            resultOk()
+
+        }
+
+        click {
+            id(R.id.btn_to_main)
+        }
+
+        matchIntent {
+            className(MainActivity::class.java.name)
+        }
+
+        Intents.release()
     }
 
 }

@@ -10,12 +10,12 @@ import org.hamcrest.Matchers
 
 object VisibilityAssertions {
 
-    fun displayed(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+    fun displayed(scroll: Boolean = false, func: BaseMatchersImpl.() -> BaseMatchersImpl) {
         val matchList = BaseMatchersImpl().apply { func() }.matchList()
         BaseViewInteractions(scroll, matchList).check(visibility(true))
     }
 
-    fun notDisplayed(scroll: Boolean = false, func: BaseMatchersImpl.() -> Unit) {
+    fun notDisplayed(scroll: Boolean = false, func: BaseMatchersImpl.() -> BaseMatchersImpl) {
         val matchList = BaseMatchersImpl().apply { func() }.matchList()
         BaseViewInteractions(scroll, matchList).check(visibility(false))
     }
