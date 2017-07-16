@@ -8,7 +8,7 @@ import br.com.concretesolutions.kappuccino.BaseViewInteractions
 object ExistanceAssertions {
 
     // Important: here the scroll must be false, otherwise espresso will try to scroll that a view that does not exist.
-    fun notExist(func: BaseMatchersImpl.() -> Unit) {
+    fun notExist(func: BaseMatchersImpl.() -> BaseMatchersImpl) {
         val matchList = BaseMatchersImpl().apply { func() }.matchList()
         BaseViewInteractions(false, matchList).check(doesNotExist())
     }

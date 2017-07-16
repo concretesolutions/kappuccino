@@ -48,17 +48,17 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
             return this
         }
 
-        fun displayed(func: BaseMatchersImpl.() -> Unit): Interactions {
+        fun displayed(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
             BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             return this
         }
 
-        fun notDisplayed(func: BaseMatchersImpl.() -> Unit): Interactions {
+        fun notDisplayed(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
             BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.matches(not(ViewMatchers.isDisplayed())))
             return this
         }
 
-        fun notExist(func: BaseMatchersImpl.() -> Unit): Interactions {
+        fun notExist(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
             BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.doesNotExist())
             return this
         }
@@ -68,7 +68,7 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
             return this
         }
 
-        private fun itemMatchList(func: BaseMatchersImpl.() -> Unit): List<Matcher<View>> {
+        private fun itemMatchList(func: BaseMatchersImpl.() -> BaseMatchersImpl): List<Matcher<View>> {
             val matchList = BaseMatchersImpl().apply { func() }.matchList()
             return matchList.map { matchAtPosition(position, recyclerViewId, it) }
         }
