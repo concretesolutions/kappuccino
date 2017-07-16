@@ -58,27 +58,13 @@ class BaseMatchersImpl : BaseMatcherMethods {
 
     override fun parent(@IdRes parentId: Int, func: BaseMatchersImpl.() -> BaseMatchersImpl): BaseMatchersImpl {
         val parentList = BaseMatchersImpl().apply { func() }.matchList()
-        var parentViewMatcher: Matcher<View>
-        for (matcher in parentList) {
-            if (parentId != -1)
-                parentViewMatcher = Matchers.allOf(isDescendantOfA(withId(parentId)), matcher)
-            else
-                parentViewMatcher = isDescendantOfA(Matchers.allOf(matcher))
-            matchList.add(parentViewMatcher)
-        }
+        parentList.mapTo(matchList) { getParentViewMatcher(parentId, it) }
         return this
     }
 
     override fun descendant(@IdRes descendantId: Int, func: BaseMatchersImpl.() -> BaseMatchersImpl): BaseMatchersImpl {
         val descendantList = BaseMatchersImpl().apply { func() }.matchList()
-        var descendantViewMatcher: Matcher<View>
-        for (matcher in descendantList) {
-            if (descendantId != -1)
-                descendantViewMatcher = Matchers.allOf(hasDescendant(withId(descendantId)), matcher)
-            else
-                descendantViewMatcher = hasDescendant(Matchers.allOf(matcher))
-            matchList.add(descendantViewMatcher)
-        }
+        descendantList.mapTo(matchList) { getDescendantViewMatcher(descendantId, it) }
         return this
     }
 
@@ -88,5 +74,19 @@ class BaseMatchersImpl : BaseMatcherMethods {
     }
 
     internal fun matchList() = matchList
+
+    private fun getParentViewMatcher(parentId: Int, matcher: Matcher<View>): Matcher<View> {
+        if (parentId != -1)
+            return Matchers.allOf(isDescendantOfA(withId(parentId)), matcher)
+        else
+            return isDescendantOfA(Matchers.allOf(matcher))
+    }
+
+    private fun getDescendantViewMatcher(descendantId: Int, matcher: Matcher<View>): Matcher<View> {
+        if (descendantId != -1)
+            return Matchers.allOf(hasDescendant(withId(descendantId)), matcher)
+        else
+            return hasDescendant(Matchers.allOf(matcher))
+    }
 }
 
