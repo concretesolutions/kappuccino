@@ -2,6 +2,7 @@ package br.com.concretesolutions.kappuccino.custom.compoundDrawable
 
 
 import android.graphics.Point
+import android.os.SystemClock.uptimeMillis
 import android.support.annotation.IntDef
 import android.support.test.espresso.UiController
 import android.support.test.espresso.ViewAction
@@ -54,14 +55,16 @@ class ClickDrawableAction(private @Location val drawableLocation: Int) : ViewAct
         val drawableBounds = tv.compoundDrawables[drawableLocation].bounds
 
         val clickPoint = arrayOfNulls<Point>(4)
-        clickPoint[Left.toInt()] = Point(tv.left + drawableBounds.width() / 2, (tv.pivotY + drawableBounds.height() / 2) as Int)
-        clickPoint[Top.toInt()] = Point((tv.pivotX + drawableBounds.width() / 2) as Int, tv.top + drawableBounds.height() / 2)
-        clickPoint[Right.toInt()] = Point(tv.right + drawableBounds.width() / 2, (tv.pivotY + drawableBounds.height() / 2) as Int)
-        clickPoint[Bottom.toInt()] = Point((tv.pivotX + drawableBounds.width() / 2) as Int, tv.bottom + drawableBounds.height() / 2)
+        clickPoint[Left.toInt()] = Point(tv.left + drawableBounds.width() / 2, (tv.pivotY + drawableBounds.height() / 2).toInt())
+        clickPoint[Top.toInt()] = Point((tv.pivotX + drawableBounds.width() / 2).toInt(), tv.top + drawableBounds.height() / 2)
+        clickPoint[Right.toInt()] = Point(tv.right + drawableBounds.width() / 2, (tv.pivotY + drawableBounds.height() / 2).toInt())
+        clickPoint[Bottom.toInt()] = Point((tv.pivotX + drawableBounds.width() / 2).toInt(), tv.bottom + drawableBounds.height() / 2)
 
-        if (tv.dispatchTouchEvent(MotionEvent.obtain(android.os.SystemClock.uptimeMillis(), android.os.SystemClock.uptimeMillis(), MotionEvent.ACTION_DOWN, clickPoint[drawableLocation]!!.x.toFloat(), clickPoint[drawableLocation]!!.y.toFloat(), 0)))
-            tv.dispatchTouchEvent(MotionEvent.obtain(android.os.SystemClock.uptimeMillis(), android.os.SystemClock.uptimeMillis(), MotionEvent.ACTION_UP, clickPoint[drawableLocation]!!.x.toFloat(), clickPoint[drawableLocation]!!.y.toFloat(), 0))
-
+        if (clickAction(MotionEvent.ACTION_DOWN, tv, clickPoint))
+            clickAction(MotionEvent.ACTION_UP, tv, clickPoint)
     }
+
+    private fun clickAction(action: Int, tv: TextView, clickPoint: Array<Point?>) =
+            tv.dispatchTouchEvent(MotionEvent.obtain(uptimeMillis(), uptimeMillis(), action, clickPoint[drawableLocation]!!.x.toFloat(), clickPoint[drawableLocation]!!.y.toFloat(), 0))
 
 }
