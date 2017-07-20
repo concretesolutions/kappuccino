@@ -61,8 +61,8 @@ class ClickDrawableAction(private @Location val drawableLocation: Int) : ViewAct
             clickAction(MotionEvent.ACTION_UP, tv, clickPoint)
     }
 
-    private fun createClickPoints(tv: TextView, bounds: Rect): Array<Point> {
-        val clickPoint = arrayOf<Point>()
+    private fun createClickPoints(tv: TextView, bounds: Rect): Array<Point?> {
+        val clickPoint = arrayOfNulls<Point>(4)
         clickPoint[Left.toInt()] = PointCreator(bounds).left(tv)
         clickPoint[Right.toInt()] = PointCreator(bounds).right(tv)
         clickPoint[Top.toInt()] = PointCreator(bounds).top(tv)
@@ -70,8 +70,8 @@ class ClickDrawableAction(private @Location val drawableLocation: Int) : ViewAct
         return clickPoint
     }
 
-    private fun clickAction(action: Int, tv: TextView, clickPoint: Array<Point>) =
-            tv.dispatchTouchEvent(MotionEvent.obtain(uptimeMillis(), uptimeMillis(), action, clickPoint[drawableLocation].x.toFloat(), clickPoint[drawableLocation].y.toFloat(), 0))
+    private fun clickAction(action: Int, tv: TextView, clickPoint: Array<Point?>) =
+            tv.dispatchTouchEvent(MotionEvent.obtain(uptimeMillis(), uptimeMillis(), action, clickPoint[drawableLocation]!!.x.toFloat(), clickPoint[drawableLocation]!!.y.toFloat(), 0))
 
     private class PointCreator(private val bounds: Rect) {
 
