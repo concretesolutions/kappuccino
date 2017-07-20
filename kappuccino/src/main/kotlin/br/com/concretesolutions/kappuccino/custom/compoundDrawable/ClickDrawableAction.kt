@@ -14,6 +14,9 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.core.AllOf.allOf
 
+/**
+ * Based on answer https://stackoverflow.com/a/37032927/3279958
+ */
 
 class ClickDrawableAction(private @Location val drawableLocation: Int) : ViewAction {
 
