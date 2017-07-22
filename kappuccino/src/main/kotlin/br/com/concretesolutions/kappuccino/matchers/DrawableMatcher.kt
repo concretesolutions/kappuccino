@@ -23,11 +23,7 @@ class DrawableMatcher(private val drawableId: Int) : TypeSafeMatcher<View>(View:
         if (target !is ImageView)
             return false
 
-        val currentDrawable = target.drawable
-
-        if (drawableId < 0) {
-            return currentDrawable == null
-        }
+        val currentDrawable = target.drawable ?: return drawableId < 0
 
         resourceName = getResourceName(target)
 
