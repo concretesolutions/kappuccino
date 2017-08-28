@@ -1,11 +1,16 @@
 package br.com.concretesolutions.kappuccino.test
 
+import android.content.Intent
+import android.support.test.espresso.intent.Intents
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import br.com.concretesolutions.kappuccino.LinkTextActivity
+import br.com.concretesolutions.kappuccino.MainActivity
 import br.com.concretesolutions.kappuccino.R
+import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.matchIntent
 import br.com.concretesolutions.kappuccino.custom.link.openLink
-import br.com.concretesolutions.kappuccino.utils.doWait
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,22 +21,53 @@ class LinkTextActivityTest {
     @Rule @JvmField
     var mActivityRule = ActivityTestRule<LinkTextActivity>(LinkTextActivity::class.java, false, true)
 
+    @Before
+    fun initIntents() {
+        Intents.init()
+    }
+
+    @After
+    fun releaseIntents() {
+        Intents.release()
+    }
+
     @Test
     fun openFirstLink() {
-        doWait(1000L)
+
+        matchIntent {
+            className(MainActivity::class.java.name)
+            result {
+                ok()
+            }
+        }
+
         openLink(R.id.txt_link) {
             withText("first link")
         }
-        doWait(1000L)
+
+        matchIntent {
+            className(MainActivity::class.java.name)
+        }
     }
 
     @Test
     fun openSecondLink() {
-        doWait(1000L)
+        matchIntent {
+            action(Intent.ACTION_VIEW)
+            url("https://www.google.com")
+            result {
+                ok()
+            }
+        }
+
         openLink(R.id.txt_link) {
             withText("second link")
         }
-        doWait(3000L)
+
+        matchIntent {
+            action(Intent.ACTION_VIEW)
+            url("https://www.google.com")
+        }
     }
 
 }

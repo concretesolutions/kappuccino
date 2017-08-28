@@ -11,11 +11,11 @@ import br.com.concretesolutions.kappuccino.actions.TextActions.typeText
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.matchIntent
 import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
-
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
@@ -54,11 +54,12 @@ class MainActivityTest {
     fun intentMatcherTest() {
         val WHATS_PACKAGE_NAME = "com.whatsapp"
         val PLAY_STORE_URL = "https://play.google.com/store/apps/details?id="
-        Intents.init()
         matchIntent {
             action(Intent.ACTION_VIEW)
             url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
-            resultOk()
+            result {
+                ok()
+            }
         }
 
         click {
@@ -69,8 +70,17 @@ class MainActivityTest {
             action(Intent.ACTION_VIEW)
             url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
         }
+    }
 
+    @Before
+    fun initIntents() {
+        Intents.init()
+    }
+
+    @After
+    fun releaseIntents() {
         Intents.release()
     }
+
 
 }

@@ -3,9 +3,9 @@ package br.com.concretesolutions.kappuccino.custom.intent
 import android.content.Intent
 import android.net.Uri
 import android.support.test.espresso.intent.matcher.IntentMatchers.*
+import android.support.test.espresso.intent.matcher.UriMatchers.hasHost
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.allOf
-import org.hamcrest.Matchers.hasItem
+import org.hamcrest.Matchers.*
 
 class IntentMatcherBuilder {
     private val matchList = mutableListOf<Matcher<Intent>>()
@@ -22,7 +22,22 @@ class IntentMatcherBuilder {
     }
 
     fun url(url: String): IntentMatcherBuilder {
-        matchList.add(hasData(Uri.parse(url)))
+        matchList.add(hasData(url))
+        return this
+    }
+
+    fun url(url: Uri): IntentMatcherBuilder {
+        matchList.add(hasData(url))
+        return this
+    }
+
+    fun url(uriMatcher: Matcher<Uri>): IntentMatcherBuilder {
+        matchList.add(hasData(uriMatcher))
+        return this
+    }
+
+    fun host(host: String): IntentMatcherBuilder {
+        matchList.add(hasData(hasHost(equalTo(host))))
         return this
     }
 
@@ -41,31 +56,10 @@ class IntentMatcherBuilder {
         return this
     }
 
-    fun resultOk(): IntentMatcherBuilder {
+    infix fun result(func: IntentResultBuilder.() -> IntentResultBuilder): IntentMatcherBuilder {
         if (result == null)
             result = IntentResultBuilder()
-        (result as IntentResultBuilder).ok()
-        return this
-    }
-
-    fun resultCanceled(): IntentMatcherBuilder {
-        if (result == null)
-            result = IntentResultBuilder()
-        (result as IntentResultBuilder).canceled()
-        return this
-    }
-
-    fun resultData(data: Intent): IntentMatcherBuilder {
-        if (result == null)
-            result = IntentResultBuilder()
-        (result as IntentResultBuilder).data(data)
-        return this
-    }
-
-    fun resultCode(code: Int): IntentMatcherBuilder {
-        if (result == null)
-            result = IntentResultBuilder()
-        (result as IntentResultBuilder).code(code)
+        result?.apply { func() }
         return this
     }
 

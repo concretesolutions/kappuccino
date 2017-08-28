@@ -1,5 +1,5 @@
 buildscript {
-  ext.kotlin = '1.1.2-5'
+  ext.kotlin = '1.1.4-2'
   repositories {
     jcenter()
     mavenCentral()
@@ -16,6 +16,9 @@ allprojects {
   repositories {
     jcenter()
     mavenCentral()
+      maven {
+          url "https://maven.google.com"
+      }
   }
 }
 
@@ -24,7 +27,7 @@ ext {
   buildToolsVersion = "25.0.2"
   minSdkVersion = 16
   targetSdkVersion = 25
-  supportLibraryVersion = "25.3.1"
+  supportLibraryVersion = "25.4.0"
   versionCode = Integer.parseInt(VERSION_CODE)
   versionName = VERSION_NAME
 }
