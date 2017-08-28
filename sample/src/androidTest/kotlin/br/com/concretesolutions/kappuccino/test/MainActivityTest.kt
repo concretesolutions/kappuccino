@@ -57,7 +57,9 @@ class MainActivityTest {
         matchIntent {
             action(Intent.ACTION_VIEW)
             url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
-            resultOk()
+            result {
+                ok()
+            }
         }
 
         click {

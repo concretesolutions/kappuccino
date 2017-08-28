@@ -56,31 +56,10 @@ class IntentMatcherBuilder {
         return this
     }
 
-    fun resultOk(): IntentMatcherBuilder {
+    infix fun result(func: IntentResultBuilder.() -> IntentResultBuilder): IntentMatcherBuilder {
         if (result == null)
             result = IntentResultBuilder()
-        (result as IntentResultBuilder).ok()
-        return this
-    }
-
-    fun resultCanceled(): IntentMatcherBuilder {
-        if (result == null)
-            result = IntentResultBuilder()
-        (result as IntentResultBuilder).canceled()
-        return this
-    }
-
-    fun resultData(data: Intent): IntentMatcherBuilder {
-        if (result == null)
-            result = IntentResultBuilder()
-        (result as IntentResultBuilder).data(data)
-        return this
-    }
-
-    fun resultCode(code: Int): IntentMatcherBuilder {
-        if (result == null)
-            result = IntentResultBuilder()
-        (result as IntentResultBuilder).code(code)
+        result?.apply { func() }
         return this
     }
 

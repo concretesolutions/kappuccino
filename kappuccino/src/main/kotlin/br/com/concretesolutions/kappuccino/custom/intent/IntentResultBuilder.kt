@@ -8,20 +8,24 @@ class IntentResultBuilder {
     private var resultCode: Int = Activity.RESULT_OK
     private var resultData = Intent()
 
-    internal fun ok() {
+    fun ok(): IntentResultBuilder {
         this.resultCode = Activity.RESULT_OK
+        return this
     }
 
-    internal fun canceled() {
+    fun canceled(): IntentResultBuilder {
         this.resultCode = Activity.RESULT_CANCELED
+        return this
     }
 
-    internal fun data(data: Intent) {
+    fun data(data: Intent): IntentResultBuilder {
         resultData = data
+        return this
     }
 
-    internal fun code(code: Int) {
+    fun code(code: Int): IntentResultBuilder {
         this.resultCode = code
+        return this
     }
 
     internal fun code() = resultCode

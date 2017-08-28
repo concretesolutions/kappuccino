@@ -36,7 +36,9 @@ class LinkTextActivityTest {
 
         matchIntent {
             className(MainActivity::class.java.name)
-            resultOk()
+            result {
+                ok()
+            }
         }
 
         openLink(R.id.txt_link) {
@@ -53,7 +55,9 @@ class LinkTextActivityTest {
         matchIntent {
             action(Intent.ACTION_VIEW)
             url("https://www.google.com")
-            resultOk()
+            result {
+                ok()
+            }
         }
 
         openLink(R.id.txt_link) {
