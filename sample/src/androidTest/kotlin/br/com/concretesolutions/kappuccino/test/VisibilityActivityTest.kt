@@ -111,8 +111,9 @@ class VisibilityActivityTest {
 
         matchIntent {
             className(MainActivity::class.java.name)
-            resultOk()
-
+            result {
+                ok()
+            }
         }
 
         click {
