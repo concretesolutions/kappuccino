@@ -2,42 +2,44 @@ apply plugin: 'com.android.application'
 apply plugin: 'project-report'
 apply plugin: 'kotlin-android'
 
-android {
-  compileSdkVersion rootProject.ext.compileSdkVersion
-  buildToolsVersion rootProject.ext.buildToolsVersion
-  defaultConfig {
-    applicationId "br.com.concretesolutions.kappuccino"
-    minSdkVersion rootProject.ext.minSdkVersion
-    targetSdkVersion rootProject.ext.targetSdkVersion
-    versionCode 1
-    versionName "1.0"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-  }
-  buildTypes {
-    debug {
-      debuggable true
-      minifyEnabled false
-      testCoverageEnabled true
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
-  }
+final versions = rootProject.ext
 
-  sourceSets {
-    androidTest.java.srcDirs = ['src/androidTest/kotlin']
-  }
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+    defaultConfig {
+        applicationId "br.com.concretesolutions.kappuccino"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            testCoverageEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        androidTest.java.srcDirs = ['src/androidTest/kotlin']
+    }
 }
 
 dependencies {
 
-  compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-  compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
-  compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
-  compile 'com.android.support.constraint:constraint-layout:1.0.2'
-  compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
-  testCompile 'junit:junit:4.12'
-  androidTestCompile project(':kappuccino')
-  androidTestCompile 'com.android.support.test:rules:1.0.0'
-  androidTestCompile 'com.android.support.test:runner:1.0.0'
+    compile "com.android.support:appcompat-v7:$versions.supportLibrary"
+    compile "com.android.support:support-v4:$versions.supportLibrary"
+    compile "com.android.support:recyclerview-v7:$versions.supportLibrary"
+    compile "com.android.support:design:$versions.supportLibrary"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    androidTestCompile project(':kappuccino')
+//  androidTestCompile 'com.android.support.test:rules:1.0.0'
+//  androidTestCompile 'com.android.support.test:runner:1.0.0'
 }
 
 

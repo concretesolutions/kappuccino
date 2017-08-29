@@ -25,8 +25,7 @@ object RecyclerViewUtils {
 
         override fun getConstraints(): Matcher<View> {
             return Matchers.allOf(
-                *arrayOf<Matcher<View>>(ViewMatchers.isAssignableFrom(RecyclerView::class.java),
-                    ViewMatchers.isDisplayed()))
+                    ViewMatchers.isAssignableFrom(RecyclerView::class.java), ViewMatchers.isDisplayed())
         }
 
         override fun getDescription(): String {
@@ -38,7 +37,7 @@ object RecyclerViewUtils {
             ScrollToPositionViewAction(this.position).perform(uiController, view)
             uiController.loopMainThreadUntilIdle()
 
-            val targetView = recyclerView.getChildAt(this.position).findViewById(this.viewId)
+            val targetView = recyclerView.getChildAt(this.position).findViewById<View>(this.viewId)
 
             if (targetView == null) {
                 throw Builder().withActionDescription(this.toString())
@@ -62,8 +61,7 @@ object RecyclerViewUtils {
 
         override fun getConstraints(): Matcher<View> {
             return Matchers.allOf(
-                *arrayOf<Matcher<View>>(ViewMatchers.isAssignableFrom(RecyclerView::class.java),
-                    ViewMatchers.isDisplayed()))
+                    ViewMatchers.isAssignableFrom(RecyclerView::class.java), ViewMatchers.isDisplayed())
         }
 
         override fun getDescription(): String {
