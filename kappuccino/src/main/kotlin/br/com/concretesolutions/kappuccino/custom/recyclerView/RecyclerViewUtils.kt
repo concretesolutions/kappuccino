@@ -23,10 +23,7 @@ object RecyclerViewUtils {
             @param:IdRes private val viewId: Int,
             private val viewAction: ViewAction) : ViewAction {
 
-        override fun getConstraints(): Matcher<View> {
-            return Matchers.allOf(
-                    ViewMatchers.isAssignableFrom(RecyclerView::class.java), ViewMatchers.isDisplayed())
-        }
+        override fun getConstraints(): Matcher<View> = createConstraints()
 
         override fun getDescription(): String {
             return "actionOnItemAtPosition performing ViewAction: $this.viewAction.description on item at position: $this.position"
@@ -59,10 +56,7 @@ object RecyclerViewUtils {
     private class ScrollToPositionViewAction (
         private val position: Int) : ViewAction {
 
-        override fun getConstraints(): Matcher<View> {
-            return Matchers.allOf(
-                    ViewMatchers.isAssignableFrom(RecyclerView::class.java), ViewMatchers.isDisplayed())
-        }
+        override fun getConstraints(): Matcher<View> = createConstraints()
 
         override fun getDescription(): String {
             return "scroll RecyclerView to position: " + this.position
@@ -73,4 +67,7 @@ object RecyclerViewUtils {
             recyclerView.scrollToPosition(this.position)
         }
     }
+
+    private fun createConstraints() = Matchers.allOf(
+            ViewMatchers.isAssignableFrom(RecyclerView::class.java), ViewMatchers.isDisplayed())
 }
