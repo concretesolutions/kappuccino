@@ -23,7 +23,7 @@ object RecyclerViewMatcher {
                 if (view !is RecyclerView) {
                     return false
                 }
-                val recyclerView = view.rootView.findViewById(recyclerViewId) as RecyclerView
+                val recyclerView = view.rootView.findViewById<RecyclerView>(recyclerViewId) as RecyclerView
                 val viewHolder = recyclerView.findViewHolderForAdapterPosition(position) ?: // has no item on such position
                         return false
                 viewHolder.itemView as? ViewGroup ?: return itemMatcher.matches(viewHolder.itemView)
