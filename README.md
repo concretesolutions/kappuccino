@@ -299,6 +299,26 @@ fun intentMatcherTest() {
 }
 ```
 You can also use a custom intent matcher with the <i>custom</i> method
+
+### Runtime permissions
+Easily handle runtime permissions
+``` kotlin
+@Test
+fun grantContactsPermission() {
+    click {
+        id(R.id.btn_request_permission)
+    }
+
+    runtimePermission(Manifest.permission.READ_CONTACTS) {
+        grant()
+    }
+
+    displayed {
+        text("PERMISSION GRANTED")
+    }
+}
+```
+
 #### For more examples, please check the sample code.
 
 #### Wiki: coming soon.
