@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="br.com.concretesolutions.kappuccino">
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +21,7 @@
 
         <activity android:name=".VisibilityAssertionsActivity"/>
         <activity android:name=".LinkTextActivity"/>
+        <activity android:name=".RuntimePermissionActivity" />
     </application>
 
 </manifest>
