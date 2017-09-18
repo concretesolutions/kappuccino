@@ -85,33 +85,5 @@ public class RuntimePermissionActivity extends AppCompatActivity implements Acti
     private void requestContactsPermissions() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS},
                 MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-        // BEGIN_INCLUDE(contacts_permission_request)
-//        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-//                Manifest.permission.READ_CONTACTS)) {
-//
-//            // Provide an additional rationale to the user if the permission was not granted
-//            // and the user would benefit from additional context for the use of the permission.
-//            // For example, if the request has been denied previously.
-//            Log.i(TAG,
-//                    "Displaying contacts permission rationale to provide additional context.");
-//
-//            // Display a SnackBar with an explanation and a button to trigger the request.
-//            Snackbar.make(mLayout, R.string.permission_contacts_rationale,
-//                    Snackbar.LENGTH_INDEFINITE)
-//                    .setAction(R.string.ok, new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            ActivityCompat
-//                                    .requestPermissions(MainActivity.this, PERMISSIONS_CONTACT,
-//                                            REQUEST_CONTACTS);
-//                        }
-//                    })
-//                    .show();
-//        } else {
-//            // Contact permissions have not been granted yet. Request them directly.
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS},
-//                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-//        }
-        // END_INCLUDE(contacts_permission_request)
     }
 }

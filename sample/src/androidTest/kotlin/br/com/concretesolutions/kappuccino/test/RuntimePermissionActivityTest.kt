@@ -20,7 +20,8 @@ import org.junit.runners.MethodSorters
 class RuntimePermissionActivityTest {
 
     /**
-     * To test permissions, you will have to uninstall the app before run the tests, or remove the permissions that are already granted
+     * To test permissions, you will have to uninstall the app before run the tests,
+     * or remove the permissions that are already granted
      */
 
     @Rule
