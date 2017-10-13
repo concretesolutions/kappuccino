@@ -13,7 +13,6 @@ import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 
 class BaseMatchersImpl : BaseMatcherMethods {
-
     private val matchList = mutableListOf<Matcher<View>>()
 
     override fun id(@IdRes viewId: Int): BaseMatchersImpl {
@@ -28,6 +27,11 @@ class BaseMatchersImpl : BaseMatcherMethods {
 
     override fun text(text: String): BaseMatchersImpl {
         matchList.add(ViewMatchers.withText(text))
+        return this
+    }
+
+    override fun text(textMatcher: Matcher<String>) : BaseMatchersImpl {
+        matchList.add(ViewMatchers.withText(textMatcher))
         return this
     }
 
