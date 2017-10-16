@@ -320,22 +320,19 @@ fun grantContactsPermission() {
 ```
 
 ### Background matcher
-Check views background drawable and color
+Check view's background. The background must be VectorDrawable, BitmapDrawable or ColorDrawable
 ``` kotlin
 @Test
 fun backgroundColorTest() {
     displayed {
         allOf {
             id(R.id.view_background)
-            backgroundDrawable(R.drawable.ic_android)
+            background(R.drawable.ic_android)
         }
     }
 
     displayed {
-        allOf {
-            id(R.id.btn_start_activity)
-            backgroundColor(R.color.colorAccent)
-        }
+        background(R.color.colorAccent)
     }
 }
 ```
