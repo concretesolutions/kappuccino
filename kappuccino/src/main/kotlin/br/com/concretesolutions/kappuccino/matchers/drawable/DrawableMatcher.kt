@@ -8,8 +8,8 @@ import br.com.concretesolutions.kappuccino.utils.getResourceName
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
 
-open class DrawableMatcher(protected val drawableId: Int) : TypeSafeMatcher<View>(View::class.java) {
-    protected var resourceName: String? = null
+open class DrawableMatcher(private val drawableId: Int) : TypeSafeMatcher<View>(View::class.java) {
+    private var resourceName: String? = null
     protected var drawable: Drawable? = null
 
     override fun matchesSafely(target: View): Boolean {

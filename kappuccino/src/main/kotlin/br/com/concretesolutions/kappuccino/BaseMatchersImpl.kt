@@ -8,9 +8,8 @@ import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.view.View
 import br.com.concretesolutions.kappuccino.matchers.TextColorMatcher
-import br.com.concretesolutions.kappuccino.matchers.drawable.ColorDrawableBackgroundMatcher
+import br.com.concretesolutions.kappuccino.matchers.drawable.BackgroundMatcher
 import br.com.concretesolutions.kappuccino.matchers.drawable.ImageViewDrawableMatcher
-import br.com.concretesolutions.kappuccino.matchers.drawable.VectorDrawableBackgroundMatcher
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 
@@ -52,13 +51,8 @@ class BaseMatchersImpl : BaseMatcherMethods {
         return this
     }
 
-    override fun backgroundDrawable(@DrawableRes drawableId: Int): BaseMatchersImpl {
-        matchList.add(VectorDrawableBackgroundMatcher(drawableId))
-        return this
-    }
-
-    override fun backgroundColor(@ColorRes colorId: Int): BaseMatchersImpl {
-        matchList.add(ColorDrawableBackgroundMatcher(colorId))
+    override fun background(drawableId: Int): BaseMatchersImpl {
+        matchList.add(BackgroundMatcher(drawableId))
         return this
     }
 

@@ -76,13 +76,13 @@ class MainActivityTest {
     @Test
     fun vectorDrawableTest() {
         displayed {
-            backgroundDrawable(R.drawable.ic_android)
+            background(R.drawable.ic_android)
         }
 
         displayed {
             allOf {
-                id(R.id.view_background)
-                backgroundDrawable(R.drawable.ic_android)
+                id(R.id.view_background_2)
+                background(R.drawable.ic_android)
             }
         }
     }
@@ -92,12 +92,22 @@ class MainActivityTest {
         displayed {
             allOf {
                 id(R.id.btn_start_activity)
-                backgroundColor(R.color.colorAccent)
+                background(R.color.colorAccent)
             }
         }
 
         displayed {
-            backgroundColor(R.color.colorAccent)
+            background(R.color.colorAccent)
+        }
+    }
+
+    @Test
+    fun bitmapDrawableTest() {
+        displayed {
+            allOf {
+                id(R.id.view_background)
+                background(R.mipmap.ic_launcher_round)
+            }
         }
     }
 
