@@ -20,7 +20,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
 
-    @Rule @JvmField
+    @Rule
+    @JvmField
     var mActivityRule = ActivityTestRule<MainActivity>(MainActivity::class.java, false, true)
 
     @Test
@@ -69,6 +70,34 @@ class MainActivityTest {
         matchIntent {
             action(Intent.ACTION_VIEW)
             url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
+        }
+    }
+
+    @Test
+    fun vectorDrawableTest() {
+        displayed {
+            backgroundDrawable(R.drawable.ic_android)
+        }
+
+        displayed {
+            allOf {
+                id(R.id.view_background)
+                backgroundDrawable(R.drawable.ic_android)
+            }
+        }
+    }
+
+    @Test
+    fun colorDrawableTest() {
+        displayed {
+            allOf {
+                id(R.id.btn_start_activity)
+                backgroundColor(R.color.colorAccent)
+            }
+        }
+
+        displayed {
+            backgroundColor(R.color.colorAccent)
         }
     }
 
