@@ -7,13 +7,14 @@ import android.support.annotation.StringRes
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.view.View
-import br.com.concretesolutions.kappuccino.matchers.DrawableMatcher
 import br.com.concretesolutions.kappuccino.matchers.TextColorMatcher
+import br.com.concretesolutions.kappuccino.matchers.drawable.ColorDrawableBackgroundMatcher
+import br.com.concretesolutions.kappuccino.matchers.drawable.ImageViewDrawableMatcher
+import br.com.concretesolutions.kappuccino.matchers.drawable.VectorDrawableBackgroundMatcher
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 
 class BaseMatchersImpl : BaseMatcherMethods {
-
     private val matchList = mutableListOf<Matcher<View>>()
 
     override fun id(@IdRes viewId: Int): BaseMatchersImpl {
@@ -31,6 +32,11 @@ class BaseMatchersImpl : BaseMatcherMethods {
         return this
     }
 
+    override fun text(textMatcher: Matcher<String>) : BaseMatchersImpl {
+        matchList.add(ViewMatchers.withText(textMatcher))
+        return this
+    }
+
     override fun contentDescription(@StringRes contentDescriptionId: Int): BaseMatchersImpl {
         matchList.add(ViewMatchers.withContentDescription(contentDescriptionId))
         return this
@@ -42,7 +48,17 @@ class BaseMatchersImpl : BaseMatcherMethods {
     }
 
     override fun image(@DrawableRes imageId: Int): BaseMatchersImpl {
-        matchList.add(DrawableMatcher(imageId))
+        matchList.add(ImageViewDrawableMatcher(imageId))
+        return this
+    }
+
+    override fun backgroundDrawable(@DrawableRes drawableId: Int): BaseMatchersImpl {
+        matchList.add(VectorDrawableBackgroundMatcher(drawableId))
+        return this
+    }
+
+    override fun backgroundColor(@ColorRes colorId: Int): BaseMatchersImpl {
+        matchList.add(ColorDrawableBackgroundMatcher(colorId))
         return this
     }
 
@@ -76,17 +92,17 @@ class BaseMatchersImpl : BaseMatcherMethods {
     internal fun matchList() = matchList
 
     private fun getParentViewMatcher(parentId: Int, matcher: Matcher<View>): Matcher<View> {
-        if (parentId != -1)
-            return Matchers.allOf(isDescendantOfA(withId(parentId)), matcher)
+        return if (parentId != -1)
+            Matchers.allOf(isDescendantOfA(withId(parentId)), matcher)
         else
-            return isDescendantOfA(Matchers.allOf(matcher))
+            isDescendantOfA(Matchers.allOf(matcher))
     }
 
     private fun getDescendantViewMatcher(descendantId: Int, matcher: Matcher<View>): Matcher<View> {
-        if (descendantId != -1)
-            return Matchers.allOf(hasDescendant(withId(descendantId)), matcher)
+        return if (descendantId != -1)
+            Matchers.allOf(hasDescendant(withId(descendantId)), matcher)
         else
-            return hasDescendant(Matchers.allOf(matcher))
+            hasDescendant(Matchers.allOf(matcher))
     }
 }
 
