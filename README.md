@@ -319,6 +319,27 @@ fun grantContactsPermission() {
 }
 ```
 
+### Background matcher
+Check views background drawable and color
+``` kotlin
+@Test
+fun backgroundColorTest() {
+    displayed {
+        allOf {
+            id(R.id.view_background)
+            backgroundDrawable(R.drawable.ic_android)
+        }
+    }
+
+    displayed {
+        allOf {
+            id(R.id.btn_start_activity)
+            backgroundColor(R.color.colorAccent)
+        }
+    }
+}
+```
+
 #### For more examples, please check the sample code.
 
 #### Wiki: coming soon.
