@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
                         Uri.parse(PLAY_STORE_URL + WHATS_PACKAGE_NAME)));
             }
         });
-
-        final Drawable background = button.getBackground();
     }
 
     private void setupRecyclerView(Context context) {
