@@ -11,6 +11,10 @@ interface BaseMatcherMethods {
     fun id(@IdRes viewId: Int): Any
     fun text(@StringRes textId: Int): Any
     fun text(text: String): Any
+    /**
+     * Matches a view if it has text that matches the Matcher
+     */
+    fun text(textMatcher: Matcher<String>) : Any
     fun contentDescription(@StringRes contentDescriptionId: Int): Any
     fun contentDescription(contentDescription: String): Any
     fun image(@DrawableRes imageId: Int): Any
