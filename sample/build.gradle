@@ -43,7 +43,7 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
     androidTestImplementation "com.android.support.test:runner:$versions.runner"
     androidTestImplementation "com.android.support.test:rules:$versions.rules"
-    androidTestCompile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.4-3'
+    androidTestCompile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 }
 
 
