@@ -10,6 +10,7 @@ import android.view.View
 import br.com.concretesolutions.kappuccino.matchers.TextColorMatcher
 import br.com.concretesolutions.kappuccino.matchers.drawable.BackgroundMatcher
 import br.com.concretesolutions.kappuccino.matchers.drawable.ImageViewDrawableMatcher
+import br.com.concretesolutions.kappuccino.matchers.drawable.TextViewDrawableMatcher
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 
@@ -58,6 +59,11 @@ class BaseMatchersImpl : BaseMatcherMethods {
 
     override fun textColor(@ColorRes colorId: Int): BaseMatchersImpl {
         matchList.add(TextColorMatcher().withTextColor(colorId))
+        return this
+    }
+
+    override fun textCompoundDrawable(start: Int?, end: Int?, top: Int?, bottom: Int?): BaseMatchersImpl {
+        matchList.add(TextViewDrawableMatcher().withCompoundDrawable(start, end, top, bottom))
         return this
     }
 

@@ -24,6 +24,10 @@ interface BaseMatcherMethods {
      */
     fun background(@IdRes drawableId: Int): Any
     fun textColor(@ColorRes colorId: Int): Any
+    fun textCompoundDrawable(@DrawableRes start: Int? = null,
+                             @DrawableRes end: Int? = null,
+                             @DrawableRes top: Int? = null,
+                             @DrawableRes bottom: Int? = null) : Any
     fun parent(@IdRes parentId: Int = -1, func: BaseMatchersImpl.() -> BaseMatchersImpl): Any
     fun descendant(@IdRes descendantId: Int = -1, func: BaseMatchersImpl.() -> BaseMatchersImpl): Any
     fun custom(viewMatcher: Matcher<View>): Any
