@@ -9,6 +9,7 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.view.View
 import br.com.concretesolutions.kappuccino.matchers.TextColorMatcher
 import br.com.concretesolutions.kappuccino.matchers.drawable.BackgroundMatcher
+import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition
 import br.com.concretesolutions.kappuccino.matchers.drawable.ImageViewDrawableMatcher
 import br.com.concretesolutions.kappuccino.matchers.drawable.TextViewDrawableMatcher
 import org.hamcrest.Matcher
@@ -62,8 +63,8 @@ class BaseMatchersImpl : BaseMatcherMethods {
         return this
     }
 
-    override fun textCompoundDrawable(start: Int?, end: Int?, top: Int?, bottom: Int?): BaseMatchersImpl {
-        matchList.add(TextViewDrawableMatcher().withCompoundDrawable(start, end, top, bottom))
+    override fun textCompoundDrawable(drawablePosition: DrawablePosition): BaseMatchersImpl {
+        matchList.add(TextViewDrawableMatcher().withCompoundDrawable(drawablePosition))
         return this
     }
 
