@@ -5,6 +5,7 @@ import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.view.View
+import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition
 import org.hamcrest.Matcher
 
 interface BaseMatcherMethods {
@@ -24,6 +25,7 @@ interface BaseMatcherMethods {
      */
     fun background(@IdRes drawableId: Int): Any
     fun textColor(@ColorRes colorId: Int): Any
+    fun textCompoundDrawable(drawablePosition: DrawablePosition) : Any
     fun parent(@IdRes parentId: Int = -1, func: BaseMatchersImpl.() -> BaseMatchersImpl): Any
     fun descendant(@IdRes descendantId: Int = -1, func: BaseMatchersImpl.() -> BaseMatchersImpl): Any
     fun custom(viewMatcher: Matcher<View>): Any

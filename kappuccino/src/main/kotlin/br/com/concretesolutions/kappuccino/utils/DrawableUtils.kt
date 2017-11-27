@@ -5,8 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.VectorDrawable
 import android.os.Build
+import android.support.annotation.DrawableRes
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.widget.AppCompatDrawableManager
 
@@ -23,6 +23,12 @@ fun getBitmap(drawable: Drawable): Bitmap {
     else
         getBitmapFromVectorDrawable(drawable)
 }
+
+fun compareDrawables(lhs: Drawable, rhs: Drawable) = lhs.constantState == rhs.constantState
+
+fun checkResIdAgainstDrawable(@DrawableRes resId: Int,
+                              drawable: Drawable?,
+                              context: Context) = drawable != null && compareDrawables(getDrawable(context, resId), drawable)
 
 fun getBitmapFromVectorDrawable(vectorDrawable: Drawable): Bitmap {
     var drawable: Drawable = vectorDrawable
