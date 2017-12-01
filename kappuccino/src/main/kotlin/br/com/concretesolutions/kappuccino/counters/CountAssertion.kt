@@ -28,6 +28,6 @@ class CountAssertion(private val expectedCount: Int) : ViewAssertion {
 
     private fun viewPagerSize(viewPager: ViewPager) {
         val adapter = viewPager.adapter
-        MatcherAssert.assertThat(adapter.count, CoreMatchers.`is`(expectedCount))
+        MatcherAssert.assertThat(adapter?.count, CoreMatchers.`is`(expectedCount))
     }
 }
