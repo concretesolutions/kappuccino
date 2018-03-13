@@ -68,10 +68,23 @@ sourceSets {
   }
 ```
 
-4 - Add library into your build.gradle file and sync
+4 - Add library and dependencies into your build.gradle file and sync
 
 ``` groovy
 androidTestCompile 'br.com.concretesolutions:kappuccino:$latest.version'
+```
+
+5 - This library depends on the following libraries:
+- [Espresso](https://developer.android.com/training/testing/espresso/index.html): mandatory
+- [UiAutomator](https://developer.android.com/training/testing/ui-automator.html): optional, used for runtime permissions
+
+So, ensure those libraries are also in your dependencies.
+
+``` groovy
+androidTestImplementation "com.android.support.test.espresso:espresso-intents:$versions.espresso"
+androidTestImplementation "com.android.support.test.espresso:espresso-core:$versions.espresso"
+androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
+androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:$versions.uiAutomator"
 ```
 
 And you're ready to go!
