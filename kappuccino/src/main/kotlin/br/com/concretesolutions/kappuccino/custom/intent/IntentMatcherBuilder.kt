@@ -62,6 +62,12 @@ class IntentMatcherBuilder {
         return this
     }
 
+    infix fun respondWithOk(func: IntentResultBuilder.() -> IntentResultBuilder): IntentMatcherBuilder {
+        TODO("Implementar uma nova classe, IntentResultMethods?")
+        return this
+    }
+
+    @Deprecated("Use respondWith instead")
     infix fun result(func: IntentResultBuilder.() -> IntentResultBuilder): IntentMatcherBuilder {
         if (result == null)
             result = IntentResultBuilder()
