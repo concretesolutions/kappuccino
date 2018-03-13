@@ -6,7 +6,6 @@ import android.widget.EditText
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 
-
 object InputTypeViewMatcher {
 
     fun hasInputType(inputType: Int): Matcher<View> {

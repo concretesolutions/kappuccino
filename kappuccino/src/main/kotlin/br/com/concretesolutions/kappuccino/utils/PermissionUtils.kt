@@ -10,7 +10,6 @@ import android.support.test.uiautomator.UiObjectNotFoundException
 import android.support.test.uiautomator.UiSelector
 import android.support.v4.content.ContextCompat
 
-
 fun runtimePermission(permissionNeeded: String, func: PermissionUtils.() -> Unit) {
     PermissionUtils(permissionNeeded).apply { func() }
 }
@@ -19,7 +18,7 @@ class PermissionUtils(val permissionNeeded: String) {
 
     private val PERMISSIONS_DIALOG_DELAY = 3000
 
-    fun grant(){
+    fun grant() {
         val GRANT_BUTTON_INDEX = 1
         handlePermission(GRANT_BUTTON_INDEX)
     }
@@ -50,7 +49,6 @@ class PermissionUtils(val permissionNeeded: String) {
         } catch (e: UiObjectNotFoundException) {
             println("There is no permissions dialog to interaction with")
         }
-
     }
 
     private fun hasNeededPermission(context: Context, permissionNeeded: String): Boolean {
@@ -64,7 +62,5 @@ class PermissionUtils(val permissionNeeded: String) {
         } catch (e: InterruptedException) {
             throw RuntimeException("Cannot execute Thread.sleep()")
         }
-
     }
 }
-

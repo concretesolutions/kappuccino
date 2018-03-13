@@ -16,7 +16,6 @@ fun getResourceName(context: Context, resourceId: Int) =
 fun getDrawable(context: Context, drawableId: Int) =
         AppCompatDrawableManager.get().getDrawable(context, drawableId)
 
-
 fun getBitmap(drawable: Drawable): Bitmap {
     return if (drawable is BitmapDrawable)
         (drawable).bitmap

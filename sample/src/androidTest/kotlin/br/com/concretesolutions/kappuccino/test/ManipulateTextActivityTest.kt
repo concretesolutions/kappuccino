@@ -6,7 +6,9 @@ import br.com.concretesolutions.kappuccino.ManipulateTextActivity
 import br.com.concretesolutions.kappuccino.R
 import br.com.concretesolutions.kappuccino.actions.ClickActions.click
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
-import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition.*
+import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition.End
+import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition.Start
+import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition.Top
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

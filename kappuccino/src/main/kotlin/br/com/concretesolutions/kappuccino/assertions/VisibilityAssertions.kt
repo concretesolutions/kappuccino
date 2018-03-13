@@ -7,7 +7,6 @@ import br.com.concretesolutions.kappuccino.BaseMatchersImpl
 import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import org.hamcrest.Matchers
 
-
 object VisibilityAssertions {
 
     fun displayed(scroll: Boolean = false, func: BaseMatchersImpl.() -> BaseMatchersImpl) {

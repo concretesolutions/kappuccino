@@ -24,4 +24,3 @@ object CheckedAssertions {
         else return matches(not(isChecked()))
     }
 }
-

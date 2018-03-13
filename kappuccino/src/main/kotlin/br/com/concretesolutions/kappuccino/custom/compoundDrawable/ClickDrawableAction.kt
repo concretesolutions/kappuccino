@@ -1,6 +1,5 @@
 package br.com.concretesolutions.kappuccino.custom.compoundDrawable
 
-
 import android.graphics.Point
 import android.graphics.Rect
 import android.os.SystemClock.uptimeMillis
@@ -90,6 +89,5 @@ class ClickDrawableAction(private @Location val drawableLocation: Int) : ViewAct
         private fun fromHeight(fromPosition: Int): Int {
             return fromPosition + bounds.height() / 2
         }
-
     }
 }

@@ -120,6 +120,4 @@ class MainActivityTest {
     fun releaseIntents() {
         Intents.release()
     }
-
-
 }
