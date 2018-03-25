@@ -62,8 +62,10 @@ class IntentMatcherBuilder {
         return this
     }
 
-    infix fun respondWithOk(func: IntentResultBuilder.() -> IntentResultBuilder): IntentMatcherBuilder {
-        TODO("Implementar uma nova classe, IntentResultMethods?")
+    infix fun respondWith(func: IntentResultBuilder.() -> IntentResultBuilder): IntentMatcherBuilder {
+        if (result == null)
+            result = IntentResultBuilder()
+        result?.apply { func() }
         return this
     }
 

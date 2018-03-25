@@ -23,7 +23,13 @@ class IntentResultBuilder {
         return this
     }
 
+    @Deprecated("Use customCode(code: Int) instead")
     fun code(code: Int): IntentResultBuilder {
+        this.resultCode = code
+        return this
+    }
+
+    fun customCode(code: Int): IntentResultBuilder {
         this.resultCode = code
         return this
     }

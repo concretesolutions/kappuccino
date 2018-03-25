@@ -9,7 +9,8 @@ import br.com.concretesolutions.kappuccino.R
 import br.com.concretesolutions.kappuccino.actions.ClickActions.click
 import br.com.concretesolutions.kappuccino.actions.TextActions.typeText
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
-import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.matchIntent
+import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.sentIntent
+import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.stubIntent
 import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
 import org.junit.After
 import org.junit.Before
@@ -55,10 +56,10 @@ class MainActivityTest {
     fun intentMatcherTest() {
         val WHATS_PACKAGE_NAME = "com.whatsapp"
         val PLAY_STORE_URL = "https://play.google.com/store/apps/details?id="
-        matchIntent {
+        stubIntent {
             action(Intent.ACTION_VIEW)
             url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
-            result {
+            respondWith {
                 ok()
             }
         }
@@ -67,7 +68,7 @@ class MainActivityTest {
             id(R.id.btn_start_activity)
         }
 
-        matchIntent {
+        sentIntent {
             action(Intent.ACTION_VIEW)
             url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
         }

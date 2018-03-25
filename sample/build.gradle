@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
     implementation "com.android.support:appcompat-v7:$versions.supportLibrary"
     implementation "com.android.support:support-v4:$versions.supportLibrary"
     implementation "com.android.support:recyclerview-v7:$versions.supportLibrary"
@@ -44,7 +44,9 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
     androidTestImplementation "com.android.support.test:runner:$versions.runner"
     androidTestImplementation "com.android.support.test:rules:$versions.rules"
-    androidTestCompile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    // JUnit
+    androidTestImplementation "junit:junit:4.12"
 }
 
 
