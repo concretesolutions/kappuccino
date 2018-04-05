@@ -24,4 +24,3 @@ object EnableAssertions {
         else return matches(not(isEnabled()))
     }
 }
-

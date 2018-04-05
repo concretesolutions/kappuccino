@@ -5,7 +5,9 @@ import android.support.annotation.DrawableRes
 import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.espresso.matcher.ViewMatchers.*
+import android.support.test.espresso.matcher.ViewMatchers.hasDescendant
+import android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.view.View
 import br.com.concretesolutions.kappuccino.matchers.TextColorMatcher
 import br.com.concretesolutions.kappuccino.matchers.drawable.BackgroundMatcher
@@ -33,7 +35,7 @@ class BaseMatchersImpl : BaseMatcherMethods {
         return this
     }
 
-    override fun text(textMatcher: Matcher<String>) : BaseMatchersImpl {
+    override fun text(textMatcher: Matcher<String>): BaseMatchersImpl {
         matchList.add(ViewMatchers.withText(textMatcher))
         return this
     }
@@ -106,4 +108,3 @@ class BaseMatchersImpl : BaseMatcherMethods {
             hasDescendant(Matchers.allOf(matcher))
     }
 }
-

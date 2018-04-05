@@ -33,5 +33,4 @@ class LinkInteractionsMethods(private val linkViewId: Int) {
     private fun openLink(withAction: ViewAction) {
         onView(withId(linkViewId)).perform(withAction)
     }
-
 }

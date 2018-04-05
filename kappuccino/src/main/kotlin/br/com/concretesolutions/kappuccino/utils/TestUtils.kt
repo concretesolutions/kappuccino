@@ -5,4 +5,3 @@ import android.os.SystemClock
 fun doWait(time: Long = 200) {
     SystemClock.sleep(time)
 }
-

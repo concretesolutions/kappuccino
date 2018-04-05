@@ -24,4 +24,3 @@ object SelectedAssertions {
         else return matches(not(isSelected()))
     }
 }
-

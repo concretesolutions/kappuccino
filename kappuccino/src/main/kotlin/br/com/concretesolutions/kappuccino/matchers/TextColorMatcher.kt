@@ -9,7 +9,6 @@ import android.widget.TextView
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 
-
 class TextColorMatcher {
 
     fun withTextColor(@ColorRes colorId: Int): Matcher<View> {
@@ -31,4 +30,3 @@ class TextColorMatcher {
         }
     }
 }
-

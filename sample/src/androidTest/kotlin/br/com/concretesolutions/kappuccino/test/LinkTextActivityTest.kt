@@ -69,5 +69,4 @@ class LinkTextActivityTest {
             url("https://www.google.com")
         }
     }
-
 }

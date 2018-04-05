@@ -7,7 +7,6 @@ import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import br.com.concretesolutions.kappuccino.extensions.scroll
 import br.com.concretesolutions.kappuccino.extensions.type
 
-
 object TextActions {
 
     fun typeText(text: String, scroll: Boolean = false, pressActionButton: Boolean = false, closeKeyboard: Boolean = true, func: BaseMatchersImpl.() -> BaseMatchersImpl) {
@@ -20,5 +19,4 @@ object TextActions {
         val matchList = BaseMatchersImpl().apply { func() }.matchList()
         BaseViewInteractions(scroll, matchList).action(ViewActions.clearText())
     }
-
 }

@@ -126,5 +126,4 @@ class VisibilityActivityTest {
 
         Intents.release()
     }
-
 }

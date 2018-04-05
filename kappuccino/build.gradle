@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'project-report'
-apply from: "$rootDir/tools/publish.gradle"
 apply plugin: 'kotlin-android'
+apply from: "$rootDir/tools/publish.gradle"
+apply from: "$rootDir/tools/ktlint.gradle"
 
 final versions = rootProject.ext
 

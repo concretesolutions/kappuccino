@@ -34,4 +34,3 @@ class IntentResultBuilder {
 
     internal fun build() = Instrumentation.ActivityResult(resultCode, resultData)
 }
-
