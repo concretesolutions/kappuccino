@@ -7,7 +7,6 @@ final versions = rootProject.ext
 
 android {
     compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
     defaultConfig {
         applicationId "br.com.concretesolutions.kappuccino"
         minSdkVersion versions.minSdk
@@ -28,6 +27,7 @@ android {
     sourceSets {
         androidTest.java.srcDirs = ['src/androidTest/kotlin']
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
