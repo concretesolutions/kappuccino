@@ -8,7 +8,6 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
 
-
 object RecyclerViewMatcher {
 
     fun matchAtPosition(position: Int, recyclerViewId: Int, itemMatcher: Matcher<View>): Matcher<View> {

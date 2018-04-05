@@ -31,5 +31,4 @@ object ClickActions {
         val matcher = Matchers.allOf(matchList)
         onView(matcher).scroll(scroll).perform(ClickDrawableAction(location))
     }
-
 }

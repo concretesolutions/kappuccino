@@ -73,7 +73,4 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
             return matchList.map { matchAtPosition(position, recyclerViewId, it) }
         }
     }
-
-
 }
-

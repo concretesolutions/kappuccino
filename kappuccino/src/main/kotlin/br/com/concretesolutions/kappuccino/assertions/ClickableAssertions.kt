@@ -24,4 +24,3 @@ object ClickableAssertions {
         else return matches(not(isClickable()))
     }
 }
-

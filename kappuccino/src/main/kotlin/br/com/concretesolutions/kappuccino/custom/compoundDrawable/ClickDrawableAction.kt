@@ -1,6 +1,5 @@
 package br.com.concretesolutions.kappuccino.custom.compoundDrawable
 
-
 import android.graphics.Point
 import android.graphics.Rect
 import android.os.SystemClock.uptimeMillis
@@ -20,7 +19,7 @@ import org.hamcrest.core.AllOf.allOf
  * Based on answer https://stackoverflow.com/a/37032927/3279958
  */
 
-class ClickDrawableAction(private @Location val drawableLocation: Int) : ViewAction {
+class ClickDrawableAction(@Location private val drawableLocation: Int) : ViewAction {
 
     companion object {
         @IntDef(Left, Top, Right, Bottom)
@@ -90,6 +89,5 @@ class ClickDrawableAction(private @Location val drawableLocation: Int) : ViewAct
         private fun fromHeight(fromPosition: Int): Int {
             return fromPosition + bounds.height() / 2
         }
-
     }
 }

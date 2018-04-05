@@ -7,7 +7,8 @@ import android.support.test.runner.AndroidJUnit4
 import br.com.concretesolutions.kappuccino.LinkTextActivity
 import br.com.concretesolutions.kappuccino.MainActivity
 import br.com.concretesolutions.kappuccino.R
-import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.matchIntent
+import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.sentIntent
+import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.stubIntent
 import br.com.concretesolutions.kappuccino.custom.link.openLink
 import org.junit.After
 import org.junit.Before
@@ -34,9 +35,9 @@ class LinkTextActivityTest {
     @Test
     fun openFirstLink() {
 
-        matchIntent {
+        stubIntent {
             className(MainActivity::class.java.name)
-            result {
+            respondWith {
                 ok()
             }
         }
@@ -45,17 +46,17 @@ class LinkTextActivityTest {
             withText("first link")
         }
 
-        matchIntent {
+        sentIntent {
             className(MainActivity::class.java.name)
         }
     }
 
     @Test
     fun openSecondLink() {
-        matchIntent {
+        stubIntent {
             action(Intent.ACTION_VIEW)
             url("https://www.google.com")
-            result {
+            respondWith {
                 ok()
             }
         }
@@ -64,10 +65,9 @@ class LinkTextActivityTest {
             withText("second link")
         }
 
-        matchIntent {
+        sentIntent {
             action(Intent.ACTION_VIEW)
             url("https://www.google.com")
         }
     }
-
 }

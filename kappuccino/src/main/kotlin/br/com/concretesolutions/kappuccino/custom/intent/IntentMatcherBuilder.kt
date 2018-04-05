@@ -2,10 +2,16 @@ package br.com.concretesolutions.kappuccino.custom.intent
 
 import android.content.Intent
 import android.net.Uri
-import android.support.test.espresso.intent.matcher.IntentMatchers.*
+import android.support.test.espresso.intent.matcher.IntentMatchers.hasAction
+import android.support.test.espresso.intent.matcher.IntentMatchers.hasCategories
+import android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent
+import android.support.test.espresso.intent.matcher.IntentMatchers.hasData
+import android.support.test.espresso.intent.matcher.IntentMatchers.toPackage
 import android.support.test.espresso.intent.matcher.UriMatchers.hasHost
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.*
+import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.equalTo
+import org.hamcrest.Matchers.hasItem
 
 class IntentMatcherBuilder {
     private val matchList = mutableListOf<Matcher<Intent>>()
@@ -56,6 +62,14 @@ class IntentMatcherBuilder {
         return this
     }
 
+    infix fun respondWith(func: IntentResultBuilder.() -> IntentResultBuilder): IntentMatcherBuilder {
+        if (result == null)
+            result = IntentResultBuilder()
+        result?.apply { func() }
+        return this
+    }
+
+    @Deprecated("Use respondWith instead")
     infix fun result(func: IntentResultBuilder.() -> IntentResultBuilder): IntentMatcherBuilder {
         if (result == null)
             result = IntentResultBuilder()
@@ -69,4 +83,3 @@ class IntentMatcherBuilder {
 
     internal fun result() = result
 }
-

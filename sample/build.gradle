@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'project-report'
 apply plugin: 'kotlin-android'
+apply from: "$rootDir/tools/ktlint.gradle"
 
 final versions = rootProject.ext
 
 android {
     compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
     defaultConfig {
         applicationId "br.com.concretesolutions.kappuccino"
         minSdkVersion versions.minSdk
@@ -27,10 +27,11 @@ android {
     sourceSets {
         androidTest.java.srcDirs = ['src/androidTest/kotlin']
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
-
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
     implementation "com.android.support:appcompat-v7:$versions.supportLibrary"
     implementation "com.android.support:support-v4:$versions.supportLibrary"
     implementation "com.android.support:recyclerview-v7:$versions.supportLibrary"
@@ -43,7 +44,9 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
     androidTestImplementation "com.android.support.test:runner:$versions.runner"
     androidTestImplementation "com.android.support.test:rules:$versions.rules"
-    androidTestCompile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    // JUnit
+    androidTestImplementation "junit:junit:4.12"
 }
 
 

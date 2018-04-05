@@ -28,7 +28,6 @@ class RuntimePermissionActivityTest {
     @JvmField
     var mActivityRule = ActivityTestRule<RuntimePermissionActivity>(RuntimePermissionActivity::class.java, false, true)
 
-
     @Test
     fun A_denyPermission() {
         click {
@@ -62,5 +61,4 @@ class RuntimePermissionActivityTest {
             text("PERMISSION GRANTED")
         }
     }
-
 }
