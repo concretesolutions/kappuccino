@@ -19,17 +19,17 @@ import org.hamcrest.core.AllOf.allOf
  * Based on answer https://stackoverflow.com/a/37032927/3279958
  */
 
-class ClickDrawableAction(private @Location val drawableLocation: Int) : ViewAction {
+class ClickDrawableAction(@Location private val drawableLocation: Int) : ViewAction {
 
     companion object {
         @IntDef(Left, Top, Right, Bottom)
         @Retention(AnnotationRetention.SOURCE)
         annotation class Location
 
-        const val Left = 0L
-        const val Top = 1L
-        const val Right = 2L
-        const val Bottom = 3L
+        const val Left = 0
+        const val Top = 1
+        const val Right = 2
+        const val Bottom = 3
     }
 
     override fun getDescription(): String {

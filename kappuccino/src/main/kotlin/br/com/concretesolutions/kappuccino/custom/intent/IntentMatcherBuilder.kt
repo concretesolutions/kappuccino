@@ -62,6 +62,14 @@ class IntentMatcherBuilder {
         return this
     }
 
+    infix fun respondWith(func: IntentResultBuilder.() -> IntentResultBuilder): IntentMatcherBuilder {
+        if (result == null)
+            result = IntentResultBuilder()
+        result?.apply { func() }
+        return this
+    }
+
+    @Deprecated("Use respondWith instead")
     infix fun result(func: IntentResultBuilder.() -> IntentResultBuilder): IntentMatcherBuilder {
         if (result == null)
             result = IntentResultBuilder()
