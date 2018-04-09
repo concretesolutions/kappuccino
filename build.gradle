@@ -23,10 +23,9 @@ allprojects {
 
 ext {
     compileSdk = 27
-    buildTools = "27.0.1"
     minSdk = 16
     targetSdk = 27
-    supportLibrary = "27.0.2"
+    supportLibrary = "27.1.1"
     espresso = "3.0.1"
     uiAutomator = "2.1.3"
     rules = "1.0.1"

@@ -1,4 +1,4 @@
-package br.com.concretesolutions.kappuccino;
+package br.com.concretesolutions.kappuccino.sample;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ public class LinkTextActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_link_text);
 
-        TextView txtLink = (TextView) findViewById(R.id.txt_link);
+        TextView txtLink = findViewById(R.id.txt_link);
         txtLink.setText(buildSpannableText());
     }
 
