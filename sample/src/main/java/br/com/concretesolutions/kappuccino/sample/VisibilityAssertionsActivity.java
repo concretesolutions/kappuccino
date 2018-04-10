@@ -1,4 +1,4 @@
-package br.com.concretesolutions.kappuccino;
+package br.com.concretesolutions.kappuccino.sample;
 
 import android.content.Intent;
 import android.os.Bundle;
