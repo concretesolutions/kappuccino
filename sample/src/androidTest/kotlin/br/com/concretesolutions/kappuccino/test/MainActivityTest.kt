@@ -53,6 +53,32 @@ class MainActivityTest {
     }
 
     @Test
+    fun recyclerView_textInput_test() {
+        recyclerView(R.id.recycler_view) {
+            atPosition(0) {
+                typeText(R.id.subject_edittext, "Position 0")
+                displayed {
+                    text("Position 0")
+                }
+            }
+
+            atPosition(1) {
+                typeText(R.id.subject_edittext, "Position 1")
+                displayed {
+                    text("Position 1")
+                }
+            }
+
+            atPosition(2) {
+                typeText(R.id.subject_edittext, "Position 2")
+                displayed {
+                    text("Position 2")
+                }
+            }
+        }
+    }
+
+    @Test
     fun intentMatcherTest() {
         val whatsPackageName = "com.whatsapp"
         val playStoreUrl = "https://play.google.com/store/apps/details?id="

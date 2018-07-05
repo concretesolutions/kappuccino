@@ -10,17 +10,17 @@ import android.widget.TextView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
 
-    private String[] SubjectValues;
+    private String[] subjectValues;
     private Context context;
 
-    RecyclerViewAdapter(Context context1, String[] SubjectValues1){
-        SubjectValues = SubjectValues1;
-        context = context1;
+    RecyclerViewAdapter(Context context, String[] subjectValues){
+        this.subjectValues = subjectValues;
+        this.context = context;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView textView;
+        private TextView textView;
 
         ViewHolder(View v){
             super(v);
@@ -31,17 +31,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-        View view1 = LayoutInflater.from(context).inflate(R.layout.recyclerview_items, parent, false);
-        return new ViewHolder(view1);
+        View view = LayoutInflater.from(context).inflate(R.layout.recyclerview_items, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position){
-        holder.textView.setText(SubjectValues[position]);
+        holder.textView.setText(subjectValues[position]);
     }
 
     @Override
     public int getItemCount(){
-        return SubjectValues.length;
+        return subjectValues.length;
     }
 }

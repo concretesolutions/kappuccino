@@ -1,6 +1,7 @@
 package br.com.concretesolutions.kappuccino.custom.recyclerView
 
 import android.support.annotation.IdRes
+import android.support.test.espresso.Espresso.closeSoftKeyboard
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.contrib.RecyclerViewActions
@@ -14,6 +15,7 @@ import br.com.concretesolutions.kappuccino.counters.CountAssertion
 import br.com.concretesolutions.kappuccino.extensions.clickChildView
 import br.com.concretesolutions.kappuccino.extensions.clickItem
 import br.com.concretesolutions.kappuccino.extensions.longClickItem
+import br.com.concretesolutions.kappuccino.extensions.typeTextOnChildView
 import br.com.concretesolutions.kappuccino.matchers.RecyclerViewMatcher.matchAtPosition
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.not
@@ -45,6 +47,12 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
 
         fun clickChildView(@IdRes viewId: Int): Interactions {
             onView(withId((recyclerViewId))).clickChildView(position, viewId)
+            return this
+        }
+
+        fun typeText(@IdRes viewId: Int, text: String): Interactions {
+            onView(withId(recyclerViewId)).typeTextOnChildView(position, viewId, text)
+            closeSoftKeyboard()
             return this
         }
 

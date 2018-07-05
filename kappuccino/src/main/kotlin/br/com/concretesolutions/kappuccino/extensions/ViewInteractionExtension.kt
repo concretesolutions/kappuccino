@@ -1,5 +1,6 @@
 package br.com.concretesolutions.kappuccino.extensions
 
+import android.support.annotation.IdRes
 import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.closeSoftKeyboard
@@ -34,4 +35,8 @@ fun ViewInteraction.longClickItem(position: Int): ViewInteraction {
 
 fun ViewInteraction.clickChildView(position: Int, viewId: Int): ViewInteraction {
     return this.perform(RecyclerViewUtils.actionOnItemViewAtPosition(position, viewId, click()))
+}
+
+fun ViewInteraction.typeTextOnChildView(position: Int, @IdRes viewId: Int, text: String): ViewInteraction {
+    return this.perform(RecyclerViewUtils.actionOnItemViewAtPosition(position, viewId, typeText(text)))
 }
