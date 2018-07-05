@@ -245,6 +245,22 @@ To interact with the recycler view:
 }
 ```
 
+To type text in a RecyclerView item's EditText:
+
+``` kotlin
+@Test fun recyclerView_textInput_example() {
+    recyclerView(R.id.recycler_view) {
+        atPosition(0) {
+            typeText(R.id.editText, "Position 0")
+        }
+
+        atPosition(1) {
+            typeText(R.id.editText, "Position 1")
+        }
+    }
+}
+```
+
 ### Matchers
 You can use the following matchers:
 ``` kotlin
