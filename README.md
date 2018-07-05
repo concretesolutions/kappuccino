@@ -71,7 +71,7 @@ sourceSets {
 4 - Add library and dependencies into your build.gradle file and sync
 
 ``` groovy
-androidTestCompile 'br.com.concretesolutions:kappuccino:$latest.version'
+androidTestImplementation 'br.com.concretesolutions:kappuccino:$latest.version'
 ```
 
 5 - This library depends on the following libraries:
@@ -92,7 +92,7 @@ And you're ready to go!
 #### If you have any module conflicts, try to exclude the conflicting module, for example:
 
 ``` groovy
-androidTestCompile('br.com.concretesolutions:kappuccino:$latest.version', {
+androidTestImplementation('br.com.concretesolutions:kappuccino:$latest.version', {
         exclude group: 'com.android.support'
     })
 ```
