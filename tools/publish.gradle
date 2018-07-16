@@ -17,9 +17,9 @@ bintray {
 
   configurations = ['archives']
   pkg {
-    repo = 'kappuccino'
+    repo = 'concrete-maven'
     name = 'kappuccino'
-    userOrg = 'heitorcolangelo'
+    userOrg = 'concrete'
     desc = DESCRIPTION
     websiteUrl = PROJECT_URL
     vcsUrl = SCM_URL
