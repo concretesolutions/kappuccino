@@ -3,8 +3,10 @@ package br.com.concretesolutions.kappuccino.custom.recyclerView
 import android.support.annotation.IdRes
 import android.support.test.espresso.Espresso.closeSoftKeyboard
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.contrib.RecyclerViewActions
+import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.v7.widget.RecyclerView
@@ -53,6 +55,18 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
         fun typeText(@IdRes viewId: Int, text: String): Interactions {
             onView(withId(recyclerViewId)).typeTextOnChildView(position, viewId, text)
             closeSoftKeyboard()
+            return this
+        }
+
+        fun <VH : RecyclerView.ViewHolder> swipeLeft(): Interactions {
+            onView(withId(recyclerViewId)).perform(actionOnItemAtPosition<VH>(
+                    position, ViewActions.swipeLeft()))
+            return this
+        }
+
+        fun <VH : RecyclerView.ViewHolder> swipeRight(): Interactions {
+            onView(withId(recyclerViewId)).perform(actionOnItemAtPosition<VH>(
+                    position, ViewActions.swipeRight()))
             return this
         }
 

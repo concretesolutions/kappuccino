@@ -12,6 +12,7 @@ import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractio
 import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
 import br.com.concretesolutions.kappuccino.sample.MainActivity
 import br.com.concretesolutions.kappuccino.sample.R
+import br.com.concretesolutions.kappuccino.sample.RecyclerViewAdapter
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -75,6 +76,19 @@ class MainActivityTest {
                     text("Position 2")
                 }
             }
+        }
+    }
+
+    @Test
+    fun whenSwipingAnItem_shouldRemoveFromRecyclerView() {
+        recyclerView(R.id.recycler_view) {
+            sizeIs(11)
+
+            atPosition(0) {
+                swipeLeft<RecyclerViewAdapter.ViewHolder>()
+            }
+
+            sizeIs(10)
         }
     }
 

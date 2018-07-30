@@ -261,6 +261,22 @@ To type text in a RecyclerView item's EditText:
 }
 ```
 
+To swipe a RecyclerView's item left or right:
+
+``` kotlin
+@Test fun recyclerView_swipeLeft_example() {
+    recyclerView(R.id.recycler_view() {
+        atPosition(0) {
+            swipeLeft<MyViewHolder>()
+        }
+
+        atPosition(1) {
+            swipeRight<MyViewHolder>()
+        }
+    }
+}
+```
+
 ### Matchers
 You can use the following matchers:
 ``` kotlin
