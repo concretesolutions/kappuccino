@@ -2,35 +2,40 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 ext.mavenConfig = {
 
-  pom.whenConfigured { pom ->
-    pom.project {
-      groupId GROUP
-      version VERSION_NAME
-      name NAME
-      description DESCRIPTION
-      inceptionYear INCEPTION_YEAR
+    pom.whenConfigured { pom ->
+        pom.project {
+            packaging PACKAGING
+            groupId GROUP
+            artifactId ARTIFACT_ID
 
-      scm {
-        url SCM_URL
-        connection SCM_CONNECTION
-      }
+            name NAME
+            description DESCRIPTION
+            version VERSION_NAME
 
-      developers {
-        developer {
-          id DEVELOPER_ID
-          name DEVELOPER_NAME
+            inceptionYear INCEPTION_YEAR
+
+            scm {
+                url SCM_URL
+                connection SCM_CONNECTION
+            }
+
+            developers {
+                developer {
+                    id DEVELOPER_ID
+                    name DEVELOPER_NAME
+                }
+            }
+
+            licenses {
+                license {
+                    name LICENCE_NAME
+                    url LICENCE_URL
+                    distribution LICENCE_DIST
+                }
+            }
         }
-      }
-
-      licenses {
-        license {
-          name LICENCE_NAME
-          url LICENCE_URL
-          distribution LICENCE_DIST
-        }
-      }
     }
-  }
 }
+
 install.repositories.mavenInstaller mavenConfig
 uploadArchives.repositories.mavenDeployer mavenConfig

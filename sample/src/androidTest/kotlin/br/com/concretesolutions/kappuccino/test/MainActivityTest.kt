@@ -4,14 +4,14 @@ import android.content.Intent
 import android.support.test.espresso.intent.Intents
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import br.com.concretesolutions.kappuccino.MainActivity
-import br.com.concretesolutions.kappuccino.R
 import br.com.concretesolutions.kappuccino.actions.ClickActions.click
 import br.com.concretesolutions.kappuccino.actions.TextActions.typeText
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.sentIntent
 import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.stubIntent
 import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
+import br.com.concretesolutions.kappuccino.sample.MainActivity
+import br.com.concretesolutions.kappuccino.sample.R
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -53,12 +53,38 @@ class MainActivityTest {
     }
 
     @Test
+    fun recyclerView_textInput_test() {
+        recyclerView(R.id.recycler_view) {
+            atPosition(0) {
+                typeText(R.id.subject_edittext, "Position 0")
+                displayed {
+                    text("Position 0")
+                }
+            }
+
+            atPosition(1) {
+                typeText(R.id.subject_edittext, "Position 1")
+                displayed {
+                    text("Position 1")
+                }
+            }
+
+            atPosition(2) {
+                typeText(R.id.subject_edittext, "Position 2")
+                displayed {
+                    text("Position 2")
+                }
+            }
+        }
+    }
+
+    @Test
     fun intentMatcherTest() {
-        val WHATS_PACKAGE_NAME = "com.whatsapp"
-        val PLAY_STORE_URL = "https://play.google.com/store/apps/details?id="
+        val whatsPackageName = "com.whatsapp"
+        val playStoreUrl = "https://play.google.com/store/apps/details?id="
         stubIntent {
             action(Intent.ACTION_VIEW)
-            url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
+            url(playStoreUrl + whatsPackageName)
             respondWith {
                 ok()
             }
@@ -70,7 +96,7 @@ class MainActivityTest {
 
         sentIntent {
             action(Intent.ACTION_VIEW)
-            url(PLAY_STORE_URL + WHATS_PACKAGE_NAME)
+            url(playStoreUrl + whatsPackageName)
         }
     }
 

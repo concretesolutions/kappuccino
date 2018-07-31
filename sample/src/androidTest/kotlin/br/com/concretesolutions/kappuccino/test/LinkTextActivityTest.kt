@@ -4,12 +4,12 @@ import android.content.Intent
 import android.support.test.espresso.intent.Intents
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import br.com.concretesolutions.kappuccino.LinkTextActivity
-import br.com.concretesolutions.kappuccino.MainActivity
-import br.com.concretesolutions.kappuccino.R
+import br.com.concretesolutions.kappuccino.sample.R
 import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.sentIntent
 import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.stubIntent
 import br.com.concretesolutions.kappuccino.custom.link.openLink
+import br.com.concretesolutions.kappuccino.sample.LinkTextActivity
+import br.com.concretesolutions.kappuccino.sample.MainActivity
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

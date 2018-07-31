@@ -3,10 +3,10 @@ package br.com.concretesolutions.kappuccino.test
 import android.Manifest
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import br.com.concretesolutions.kappuccino.R
-import br.com.concretesolutions.kappuccino.RuntimePermissionActivity
 import br.com.concretesolutions.kappuccino.actions.ClickActions.click
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
+import br.com.concretesolutions.kappuccino.sample.R
+import br.com.concretesolutions.kappuccino.sample.RuntimePermissionActivity
 import br.com.concretesolutions.kappuccino.utils.doWait
 import br.com.concretesolutions.kappuccino.utils.runtimePermission
 import org.junit.FixMethodOrder

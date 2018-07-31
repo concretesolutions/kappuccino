@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="br.com.concretesolutions.kappuccino.MainActivity">
+    tools:context="br.com.concretesolutions.kappuccino.sample.MainActivity">
 
     <EditText
         android:id="@+id/edit_hello_world"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/app_name"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/btn_start_activity"
@@ -41,6 +42,10 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        tools:listitem="@layout/recyclerview_items"
+        tools:itemCount="3"/>
 
 </LinearLayout>
