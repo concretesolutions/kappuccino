@@ -27,6 +27,8 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        item.setChecked(true);
+
         switch (item.getItemId()) {
             case R.id.item_1:
                 textView.setText(R.string.item_1_selected);

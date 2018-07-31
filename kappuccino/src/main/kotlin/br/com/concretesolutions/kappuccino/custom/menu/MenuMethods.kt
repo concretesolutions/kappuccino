@@ -10,7 +10,13 @@ import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers.withText
 
-fun menu(func: MenuMethods.() -> MenuMethods) = MenuMethods().apply { func() }
+fun menu(openOptionsMenu: Boolean = true, func: MenuMethods.() -> MenuMethods): MenuMethods {
+    return MenuMethods().apply {
+        if (openOptionsMenu)
+            openOptionsMenu()
+        func()
+    }
+}
 
 class MenuMethods {
 
