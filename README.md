@@ -267,11 +267,11 @@ To swipe a RecyclerView's item left or right:
 @Test fun recyclerView_swipeLeft_example() {
     recyclerView(R.id.recycler_view() {
         atPosition(0) {
-            swipeLeft<MyViewHolder>()
+            swipeLeft()
         }
 
         atPosition(1) {
-            swipeRight<MyViewHolder>()
+            swipeRight()
         }
     }
 }

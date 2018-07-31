@@ -3,10 +3,10 @@ package br.com.concretesolutions.kappuccino.custom.recyclerView
 import android.support.annotation.IdRes
 import android.support.test.espresso.Espresso.closeSoftKeyboard
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.contrib.RecyclerViewActions
-import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.v7.widget.RecyclerView
@@ -58,15 +58,13 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
             return this
         }
 
-        fun <VH : RecyclerView.ViewHolder> swipeLeft(): Interactions {
-            onView(withId(recyclerViewId)).perform(actionOnItemAtPosition<VH>(
-                    position, ViewActions.swipeLeft()))
+        fun swipeLeft(): Interactions {
+            onView(withId(recyclerViewId)).swipeLeft(position)
             return this
         }
 
-        fun <VH : RecyclerView.ViewHolder> swipeRight(): Interactions {
-            onView(withId(recyclerViewId)).perform(actionOnItemAtPosition<VH>(
-                    position, ViewActions.swipeRight()))
+        fun swipeRight(): Interactions {
+            onView(withId(recyclerViewId)).swipeRight(position)
             return this
         }
 
@@ -88,6 +86,16 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
         fun scroll(): Interactions {
             onView(withId((recyclerViewId))).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(position))
             return this
+        }
+
+        private fun ViewInteraction.swipeLeft(position: Int): ViewInteraction {
+            return this.perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    position, ViewActions.swipeLeft()))
+        }
+
+        private fun ViewInteraction.swipeRight(position: Int): ViewInteraction {
+            return this.perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    position, ViewActions.swipeRight()))
         }
 
         private fun itemMatchList(func: BaseMatchersImpl.() -> BaseMatchersImpl): List<Matcher<View>> {
