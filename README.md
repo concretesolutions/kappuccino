@@ -261,6 +261,41 @@ To type text in a RecyclerView item's EditText:
 }
 ```
 
+### Menu and action bar
+To interact with the options menu:
+
+``` kotlin
+@Test
+fun whenClickingOnItem1_shouldShowCorrectText() {
+    menu {
+        onItem(R.string.item_1) {
+            click()
+        }
+    }
+
+    displayed {
+        text(R.string.item_1_selected)
+    }
+}
+```
+
+To interact with the action bar:
+
+``` kotlin
+@Test
+fun whenClickingOnActionBarItem_shouldClearText() {
+    menu(openOptionsMenu = false) {
+        onActionBarItem(R.id.item_clear) {
+            click()
+        }
+    }
+
+    notDisplayed {
+        id(R.id.txt_menu)
+    }
+}
+```
+
 ### Matchers
 You can use the following matchers:
 ``` kotlin
