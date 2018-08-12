@@ -3,4 +3,8 @@
     <string name="hello_world">Hello World!</string>
     <string name="hello_world_2">Hello World 2!</string>
     <string name="hello_world_invisible">Hello World Invisible</string>
+
+    <!--region CompoundDrawables-->
+    <string name="compound_drawables_btn">Normal Button</string>
+    <!--endregion-->
 </resources>
