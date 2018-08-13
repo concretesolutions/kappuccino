@@ -3,6 +3,8 @@ package br.com.concretesolutions.kappuccino.custom.recyclerView
 import android.support.annotation.IdRes
 import android.support.test.espresso.Espresso.closeSoftKeyboard
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.ViewInteraction
+import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers
@@ -56,6 +58,16 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
             return this
         }
 
+        fun swipeLeft(): Interactions {
+            onView(withId(recyclerViewId)).swipeLeft(position)
+            return this
+        }
+
+        fun swipeRight(): Interactions {
+            onView(withId(recyclerViewId)).swipeRight(position)
+            return this
+        }
+
         fun displayed(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
             BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             return this
@@ -74,6 +86,16 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
         fun scroll(): Interactions {
             onView(withId((recyclerViewId))).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(position))
             return this
+        }
+
+        private fun ViewInteraction.swipeLeft(position: Int): ViewInteraction {
+            return this.perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    position, ViewActions.swipeLeft()))
+        }
+
+        private fun ViewInteraction.swipeRight(position: Int): ViewInteraction {
+            return this.perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    position, ViewActions.swipeRight()))
         }
 
         private fun itemMatchList(func: BaseMatchersImpl.() -> BaseMatchersImpl): List<Matcher<View>> {
