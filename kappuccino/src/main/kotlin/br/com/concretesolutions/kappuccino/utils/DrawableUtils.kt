@@ -33,7 +33,7 @@ fun getBitmap(drawable: Drawable): Bitmap {
  * @param expected  Expected Drawable to be matched
  * @param actual    Actual Drawable
  *
- * @return          True if they are identical, else otherwise.
+ * @return          True if they are identical, false otherwise.
  */
 fun compareDrawables(expected: Drawable, actual: Drawable): Boolean {
     val expectedState = expected.constantState
