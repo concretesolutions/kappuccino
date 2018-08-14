@@ -4,7 +4,15 @@
     <string name="hello_world_2">Hello World 2!</string>
     <string name="hello_world_invisible">Hello World Invisible</string>
 
+
     <!--region CompoundDrawables-->
     <string name="compound_drawables_btn">Normal Button</string>
     <!--endregion-->
+
+    <string name="item_1_selected">Menu item 1 is selected</string>
+    <string name="item_2_selected">Menu item 2 is selected</string>
+    <string name="item_1">Item 1</string>
+    <string name="item_2">Item 2</string>
+    <string name="clear">Clear</string>
+
 </resources>

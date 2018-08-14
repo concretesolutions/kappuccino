@@ -24,6 +24,8 @@
         <activity android:name=".LinkTextActivity"/>
         <activity android:name=".RuntimePermissionActivity" />
         <activity android:name=".CompoundDrawablesActivity"/>
+        <activity android:name=".MenuActivity"/>
+
     </application>
 
 </manifest>
