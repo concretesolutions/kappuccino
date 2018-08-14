@@ -79,6 +79,19 @@ class MainActivityTest {
     }
 
     @Test
+    fun whenSwipingAnItem_shouldRemoveFromRecyclerView() {
+        recyclerView(R.id.recycler_view) {
+            sizeIs(11)
+
+            atPosition(0) {
+                swipeLeft()
+            }
+
+            sizeIs(10)
+        }
+    }
+
+    @Test
     fun intentMatcherTest() {
         val whatsPackageName = "com.whatsapp"
         val playStoreUrl = "https://play.google.com/store/apps/details?id="
