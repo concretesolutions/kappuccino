@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_1x">16dp</dimen>
+    <dimen name="margin_.5x">8dp</dimen>
+    <dimen name="default_margin">@dimen/margin_1x</dimen>
+</resources>

@@ -21,34 +21,32 @@ sealed class DrawablePosition {
 }
 
 class TextViewDrawableMatcher {
+
     fun withCompoundDrawable(drawablePosition: DrawablePosition): Matcher<View> {
         val context = InstrumentationRegistry.getTargetContext()
-        var actualPosition = ""
 
         return object : BoundedMatcher<View, TextView>(TextView::class.java) {
             override fun describeTo(description: Description) {
-                description.appendText("Expected but not equal to drawable $actualPosition")
+                description.appendText("Expected but not equal to drawable $drawablePosition")
             }
 
-            override fun matchesSafely(actual: TextView): Boolean =
-                when (drawablePosition) {
+            override fun matchesSafely(actual: TextView): Boolean {
+                return when (drawablePosition) {
                     is DrawablePosition.Start -> {
-                        actualPosition = drawablePosition.toString()
-                        checkResIdAgainstDrawable(drawablePosition.resId, actual.compoundDrawables[0], context = context)
+                        checkResIdAgainstDrawable(drawablePosition.resId, actual.compoundDrawablesRelative[0], context)
                     }
                     is DrawablePosition.Top -> {
-                        actualPosition = drawablePosition.toString()
-                        checkResIdAgainstDrawable(drawablePosition.resId, actual.compoundDrawables[1], context = context)
+                        checkResIdAgainstDrawable(drawablePosition.resId, actual.compoundDrawablesRelative[1], context)
                     }
                     is DrawablePosition.End -> {
-                        actualPosition = drawablePosition.toString()
-                        checkResIdAgainstDrawable(drawablePosition.resId, actual.compoundDrawables[2], context = context)
+                        checkResIdAgainstDrawable(drawablePosition.resId, actual.compoundDrawablesRelative[2], context)
                     }
                     is DrawablePosition.Bottom -> {
-                        actualPosition = drawablePosition.toString()
-                        checkResIdAgainstDrawable(drawablePosition.resId, actual.compoundDrawables[3], context = context)
+                        checkResIdAgainstDrawable(drawablePosition.resId, actual.compoundDrawablesRelative[3], context)
                     }
                 }
+            }
         }
     }
+
 }

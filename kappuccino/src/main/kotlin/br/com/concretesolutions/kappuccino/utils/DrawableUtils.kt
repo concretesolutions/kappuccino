@@ -7,14 +7,15 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.support.annotation.DrawableRes
+import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v7.widget.AppCompatDrawableManager
 
-fun getResourceName(context: Context, resourceId: Int) =
+fun getResourceName(context: Context, resourceId: Int): String =
         context.resources.getResourceEntryName(resourceId)
 
-fun getDrawable(context: Context, drawableId: Int) =
-        AppCompatDrawableManager.get().getDrawable(context, drawableId)
+fun getDrawable(context: Context, drawableId: Int): Drawable? {
+    return ContextCompat.getDrawable(context, drawableId)
+}
 
 fun getBitmap(drawable: Drawable): Bitmap {
     return if (drawable is BitmapDrawable)
@@ -23,11 +24,30 @@ fun getBitmap(drawable: Drawable): Bitmap {
         getBitmapFromVectorDrawable(drawable)
 }
 
-fun compareDrawables(lhs: Drawable, rhs: Drawable) = lhs.constantState == rhs.constantState
+/**
+ * Compare drawables's [Drawable.ConstantState] and also [Bitmap]s from those drawables
+ * Only compares the [Drawable.ConstantState] can ended up in a possible false negative as stated here:
+ *
+ * https://stackoverflow.com/questions/9125229/comparing-two-drawables-in-android/31562099#31562099
+ *
+ * @param expected  Expected Drawable to be matched
+ * @param actual    Actual Drawable
+ *
+ * @return          True if they are identical, false otherwise.
+ */
+fun compareDrawables(expected: Drawable, actual: Drawable): Boolean {
+    val expectedState = expected.constantState
+    val actualState = actual.constantState
+    return ((expectedState != null && actualState != null && expectedState == actualState)
+            || getBitmap(expected).sameAs(getBitmap(actual)))
+}
 
-fun checkResIdAgainstDrawable(@DrawableRes resId: Int,
-                              drawable: Drawable?,
-                              context: Context) = drawable != null && compareDrawables(getDrawable(context, resId), drawable)
+fun checkResIdAgainstDrawable(@DrawableRes resId: Int, drawable: Drawable?, context: Context): Boolean {
+
+    val expected = getDrawable(context, resId) ?: return false
+
+    return drawable != null && compareDrawables(expected, drawable)
+}
 
 fun getBitmapFromVectorDrawable(vectorDrawable: Drawable): Bitmap {
     var drawable: Drawable = vectorDrawable

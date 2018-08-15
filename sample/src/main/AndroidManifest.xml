@@ -23,8 +23,9 @@
         <activity android:name=".VisibilityAssertionsActivity"/>
         <activity android:name=".LinkTextActivity"/>
         <activity android:name=".RuntimePermissionActivity" />
-        <activity android:name=".ManipulateTextActivity"/>
+        <activity android:name=".CompoundDrawablesActivity"/>
         <activity android:name=".MenuActivity"/>
+
     </application>
 
 </manifest>
