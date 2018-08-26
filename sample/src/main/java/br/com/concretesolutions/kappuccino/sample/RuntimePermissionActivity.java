@@ -16,7 +16,7 @@ public class RuntimePermissionActivity
         implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 123;
-    private static final String TAG = "RuntimePermission";
+    private static final String TAG = "TAG_ " + RuntimePermissionActivity.class.getSimpleName();
 
     private TextView result;
 
