@@ -389,7 +389,7 @@ fun grantContactsPermission() {
     }
 
     runtimePermission(Manifest.permission.READ_CONTACTS) {
-        grant()
+        allow()
     }
 
     displayed {
