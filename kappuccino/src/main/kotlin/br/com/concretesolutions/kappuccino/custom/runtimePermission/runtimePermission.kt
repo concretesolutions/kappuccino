@@ -86,7 +86,7 @@ class RuntimePermissionHandler(private val permissionNeeded: String) {
             }
 
         } catch (e: UiObjectNotFoundException) {
-            println("There is no permissions dialog to interaction with")
+            println("There is no permissions dialog to interact with")
         }
 
     }
