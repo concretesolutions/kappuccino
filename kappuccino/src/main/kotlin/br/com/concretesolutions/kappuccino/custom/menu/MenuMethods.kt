@@ -33,7 +33,7 @@ class MenuMethods {
         return createInteraction(onView(withText(itemText)), func)
     }
 
-    fun onActionBarItem(@IdRes itemId: Int,func: Interactions.() -> Interactions): MenuMethods {
+    fun onActionBarItem(@IdRes itemId: Int, func: Interactions.() -> Interactions): MenuMethods {
         return createInteraction(onView(withId(itemId)), func)
     }
 
@@ -54,7 +54,5 @@ class MenuMethods {
             viewInteraction.perform(ViewActions.longClick())
             return this
         }
-
     }
-
 }
