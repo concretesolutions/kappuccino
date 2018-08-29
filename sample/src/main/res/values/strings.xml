@@ -14,4 +14,11 @@
     <string name="item_2">Item 2</string>
     <string name="clear">Clear</string>
 
+    <!--region Runtime Permissions-->
+    <string name="permission_granted">PERMISSION GRANTED</string>
+    <string name="permission_denied">PERMISSION DENIED</string>
+    <string name="request_contact_permission">Request contact permission</string>
+    <string name="permission_not_requested">Permission not requested</string>
+    <!--endregion-->
+
 </resources>

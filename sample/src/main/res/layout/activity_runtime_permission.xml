@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical">
 
     <Button
         android:id="@+id/btn_request_permission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Request contact permission"/>
+        android:text="@string/request_contact_permission"/>
 
     <TextView
         android:id="@+id/txt_permission_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
-        android:textStyle="bold"
         android:layout_marginTop="8dp"
-        android:text="Permission not requested"/>
+        android:text="@string/permission_not_requested"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"/>
 
 </LinearLayout>
