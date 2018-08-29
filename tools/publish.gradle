@@ -10,6 +10,41 @@ apply plugin: 'com.jfrog.bintray'
 group = GROUP
 version = VERSION_NAME
 
+task sourcesJar(type: Jar) {
+  from android.sourceSets.main.java.srcDirs
+  classifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+  classifier = 'javadoc'
+  from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+  archives javadocJar
+  archives sourcesJar
+}
+
+apply plugin: 'maven-publish'
+publishing {
+  publications {
+    mainPublication(MavenPublication) {
+      artifact sourcesJar
+      artifact javadocJar
+      artifact "$buildDir/outputs/aar/${project.name}-release.aar"
+      groupId group
+      artifactId ARTIFACT_ID
+      version version
+      pom.withXml {
+        def root = asNode()
+        root.appendNode('description', DESCRIPTION)
+        root.appendNode('name', NAME)
+        root.appendNode('url', PROJECT_URL)
+      }
+    }
+  }
+}
+
 bintray {
 
   user = localConfig.getProperty('bintray.user')
@@ -17,9 +52,9 @@ bintray {
 
   configurations = ['archives']
   pkg {
-    repo = 'kappuccino'
+    repo = 'concrete-maven'
     name = 'kappuccino'
-    userOrg = 'heitorcolangelo'
+    userOrg = 'concrete'
     desc = DESCRIPTION
     websiteUrl = PROJECT_URL
     vcsUrl = SCM_URL
