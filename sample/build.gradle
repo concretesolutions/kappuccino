@@ -35,8 +35,8 @@ dependencies {
     implementation "com.android.support:support-v4:$versions.supportLibrary"
     implementation "com.android.support:recyclerview-v7:$versions.supportLibrary"
     implementation "com.android.support:design:$versions.supportLibrary"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation 'junit:junit:4.12'
+    implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
+    testImplementation "junit:junit:$versions.jUnit"
     androidTestImplementation project(':kappuccino')
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$versions.espresso"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$versions.espresso"
@@ -45,7 +45,7 @@ dependencies {
     androidTestImplementation "com.android.support.test:rules:$versions.rules"
     androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     // JUnit
-    androidTestImplementation "junit:junit:4.12"
+    androidTestImplementation "junit:junit:$versions.jUnit"
 }
 
 

@@ -4,7 +4,9 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import br.com.concretesolutions.kappuccino.actions.ClickActions.click
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
-import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition.*
+import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition.End
+import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition.Start
+import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition.Top
 import br.com.concretesolutions.kappuccino.sample.CompoundDrawablesActivity
 import br.com.concretesolutions.kappuccino.sample.R
 import org.junit.Rule
@@ -30,5 +32,4 @@ class CompoundDrawablesActivityTest {
             textCompoundDrawable(End(R.drawable.ic_drawable_end))
         }
     }
-
 }

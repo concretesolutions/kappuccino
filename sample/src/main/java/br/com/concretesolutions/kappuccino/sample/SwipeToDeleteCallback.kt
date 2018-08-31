@@ -37,17 +37,19 @@ abstract class SwipeToDeleteCallback(context: Context)
         val isCanceled = dX == 0f && !isCurrentlyActive
 
         if (isCanceled) {
-            clearCanvas(canvas, itemView.right + dX, itemView.top.toFloat(),
-                        itemView.right.toFloat(), itemView.bottom.toFloat())
-            super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY,
-                              actionState, isCurrentlyActive)
+            with(itemView) {
+                clearCanvas(canvas, right + dX, top.toFloat(), right.toFloat(), bottom.toFloat())
+            }
+            super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
             return
         }
 
         // Draw the red delete background
         background.color = backgroundColour
-        background.setBounds(itemView.right + dX.toInt(), itemView.top,
-                             itemView.right, itemView.bottom)
+        background.setBounds(itemView.right + dX.toInt(),
+                itemView.top,
+                itemView.right,
+                itemView.bottom)
         background.draw(canvas)
 
         // Calculate position of delete icon
@@ -67,5 +69,4 @@ abstract class SwipeToDeleteCallback(context: Context)
     private fun clearCanvas(canvas: Canvas?, left: Float, top: Float, right: Float, bottom: Float) {
         canvas?.drawRect(left, top, right, bottom, clearPaint)
     }
-
 }

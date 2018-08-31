@@ -56,5 +56,4 @@ class RuntimePermissionActivityTest {
             text("PERMISSION GRANTED")
         }
     }
-
 }

@@ -20,5 +20,4 @@ class CompoundDrawablesActivity : AppCompatActivity() {
                 ContextCompat.getDrawable(this, R.drawable.ic_drawable_end),
                 null)
     }
-
 }

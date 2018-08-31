@@ -55,7 +55,7 @@ class RuntimePermissionHandler(private val permissionNeeded: String) {
      * This method will check the Android version before handling the permission. It will also properly handle the
      * permission based on action from [allow] or [deny] methods.
      *
-     * @param actionButtonId    The id of the action button
+     * @param actionButtonId The id of the action button
      *
      * From: https://gist.github.com/rocboronat/65b1187a9fca9eabfebb5121d818a3c4
      */
@@ -82,13 +82,10 @@ class RuntimePermissionHandler(private val permissionNeeded: String) {
                 } else {
                     println("Could not find button with Id: $actionButtonId")
                 }
-
             }
-
         } catch (e: UiObjectNotFoundException) {
             println("There is no permissions dialog to interact with")
         }
-
     }
 
     private fun hasNeededPermission(context: Context, permissionNeeded: String): Boolean {
@@ -103,5 +100,4 @@ class RuntimePermissionHandler(private val permissionNeeded: String) {
             throw RuntimeException("Cannot execute Thread.sleep()")
         }
     }
-
 }

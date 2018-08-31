@@ -16,8 +16,7 @@ class MenuActivityTest {
 
     @Rule
     @JvmField
-    var rule = ActivityTestRule<MenuActivity>(MenuActivity::class.java, false,
-                                              true)
+    var rule = ActivityTestRule<MenuActivity>(MenuActivity::class.java, false, true)
 
     @Test
     fun whenClickingOnItem1_shouldShowCorrectText() {
@@ -57,5 +56,4 @@ class MenuActivityTest {
             id(R.id.txt_menu)
         }
     }
-
 }
