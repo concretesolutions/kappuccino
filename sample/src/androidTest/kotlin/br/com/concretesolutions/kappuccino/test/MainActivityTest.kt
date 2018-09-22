@@ -9,7 +9,6 @@ import br.com.concretesolutions.kappuccino.actions.TextActions.typeText
 import br.com.concretesolutions.kappuccino.assertions.VisibilityAssertions.displayed
 import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.sentIntent
 import br.com.concretesolutions.kappuccino.custom.intent.IntentMatcherInteractions.stubIntent
-import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
 import br.com.concretesolutions.kappuccino.sample.MainActivity
 import br.com.concretesolutions.kappuccino.sample.R
 import org.junit.After
@@ -38,56 +37,6 @@ class MainActivityTest {
 
         displayed {
             text("This is a text to be typed")
-        }
-    }
-
-    @Test
-    fun recyclerView_test() {
-        recyclerView(R.id.recycler_view) {
-            atPosition(1) {
-                displayed {
-                    text("PHP")
-                }
-            }
-        }
-    }
-
-    @Test
-    fun recyclerView_textInput_test() {
-        recyclerView(R.id.recycler_view) {
-            atPosition(0) {
-                typeText(R.id.subject_edittext, "Position 0")
-                displayed {
-                    text("Position 0")
-                }
-            }
-
-            atPosition(1) {
-                typeText(R.id.subject_edittext, "Position 1")
-                displayed {
-                    text("Position 1")
-                }
-            }
-
-            atPosition(2) {
-                typeText(R.id.subject_edittext, "Position 2")
-                displayed {
-                    text("Position 2")
-                }
-            }
-        }
-    }
-
-    @Test
-    fun whenSwipingAnItem_shouldRemoveFromRecyclerView() {
-        recyclerView(R.id.recycler_view) {
-            sizeIs(11)
-
-            atPosition(0) {
-                swipeLeft()
-            }
-
-            sizeIs(10)
         }
     }
 

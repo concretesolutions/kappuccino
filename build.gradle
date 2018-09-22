@@ -21,17 +21,21 @@ allprojects {
     }
 }
 
+// Versions are grouped by context and sorted alphabetically
 ext {
     compileSdk = 27
     minSdk = 17
     targetSdk = 27
+
+    constraintLayout = "1.1.3"
+    findBugsAnnotations = "3.0.2"
     supportLibrary = "27.1.1"
-    constraintLayout = "1.1.2"
+
     espresso = "3.0.2"
-    uiAutomator = "2.1.3"
+    jUnit = "4.12"
     rules = "1.0.2"
     runner = "1.0.2"
-    jUnit = "4.12"
+    uiAutomator = "2.1.3"
 
     versionCode = Integer.parseInt(VERSION_CODE)
     versionName = VERSION_NAME
