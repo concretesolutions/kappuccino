@@ -23,7 +23,7 @@ class CountAssertion(private val expectedCount: Int) : ViewAssertion {
 
     private fun recyclerViewSize(recyclerView: RecyclerView) {
         val adapter = recyclerView.adapter
-        MatcherAssert.assertThat(adapter.itemCount, CoreMatchers.`is`(expectedCount))
+        MatcherAssert.assertThat(adapter?.itemCount, CoreMatchers.`is`(expectedCount))
     }
 
     private fun viewPagerSize(viewPager: ViewPager) {

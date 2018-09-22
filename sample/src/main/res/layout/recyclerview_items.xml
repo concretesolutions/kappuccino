@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="7dp"
         android:inputType="text"
-        android:hint="Type something here"
+        android:hint="@string/type_something_here"
         android:textColor="#000000"/>
 
 </LinearLayout>

@@ -68,5 +68,4 @@ class RecyclerViewTest {
             sizeIs(initialSize - 1)
         }
     }
-
 }

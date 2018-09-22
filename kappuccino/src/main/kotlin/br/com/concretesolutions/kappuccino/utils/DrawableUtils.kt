@@ -30,10 +30,10 @@ fun getBitmap(drawable: Drawable): Bitmap {
  *
  * https://stackoverflow.com/questions/9125229/comparing-two-drawables-in-android/31562099#31562099
  *
- * @param expected  Expected Drawable to be matched
- * @param actual    Actual Drawable
+ * @param expected Expected Drawable to be matched
+ * @param actual Actual Drawable
  *
- * @return          True if they are identical, false otherwise.
+ * @return True if they are identical, false otherwise.
  */
 fun compareDrawables(expected: Drawable, actual: Drawable): Boolean {
     val expectedState = expected.constantState
