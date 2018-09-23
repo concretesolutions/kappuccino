@@ -3,8 +3,6 @@ package br.com.concretesolutions.kappuccino.custom.recyclerView
 import android.support.annotation.IdRes
 import android.support.test.espresso.Espresso.closeSoftKeyboard
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers
@@ -16,7 +14,12 @@ import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import br.com.concretesolutions.kappuccino.counters.CountAssertion
 import br.com.concretesolutions.kappuccino.extensions.clickChildView
 import br.com.concretesolutions.kappuccino.extensions.clickItem
+import br.com.concretesolutions.kappuccino.extensions.displayed
+import br.com.concretesolutions.kappuccino.extensions.displayedChildView
 import br.com.concretesolutions.kappuccino.extensions.longClickItem
+import br.com.concretesolutions.kappuccino.extensions.notDisplayedChildView
+import br.com.concretesolutions.kappuccino.extensions.swipeLeft
+import br.com.concretesolutions.kappuccino.extensions.swipeRight
 import br.com.concretesolutions.kappuccino.extensions.typeTextOnChildView
 import br.com.concretesolutions.kappuccino.matchers.RecyclerViewMatcher.matchAtPosition
 import org.hamcrest.Matcher
@@ -30,12 +33,13 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
     }
 
     fun atPosition(vararg positions: Int, func: Interactions.() -> Interactions): RecyclerViewMethods {
-        for (position in positions)
+        for (position in positions) {
             Interactions(recyclerViewId, position).apply { func() }
+        }
         return this
     }
 
-    class Interactions(val recyclerViewId: Int, val position: Int) {
+    class Interactions(private val recyclerViewId: Int, private val position: Int) {
 
         fun click(): Interactions {
             onView(withId((recyclerViewId))).clickItem(position)
@@ -52,8 +56,8 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
             return this
         }
 
-        fun typeText(@IdRes viewId: Int, text: String): Interactions {
-            onView(withId(recyclerViewId)).typeTextOnChildView(position, viewId, text)
+        fun typeText(@IdRes editTextId: Int, text: String): Interactions {
+            onView(withId(recyclerViewId)).typeTextOnChildView(position, editTextId, text)
             closeSoftKeyboard()
             return this
         }
@@ -68,16 +72,78 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
             return this
         }
 
+        /**
+         * This method was deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
+         * I do not recommend the use when you try to match using the Id of the view. But it seems to work fine if
+         * you use the Text instead of the Id.
+         * Anyways, use carefully or, use one the following methods instead:
+         *
+         * @use [displayed] to assert that the whole item is displayed.
+         * @user [displayedChildView] to assert that a specific child view of that item is displayed.
+         *
+         * @deprecated use [displayed] or [displayedChildView] instead.
+         */
+        @Deprecated(level = DeprecationLevel.WARNING, message = "User displayed() or displayedChildView(childViewId) instead")
         fun displayed(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
             BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             return this
         }
 
-        fun notDisplayed(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
-            BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.matches(not(ViewMatchers.isDisplayed())))
+        fun displayed(): Interactions {
+            onView(withId(recyclerViewId)).displayed(position)
             return this
         }
 
+        fun displayedChildView(@IdRes childViewId: Int): Interactions {
+            onView(withId(recyclerViewId)).displayedChildView(position, childViewId)
+            return this
+        }
+
+        /**
+         * This method was deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
+         * I do not recommend the use when you try to match using the Id of the view. But it seems to work fine if
+         * you use the Text instead of the Id.
+         * Anyways, use carefully or, use one the following methods instead:
+         *
+         * @use [notDisplayedChildView]
+         *
+         * @deprecated use [notDisplayedChildView] to assert over a child view.
+         */
+        @Deprecated(
+                level = DeprecationLevel.WARNING,
+                message = "Use RecyclerViewMethods.Interactions.notDisplayedChildView(childViewId) instead",
+                replaceWith = ReplaceWith(
+                        expression = "RecyclerViewMethods.Interactions.notDisplayedChildView(childViewId)",
+                        imports = ["br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewMethods.Interactions"]
+                ))
+        fun notDisplayed(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
+            val assertion = ViewAssertions.matches(not(ViewMatchers.isDisplayed()))
+            BaseViewInteractions(false, itemMatchList(func)).check(assertion)
+            return this
+        }
+
+        fun notDisplayedChildView(@IdRes childViewId: Int): Interactions {
+            onView(withId(recyclerViewId)).notDisplayedChildView(position, childViewId)
+            return this
+        }
+
+        /**
+         * This method was deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
+         * I do not recommend the use when you try to match using the Id of the view. But it seems to work fine if
+         * you use the Text instead of the Id.
+         * Anyways, use carefully or, use one the following methods instead:
+         *
+         * @use [notDisplayedChildView]
+         *
+         * @deprecated use [notDisplayedChildView] to assert over a child view.
+         */
+        @Deprecated(
+                level = DeprecationLevel.WARNING,
+                message = "Use RecyclerViewMethods.Interactions.notDisplayedChildView(childViewId) instead",
+                replaceWith = ReplaceWith(
+                        expression = "RecyclerViewMethods.Interactions.notDisplayedChildView(childViewId)",
+                        imports = ["br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewMethods.Interactions"]
+                ))
         fun notExist(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
             BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.doesNotExist())
             return this
@@ -88,19 +154,11 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
             return this
         }
 
-        private fun ViewInteraction.swipeLeft(position: Int): ViewInteraction {
-            return this.perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
-                    position, ViewActions.swipeLeft()))
-        }
-
-        private fun ViewInteraction.swipeRight(position: Int): ViewInteraction {
-            return this.perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
-                    position, ViewActions.swipeRight()))
-        }
-
+        @Deprecated(message = "Don't use this method to try to match in a recycler view")
         private fun itemMatchList(func: BaseMatchersImpl.() -> BaseMatchersImpl): List<Matcher<View>> {
             val matchList = BaseMatchersImpl().apply { func() }.matchList()
-            return matchList.map { matchAtPosition(position, recyclerViewId, it) }
+            return matchList.map { matchAtPosition(position, it) }
         }
     }
+
 }

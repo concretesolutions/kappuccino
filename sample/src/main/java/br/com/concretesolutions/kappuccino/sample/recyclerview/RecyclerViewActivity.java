@@ -46,7 +46,9 @@ public class RecyclerViewActivity extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 RecyclerViewAdapter adapter = (RecyclerViewAdapter) recyclerView.getAdapter();
-                adapter.removeAt(viewHolder.getAdapterPosition());
+                if (adapter != null) {
+                    adapter.removeAt(viewHolder.getAdapterPosition());
+                }
             }
         };
 

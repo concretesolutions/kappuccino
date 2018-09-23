@@ -1,16 +1,15 @@
-package br.com.concretesolutions.kappuccino.test
+package br.com.concretesolutions.kappuccino.sample.recyclerview
 
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
 import br.com.concretesolutions.kappuccino.sample.R
-import br.com.concretesolutions.kappuccino.sample.recyclerview.RecyclerViewActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class RecyclerViewTest {
+class RecyclerViewActivityTest {
 
     @Rule
     @JvmField
@@ -31,25 +30,33 @@ class RecyclerViewTest {
     fun textInput_andVisibility_check() {
         recyclerView(R.id.recycler_view) {
             atPosition(0) {
-                typeText(R.id.subject_edittext, "Position 0")
+                typeText(R.id.subject_edit_text, "Position 0")
                 displayed {
                     text("Position 0")
-                }
-            }
-
-            atPosition(1) {
-                typeText(R.id.subject_edittext, "Position 1")
-                displayed {
-                    text("Position 1")
+                    text("ANDROID")
                 }
             }
 
             atPosition(2) {
-                typeText(R.id.subject_edittext, "Position 2")
+                typeText(R.id.subject_edit_text, "Position 2")
                 displayed {
                     text("Position 2")
                 }
             }
+        }
+    }
+
+    @Test
+    fun notDisplayed_issue99() {
+        // This test will check that if the EditText for the item at position 1 is not displayed by the user.
+        recyclerView(R.id.recycler_view) {
+            atPosition(0, 2, 3) {
+                displayedChildView(R.id.subject_edit_text)
+            }
+            atPosition(1) {
+                notDisplayedChildView(R.id.subject_edit_text)
+            }
+
         }
     }
 
