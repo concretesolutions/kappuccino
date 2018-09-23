@@ -77,9 +77,7 @@ internal object RecyclerViewItemInteractions {
                     ?: throw Builder().withCause(noViewFoundException).build()
 
             viewAssertion.check(targetView, noViewFoundException)
-
         }
-
     }
 
     private class ScrollToPositionViewAction(private val position: Int) : ViewAction {

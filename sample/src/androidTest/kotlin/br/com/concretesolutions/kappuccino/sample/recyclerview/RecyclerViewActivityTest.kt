@@ -56,7 +56,6 @@ class RecyclerViewActivityTest {
             atPosition(1) {
                 notDisplayedChildView(R.id.subject_edit_text)
             }
-
         }
     }
 
