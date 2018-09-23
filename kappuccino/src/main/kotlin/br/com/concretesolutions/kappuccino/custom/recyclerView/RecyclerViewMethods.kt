@@ -73,7 +73,7 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
         }
 
         /**
-         * This method was deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
+         * This method is deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
          * I do not recommend the use when you try to match using the Id of the view. But it seems to work fine if
          * you use the Text instead of the Id.
          * Anyways, use carefully or, use one the following methods instead:
@@ -100,7 +100,7 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
         }
 
         /**
-         * This method was deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
+         * This method is deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
          * I do not recommend the use when you try to match using the Id of the view. But it seems to work fine if
          * you use the Text instead of the Id.
          * Anyways, use carefully or, use one the following methods instead:
@@ -128,7 +128,7 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
         }
 
         /**
-         * This method was deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
+         * This method is deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
          * I do not recommend the use when you try to match using the Id of the view. But it seems to work fine if
          * you use the Text instead of the Id.
          * Anyways, use carefully or, use one the following methods instead:
