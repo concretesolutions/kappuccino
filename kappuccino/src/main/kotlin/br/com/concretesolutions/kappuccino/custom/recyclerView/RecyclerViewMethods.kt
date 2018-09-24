@@ -79,11 +79,13 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
          * Anyways, use carefully or, use one the following methods instead:
          *
          * @use [displayed] to assert that the whole item is displayed.
-         * @user [displayedChildView] to assert that a specific child view of that item is displayed.
+         * @use [displayedChildView] to assert that a specific child view of that item is displayed.
          *
          * @deprecated use [displayed] or [displayedChildView] instead.
          */
-        @Deprecated(level = DeprecationLevel.WARNING, message = "User displayed() or displayedChildView(childViewId) instead")
+        @Deprecated(
+                level = DeprecationLevel.WARNING,
+                message = "User displayed() or displayedChildView(childViewId) instead")
         fun displayed(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
             BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             return this
@@ -114,8 +116,7 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
                 message = "Use RecyclerViewMethods.Interactions.notDisplayedChildView(childViewId) instead",
                 replaceWith = ReplaceWith(
                         expression = "RecyclerViewMethods.Interactions.notDisplayedChildView(childViewId)",
-                        imports = ["br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewMethods.Interactions"]
-                ))
+                        imports = ["br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewMethods.Interactions"]))
         fun notDisplayed(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
             val assertion = ViewAssertions.matches(not(ViewMatchers.isDisplayed()))
             BaseViewInteractions(false, itemMatchList(func)).check(assertion)
