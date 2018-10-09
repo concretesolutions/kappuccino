@@ -76,7 +76,7 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
          * This method is deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
          * I do not recommend the use when you try to match using the Id of the view. But it seems to work fine if
          * you use the Text instead of the Id.
-         * Anyways, use carefully or, use one the following methods instead:
+         * Anyways, use carefully or, use one of the following methods instead:
          *
          * @use [displayed] to assert that the whole item is displayed.
          * @use [displayedChildView] to assert that a specific child view of that item is displayed.
@@ -85,7 +85,7 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
          */
         @Deprecated(
                 level = DeprecationLevel.WARNING,
-                message = "User displayed() or displayedChildView(childViewId) instead")
+                message = "Use displayed() or displayedChildView(childViewId) instead")
         fun displayed(func: BaseMatchersImpl.() -> BaseMatchersImpl): Interactions {
             BaseViewInteractions(false, itemMatchList(func)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             return this
@@ -105,7 +105,7 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
          * This method is deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
          * I do not recommend the use when you try to match using the Id of the view. But it seems to work fine if
          * you use the Text instead of the Id.
-         * Anyways, use carefully or, use one the following methods instead:
+         * Anyways, use carefully or, use one of the following methods instead:
          *
          * @use [notDisplayedChildView]
          *
@@ -132,7 +132,7 @@ class RecyclerViewMethods(private val recyclerViewId: Int) {
          * This method is deprecated until [this issue](https://github.com/concretesolutions/kappuccino/issues/99) is solved.
          * I do not recommend the use when you try to match using the Id of the view. But it seems to work fine if
          * you use the Text instead of the Id.
-         * Anyways, use carefully or, use one the following methods instead:
+         * Anyways, use carefully or, use one of the following methods instead:
          *
          * @use [notDisplayedChildView]
          *
