@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Kappuccino</string>
-    <string name="hello_world">Hello World!</string>
-    <string name="hello_world_2">Hello World 2!</string>
-    <string name="hello_world_invisible">Hello World Invisible</string>
 
     <!--region CompoundDrawables-->
     <string name="compound_drawables_btn">Normal Button</string>
@@ -19,6 +16,25 @@
     <string name="permission_denied">PERMISSION DENIED</string>
     <string name="request_contact_permission">Request contact permission</string>
     <string name="permission_not_requested">Permission not requested</string>
+    <!--endregion-->
+
+    <!--region Visibility Activity-->
+    <string name="visibility_visible_with_id">This is a visible TextView with id</string>
+    <string name="visibility_visible_no_id">This is a visible TextView without id</string>
+    <string name="visibility_invisible_with_id">This is a invisible TextView with id</string>
+    <string name="text_different_text_color">This is TextView with different text color</string>
+    <string name="text_content_description">This is a content description</string>
+    <string name="open_main_activity">Open Main Activity</string>
+    <!--endregion-->
+
+    <!--region View to include-->
+    <string name="this_is_a_textview_inside_a_parent">This is a TextView inside a parent</string>
+    <string name="this_is_another_textview_inside_a_parent">This is another textview inside a parent</string>
+    <string name="this_is_the_third_textview_inside_a_parent">This is the third textview inside a parent</string>
+    <!--endregion-->
+
+    <!--region Generic strings-->
+    <string name="type_something_here">Type something here</string>
     <!--endregion-->
 
 </resources>

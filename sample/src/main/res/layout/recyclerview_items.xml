@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/subject_textview"
+        android:id="@+id/subject_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
@@ -19,12 +19,12 @@
         tools:text="This is a text"/>
 
     <EditText
-        android:id="@+id/subject_edittext"
+        android:id="@+id/subject_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="7dp"
         android:inputType="text"
-        android:hint="Type something here"
+        android:hint="@string/type_something_here"
         android:textColor="#000000"/>
 
 </LinearLayout>

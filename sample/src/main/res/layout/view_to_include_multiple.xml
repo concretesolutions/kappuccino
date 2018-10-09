@@ -8,18 +8,19 @@
         android:id="@+id/txt_inside_parent1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is a textview inside a parent" />
+        android:text="@string/this_is_a_textview_inside_a_parent" />
 
     <TextView
+        android:id="@+id/txt_inside_parent2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is another textview inside a parent" />
+        android:text="@string/this_is_another_textview_inside_a_parent" />
 
 
     <TextView
         android:id="@+id/txt_inside_parent3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is the third textview inside a parent" />
+        android:text="@string/this_is_the_third_textview_inside_a_parent" />
 
 </LinearLayout>

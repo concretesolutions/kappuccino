@@ -5,6 +5,8 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.VectorDrawable
+import android.os.Build
+import android.support.annotation.RequiresApi
 import android.view.View
 import br.com.concretesolutions.kappuccino.utils.getBitmap
 import br.com.concretesolutions.kappuccino.utils.getBitmapFromVectorDrawable
@@ -18,6 +20,7 @@ class BackgroundMatcher(private val drawableId: Int) : TypeSafeMatcher<View>(Vie
     private var resourceName: String? = null
     private var typeName: String = ""
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun matchesSafely(target: View): Boolean {
         val context = target.context
         resourceName = getResourceName(context, drawableId)
@@ -56,12 +59,16 @@ class BackgroundMatcher(private val drawableId: Int) : TypeSafeMatcher<View>(Vie
         private const val BITMAP = "bitmap"
         private const val COLOR = "color"
 
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         private fun matchVector(context: Context, current: Drawable, drawableId: Int): Boolean {
             val currentBitmap = getBitmapFromVectorDrawable(current)
             val expectedDrawable = getDrawable(context, drawableId)
+
             // Do not replace with Elvis operator because it cast the variable from Drawable to VectorDrawable
+            @Suppress("FoldInitializerAndIfToElvis")
             if (expectedDrawable !is VectorDrawable)
                 return false
+
             val expectedBitmap = getBitmap(expectedDrawable)
             return currentBitmap.sameAs(expectedBitmap)
         }

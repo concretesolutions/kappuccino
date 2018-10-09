@@ -20,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
-        android:text="Start Activity" />
+        android:text="Start Activity"
+        tools:ignore="HardcodedText"/>
 
     <View
         android:id="@+id/view_background"
@@ -37,15 +38,5 @@
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/ic_android" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:descendantFocusability="beforeDescendants"
-        android:focusableInTouchMode="true"
-        tools:listitem="@layout/recyclerview_items"
-        tools:itemCount="3"/>
 
 </LinearLayout>

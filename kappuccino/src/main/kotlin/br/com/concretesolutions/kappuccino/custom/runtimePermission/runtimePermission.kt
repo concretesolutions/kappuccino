@@ -20,9 +20,9 @@ import android.support.v4.content.ContextCompat
  * In case you just want to avoid the permission dialogs to execute your tests, it would be a good idea to use
  * [GrantPermissionRule](https://developer.android.com/reference/android/support/test/rule/GrantPermissionRule)
  *
- * @param permissionNeeded  The [android.Manifest.permission] or [android.Manifest.permission_group] value corresponding
+ * @param permissionNeeded The [android.Manifest.permission] or [android.Manifest.permission_group] value corresponding
  *                          to the requested permission.
- * @param action            The action [RuntimePermissionHandler.allow] or [RuntimePermissionHandler.deny]
+ * @param action The action [RuntimePermissionHandler.allow] or [RuntimePermissionHandler.deny]
  *                          on the current permission request dialog.
  */
 fun runtimePermission(permissionNeeded: String, action: RuntimePermissionHandler.() -> Unit) {
