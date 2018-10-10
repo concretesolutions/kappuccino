@@ -28,6 +28,5 @@ fun hasTextError(): BoundedMatcher<View, TextInputLayout> {
         override fun matchesSafely(item: TextInputLayout): Boolean {
             return item.error != null
         }
-
     }
 }
