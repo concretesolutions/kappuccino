@@ -1,7 +1,8 @@
 package br.com.concretesolutions.kappuccino.sample.recyclerview
 
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewInteractions.recyclerView
 import br.com.concretesolutions.kappuccino.sample.R
 import org.junit.Rule

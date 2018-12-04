@@ -13,7 +13,7 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
@@ -32,22 +32,22 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
-    implementation "com.android.support:appcompat-v7:$versions.supportLibrary"
-    implementation "com.android.support:support-v4:$versions.supportLibrary"
-    implementation "com.android.support:recyclerview-v7:$versions.supportLibrary"
-    implementation "com.android.support:design:$versions.supportLibrary"
-    implementation "com.android.support:support-annotations:$versions.supportLibrary"
-    implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
+    implementation "androidx.appcompat:appcompat:$versions.appCompat"
+    implementation "androidx.legacy:legacy-support-v4:$versions.legacySupportV4"
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
+    implementation "com.google.android.material:material:$versions.material"
+    implementation "androidx.annotation:annotation:$versions.annotation"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
 
     implementation "com.google.code.findbugs:jsr305:$versions.findBugsAnnotations"
 
     testImplementation "junit:junit:$versions.jUnit"
     androidTestImplementation project(':kappuccino')
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$versions.espresso"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$versions.espresso"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
-    androidTestImplementation "com.android.support.test:runner:$versions.runner"
-    androidTestImplementation "com.android.support.test:rules:$versions.rules"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$versions.espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$versions.espresso"
+    androidTestImplementation "androidx.test:runner:$versions.runner"
+    androidTestImplementation "androidx.test:rules:$versions.rules"
     androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     // JUnit
     androidTestImplementation "junit:junit:$versions.jUnit"

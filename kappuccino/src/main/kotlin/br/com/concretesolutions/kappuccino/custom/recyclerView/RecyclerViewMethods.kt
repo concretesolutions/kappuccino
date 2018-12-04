@@ -1,14 +1,14 @@
 package br.com.concretesolutions.kappuccino.custom.recyclerView
 
-import android.support.annotation.IdRes
-import android.support.test.espresso.Espresso.closeSoftKeyboard
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.assertion.ViewAssertions
-import android.support.test.espresso.contrib.RecyclerViewActions
-import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.IdRes
+import androidx.test.espresso.Espresso.closeSoftKeyboard
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import br.com.concretesolutions.kappuccino.BaseMatchersImpl
 import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import br.com.concretesolutions.kappuccino.counters.CountAssertion

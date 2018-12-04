@@ -14,7 +14,7 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode versions.versionCode
         versionName versions.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
@@ -36,24 +36,25 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 
-    implementation("com.android.support.test.espresso:espresso-core:$versions.espresso") {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-
-    implementation "com.android.support.test.espresso:espresso-intents:$versions.espresso"
-    implementation("com.android.support.test.espresso:espresso-contrib:$versions.espresso") {
+    implementation("androidx.test.espresso:espresso-core:$versions.espresso") {
         // Necessary to avoid version conflicts
-        exclude group: 'com.android.support', module: 'design'
-        exclude group: 'com.android.support', module: 'recyclerview-v7'
-        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'androidx.annotation', module: 'annotation'
     }
 
-    implementation "com.android.support:support-annotations:$versions.supportLibrary"
-    implementation "com.android.support:design:$versions.supportLibrary"
-    implementation "com.android.support:recyclerview-v7:$versions.supportLibrary"
+    implementation "androidx.test.espresso:espresso-intents:$versions.espresso"
+    implementation("androidx.test.espresso:espresso-contrib:$versions.espresso") {
+        // Necessary to avoid version conflicts
+        exclude group: 'com.google.android.material', module: 'material'
+        exclude group: 'androidx.recyclerview', module: 'recyclerview'
+        exclude group: 'androidx.annotation', module: 'annotation'
+    }
 
-    implementation "com.android.support.test.uiautomator:uiautomator-v18:$versions.uiAutomator"
+    implementation "androidx.annotation:annotation:$versions.annotation"
+    implementation "com.google.android.material:material:$versions.material"
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
 
-    implementation "com.android.support.test:rules:$versions.rules"
-    implementation "com.android.support.test:runner:$versions.runner"
+    implementation "androidx.test.uiautomator:uiautomator:$versions.uiAutomator"
+
+    implementation "androidx.test:rules:$versions.rules"
+    implementation "androidx.test:runner:$versions.runner"
 }

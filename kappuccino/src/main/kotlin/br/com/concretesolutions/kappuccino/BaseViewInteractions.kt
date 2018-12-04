@@ -1,8 +1,8 @@
 package br.com.concretesolutions.kappuccino
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.ViewAction
-import android.support.test.espresso.ViewAssertion
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.ViewAssertion
 import android.view.View
 import br.com.concretesolutions.kappuccino.extensions.scroll
 import org.hamcrest.Matcher

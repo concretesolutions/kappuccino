@@ -1,7 +1,7 @@
 package br.com.concretesolutions.kappuccino.custom.intent
 
-import android.support.test.espresso.intent.Intents.intended
-import android.support.test.espresso.intent.Intents.intending
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.Intents.intending
 import kotlin.test.fail
 
 object IntentMatcherInteractions {

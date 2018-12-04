@@ -1,16 +1,16 @@
 package br.com.concretesolutions.kappuccino.custom.recyclerView
 
-import android.support.annotation.IdRes
-import android.support.test.espresso.NoMatchingViewException
-import android.support.test.espresso.PerformException.Builder
-import android.support.test.espresso.UiController
-import android.support.test.espresso.ViewAction
-import android.support.test.espresso.ViewAssertion
-import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.matcher.ViewMatchers
-import android.support.test.espresso.util.HumanReadables
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.IdRes
+import androidx.test.espresso.NoMatchingViewException
+import androidx.test.espresso.PerformException.Builder
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.ViewAssertion
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.util.HumanReadables
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 

@@ -1,19 +1,18 @@
 package br.com.concretesolutions.kappuccino.extensions
 
-import android.support.annotation.IdRes
-import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.action.ViewActions.closeSoftKeyboard
-import android.support.test.espresso.action.ViewActions.longClick
-import android.support.test.espresso.action.ViewActions.pressImeActionButton
-import android.support.test.espresso.action.ViewActions.scrollTo
-import android.support.test.espresso.action.ViewActions.typeText
-import android.support.test.espresso.assertion.ViewAssertions
-import android.support.test.espresso.contrib.RecyclerViewActions
-import android.support.test.espresso.matcher.ViewMatchers
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.ViewHolder
+import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.longClick
+import androidx.test.espresso.action.ViewActions.pressImeActionButton
+import androidx.test.espresso.action.ViewActions.scrollTo
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.annotation.IdRes
+import androidx.recyclerview.widget.RecyclerView
 import br.com.concretesolutions.kappuccino.custom.recyclerView.RecyclerViewItemInteractions
 import org.hamcrest.Matchers
 
@@ -31,12 +30,12 @@ fun ViewInteraction.type(text: String, pressActionButton: Boolean = false, close
 //region RecyclerView specific extensions
 internal fun ViewInteraction.clickItem(position: Int): ViewInteraction {
     return this.perform(RecyclerViewActions
-        .actionOnItemAtPosition<ViewHolder>(position, click()))
+        .actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click()))
 }
 
 internal fun ViewInteraction.longClickItem(position: Int): ViewInteraction {
     return this.perform(RecyclerViewActions
-        .actionOnItemAtPosition<ViewHolder>(position, longClick()))
+        .actionOnItemAtPosition<RecyclerView.ViewHolder>(position, longClick()))
 }
 
 internal fun ViewInteraction.clickChildView(position: Int, viewId: Int): ViewInteraction {

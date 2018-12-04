@@ -3,11 +3,11 @@ package br.com.concretesolutions.kappuccino.custom.compoundDrawable
 import android.graphics.Point
 import android.graphics.Rect
 import android.os.SystemClock.uptimeMillis
-import android.support.annotation.IntDef
-import android.support.test.espresso.UiController
-import android.support.test.espresso.ViewAction
-import android.support.test.espresso.matcher.BoundedMatcher
-import android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.annotation.IntDef
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.matcher.BoundedMatcher
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView

@@ -1,9 +1,9 @@
 package br.com.concretesolutions.kappuccino
 
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
-import android.support.annotation.IdRes
-import android.support.annotation.StringRes
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 import android.view.View
 import br.com.concretesolutions.kappuccino.matchers.drawable.DrawablePosition
 import org.hamcrest.Matcher

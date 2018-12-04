@@ -1,6 +1,6 @@
 package br.com.concretesolutions.kappuccino.matchers
 
-import android.support.test.espresso.matcher.BoundedMatcher
+import androidx.test.espresso.matcher.BoundedMatcher
 import android.view.View
 import android.widget.EditText
 import org.hamcrest.Description

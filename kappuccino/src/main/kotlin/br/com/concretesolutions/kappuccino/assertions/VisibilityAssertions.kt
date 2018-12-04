@@ -1,8 +1,8 @@
 package br.com.concretesolutions.kappuccino.assertions
 
-import android.support.test.espresso.ViewAssertion
-import android.support.test.espresso.assertion.ViewAssertions
-import android.support.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.ViewAssertion
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.matcher.ViewMatchers
 import br.com.concretesolutions.kappuccino.BaseMatchersImpl
 import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import org.hamcrest.Matchers

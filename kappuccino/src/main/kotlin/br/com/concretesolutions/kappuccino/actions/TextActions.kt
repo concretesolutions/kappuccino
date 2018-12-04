@@ -1,7 +1,7 @@
 package br.com.concretesolutions.kappuccino.actions
 
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.action.ViewActions
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.ViewActions
 import br.com.concretesolutions.kappuccino.BaseMatchersImpl
 import br.com.concretesolutions.kappuccino.BaseViewInteractions
 import br.com.concretesolutions.kappuccino.extensions.scroll

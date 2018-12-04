@@ -1,8 +1,8 @@
 package br.com.concretesolutions.kappuccino.custom.viewPager
 
-import android.support.annotation.IdRes
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.matcher.ViewMatchers.withId
+import androidx.annotation.IdRes
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import br.com.concretesolutions.kappuccino.counters.CountAssertion
 
 object ViewPagerInteractions {

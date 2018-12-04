@@ -1,8 +1,8 @@
 package br.com.concretesolutions.kappuccino.matchers.drawable
 
-import android.support.annotation.DrawableRes
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.matcher.BoundedMatcher
+import androidx.annotation.DrawableRes
+import androidx.test.InstrumentationRegistry
+import androidx.test.espresso.matcher.BoundedMatcher
 import android.view.View
 import android.widget.TextView
 import br.com.concretesolutions.kappuccino.utils.checkResIdAgainstDrawable

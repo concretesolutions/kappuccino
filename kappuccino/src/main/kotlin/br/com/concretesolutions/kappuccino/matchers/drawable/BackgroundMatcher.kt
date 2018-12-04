@@ -6,8 +6,8 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.VectorDrawable
 import android.os.Build
-import android.support.annotation.RequiresApi
 import android.view.View
+import androidx.annotation.RequiresApi
 import br.com.concretesolutions.kappuccino.utils.getBitmap
 import br.com.concretesolutions.kappuccino.utils.getBitmapFromVectorDrawable
 import br.com.concretesolutions.kappuccino.utils.getDrawable

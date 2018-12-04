@@ -1,6 +1,6 @@
 package br.com.concretesolutions.kappuccino.assertions
 
-import android.support.test.espresso.assertion.ViewAssertions.doesNotExist
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import br.com.concretesolutions.kappuccino.BaseMatchersImpl
 import br.com.concretesolutions.kappuccino.BaseViewInteractions
 

@@ -1,10 +1,10 @@
 package br.com.concretesolutions.kappuccino.counters
 
-import android.support.test.espresso.NoMatchingViewException
-import android.support.test.espresso.ViewAssertion
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.RecyclerView
+import androidx.test.espresso.NoMatchingViewException
+import androidx.test.espresso.ViewAssertion
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
 

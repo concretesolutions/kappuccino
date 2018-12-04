@@ -3,12 +3,12 @@ package br.com.concretesolutions.kappuccino.custom.runtimePermission
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import android.support.test.InstrumentationRegistry
-import android.support.test.InstrumentationRegistry.getInstrumentation
-import android.support.test.uiautomator.UiDevice
-import android.support.test.uiautomator.UiObjectNotFoundException
-import android.support.test.uiautomator.UiSelector
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
+import androidx.test.InstrumentationRegistry
+import androidx.test.InstrumentationRegistry.getInstrumentation
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiObjectNotFoundException
+import androidx.test.uiautomator.UiSelector
 
 /**
  * This method allows you to check if your app behaves as expected when denying or allowing the permission requested.
