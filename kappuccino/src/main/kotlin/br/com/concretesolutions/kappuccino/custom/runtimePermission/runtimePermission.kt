@@ -4,8 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.content.ContextCompat
-import androidx.test.InstrumentationRegistry
-import androidx.test.InstrumentationRegistry.getInstrumentation
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObjectNotFoundException
 import androidx.test.uiautomator.UiSelector
@@ -62,7 +61,7 @@ class RuntimePermissionHandler(private val permissionNeeded: String) {
     private fun handlePermission(actionButtonId: String) {
 
         try {
-            val context = InstrumentationRegistry.getTargetContext()
+            val context = InstrumentationRegistry.getInstrumentation().targetContext
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                     && !hasNeededPermission(context, permissionNeeded)) {
@@ -71,7 +70,7 @@ class RuntimePermissionHandler(private val permissionNeeded: String) {
                 sleep(PERMISSIONS_DIALOG_DELAY)
 
                 // Finding the correct button to perform the click action
-                val device = UiDevice.getInstance(getInstrumentation())
+                val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
                 val allowPermissions = device.findObject(UiSelector()
                         .clickable(true)
                         .checkable(false)

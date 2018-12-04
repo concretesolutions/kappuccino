@@ -1,10 +1,10 @@
 package br.com.concretesolutions.kappuccino.matchers.drawable
 
 import androidx.annotation.DrawableRes
-import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.matcher.BoundedMatcher
 import android.view.View
 import android.widget.TextView
+import androidx.test.platform.app.InstrumentationRegistry
 import br.com.concretesolutions.kappuccino.utils.checkResIdAgainstDrawable
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -23,7 +23,7 @@ sealed class DrawablePosition {
 class TextViewDrawableMatcher {
 
     fun withCompoundDrawable(drawablePosition: DrawablePosition): Matcher<View> {
-        val context = InstrumentationRegistry.getTargetContext()
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
 
         return object : BoundedMatcher<View, TextView>(TextView::class.java) {
             override fun describeTo(description: Description) {

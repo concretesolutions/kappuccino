@@ -1,18 +1,19 @@
 package br.com.concretesolutions.kappuccino.matchers
 
 import androidx.annotation.ColorRes
-import androidx.test.InstrumentationRegistry
+
 import androidx.test.espresso.matcher.BoundedMatcher
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.test.platform.app.InstrumentationRegistry
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 
 class TextColorMatcher {
 
     fun withTextColor(@ColorRes colorId: Int): Matcher<View> {
-        val context = InstrumentationRegistry.getContext()
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
         val expectedColor = ContextCompat.getColor(context, colorId)
         return object : BoundedMatcher<View, TextView>(TextView::class.java) {
             internal var currentColor = 0
