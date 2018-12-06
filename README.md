@@ -326,6 +326,13 @@ fun descendant(@IdRes descendantId: Int)
 fun custom(viewMatcher: Matcher<View>) // Here you can pass a custom matcher
 ```
 
+### TextInputLayout Matchers
+You can match TextInputLayout now:
+``` kotlin
+fun withTextError(textToCheck: String)
+fun hasTextError()
+```
+
 ### Intent Matchers
 You can match intents easily now:
 ``` kotlin
