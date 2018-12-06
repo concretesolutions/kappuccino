@@ -28,6 +28,7 @@
         <activity android:name=".CompoundDrawablesActivity"/>
         <activity android:name=".MenuActivity"/>
         <activity android:name=".recyclerview.RecyclerViewActivity"/>
+        <activity android:name=".TextInputLayoutActivity" />
 
     </application>
 
