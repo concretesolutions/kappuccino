@@ -37,4 +37,9 @@
     <string name="type_something_here">Type something here</string>
     <!--endregion-->
 
+    <!--region TextInput strings-->
+    <string name="textInputEditTextHere">This is a TextInputEditText</string>
+    <string name="textInputLayoutError">This is an Error</string>
+    <!--endregion-->
+
 </resources>

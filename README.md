@@ -326,6 +326,39 @@ fun descendant(@IdRes descendantId: Int)
 fun custom(viewMatcher: Matcher<View>) // Here you can pass a custom matcher
 ```
 
+### TextInputLayout Matchers
+You can match TextInputLayout now:
+
+To check if TextInputLayout has an error text
+``` kotlin
+@Test
+fun textInputLayout_hasTextError_example() {
+    textInputLayout(R.id.textInputLayout) {
+        hasTextError()
+    }
+}
+```
+
+To check error text with text
+``` kotlin
+@Test
+fun textInputLayout_checkTextErrorWithText_example() {
+    textInputLayout(R.id.textInputLayout) {
+         withTextError("example text error")
+    }
+}
+```
+
+To check error text with an string resource
+``` kotlin
+@Test
+fun textInputLayout_checkTextErrorWithResource_example() {
+    textInputLayout(R.id.textInputLayout) {
+         withTextError(R.string.textError)
+    }
+}
+```
+
 ### Intent Matchers
 You can match intents easily now:
 ``` kotlin
